@@ -1,21 +1,47 @@
 ---
 /**
- * Packages Page - Tour Packages for Adi Kailash Yatra
+ * Packages Page - REFACTORED WITH DYNAMIC LANGUAGE SUPPORT! 📦
  * 
  * Displays all available tour packages with:
- * - Detailed itineraries
- * - Pricing information
+ * - Detailed itineraries with BEAUTIFUL IMAGES
+ * - Pricing information in both languages
  * - Inclusions and exclusions
  * - Booking options via WhatsApp
+ * 
+ * ARCHITECTURE:
+ * - Automatically detects language from URL (/packages = English, /hi/packages = Hindi)
+ * - Single page file handles both languages
+ * - Content loaded from data files and translations
+ * - Beautiful package images integrated
+ * 
+ * ROUTING:
+ * - English: /packages
+ * - Hindi: /hi/packages
+ * 
+ * @page PackagesPage
  */
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadContent, loadJSON } from '../utils/dataLoader';
+import { detectLanguage } from '../utils/languageHelper';
+import { useTranslation } from '../utils/translations';
 import { getPackageInquiryURL } from '../utils/whatsapp';
 
-console.log('[PackagesPage] Loading packages page data...');
+// STEP 1: Detect language from URL
+const langContext = detectLanguage(Astro);
+const locale = langContext.locale;
 
-// Load data
+// STEP 2: Get translation function for detected language
+const t = useTranslation(locale);
+
+// Console logging for debugging
+console.log('[PackagesPage] ========================================');
+console.log('[PackagesPage] Loading packages page...');
+console.log('[PackagesPage] Detected locale:', locale);
+console.log('[PackagesPage] Path:', langContext.fullPath);
+console.log('[PackagesPage] ========================================');
+
+// STEP 3: Load data
 let content: any = {};
 let itinerary: any = null;
 
@@ -23,31 +49,58 @@ try {
   content = await loadContent();
   itinerary = await loadJSON('itinerary_5day.json');
   console.log('[PackagesPage] ✓ Data loaded successfully');
+  console.log('[PackagesPage] Itinerary:', itinerary?.package_name);
 } catch (error) {
   console.error('[PackagesPage] ✗ Error loading data:', error);
+  console.error('[PackagesPage] Error details:', error);
 }
 
+// STEP 4: Get translated page content
 const packagesContent = content.packages || {};
-const pageTitle = packagesContent.header?.h1 || 'Adi Kailash Tour Packages 2025';
-const pageDescription = 'Choose from our carefully crafted Adi Kailash tour packages. 5-day, 9-day, and 14-day options available with complete Inner Line Permit assistance.';
+const pageTitle = t('packages.heading', packagesContent.header?.h1 || 'Adi Kailash Tour Packages 2025');
+const pageDescription = t('packages.subheading', 'Choose from our carefully crafted Adi Kailash tour packages. 5-day, 9-day, and 14-day options available with complete Inner Line Permit assistance.');
+
+console.log('[PackagesPage] Page title:', pageTitle);
+console.log('[PackagesPage] ✓ Packages page ready to render');
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  locale="en"
   pageName="packages"
 >
-  <!-- Page Header -->
-  <section class="bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-20">
-    <div class="container-custom text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+  <!-- Page Header with Beautiful Background -->
+  <section class="relative bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-20 overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 right-10 text-9xl">🏔️</div>
+      <div class="absolute bottom-10 left-10 text-9xl">🕉️</div>
+    </div>
+    
+    <div class="container-custom text-center relative z-10">
+      <!-- Om Symbol Decoration -->
+      <div class="text-5xl mb-4 opacity-80">
+        📦
+      </div>
+      
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
         {pageTitle}
       </h1>
       <p class="text-xl opacity-90 max-w-3xl mx-auto">
-        Customized & Group Yatra Options for Every Pilgrim
+        {t('packages.subheading', 'Customized & Group Yatra Options for Every Pilgrim')}
       </p>
     </div>
+  </section>
+
+  <!-- Beautiful Package Hero Image Section -->
+  <section class="relative h-96 overflow-hidden">
+    <img 
+      src="/images/6d25384b-482d-473c-98c6-d65e9853ad99_Adi-Kailash 1.webp" 
+      alt={t('packages.heading', 'Adi Kailash Tour Packages')}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
   </section>
 
   <!-- 5-Day Package (Detailed) -->
@@ -55,42 +108,56 @@ const pageDescription = 'Choose from our carefully crafted Adi Kailash tour pack
     <section class="section bg-white">
       <div class="container-custom">
         <div class="max-w-5xl mx-auto">
-          <!-- Package Header -->
+          <!-- Package Header Card with Image -->
           <div class="card mb-8">
-            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6">
-              <div>
-                <h2 class="text-3xl font-bold text-secondary-800 mb-2">
-                  {itinerary.package_name}
-                </h2>
-                <div class="flex flex-wrap gap-2 mt-3">
-                  <span class="badge badge-primary">
-                    {itinerary.duration.days} Days / {itinerary.duration.nights} Nights
-                  </span>
-                  <span class="badge badge-secondary">
-                    Difficulty: {itinerary.difficulty}
-                  </span>
-                  <span class="badge badge-success">
-                    Max Altitude: {itinerary.max_altitude.meters}m
-                  </span>
-                </div>
+            <div class="grid lg:grid-cols-3 gap-6 mb-6">
+              <!-- Package Image -->
+              <div class="lg:col-span-1">
+                <img 
+                  src="/images/kailashyatra1-1697183775.jpg" 
+                  alt={itinerary.package_name}
+                  class="w-full h-full object-cover rounded-lg shadow-lg"
+                  loading="lazy"
+                />
               </div>
               
-              <div class="mt-6 lg:mt-0 text-center lg:text-right">
-                <div class="text-4xl font-bold gradient-text mb-2">
-                  ₹{itinerary.price_range.min_inr.toLocaleString()}
+              <!-- Package Details -->
+              <div class="lg:col-span-2">
+                <h2 class="text-3xl font-bold text-secondary-800 mb-3">
+                  {itinerary.package_name}
+                </h2>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span class="badge badge-primary">
+                    {itinerary.duration.days} {t('common.days', 'Days')} / {itinerary.duration.nights} {t('common.nights', 'Nights')}
+                  </span>
+                  <span class="badge badge-secondary">
+                    {t('packages.difficulty', 'Difficulty')}: {itinerary.difficulty}
+                  </span>
+                  <span class="badge badge-success">
+                    {t('common.max_altitude', 'Max Altitude')}: {itinerary.max_altitude.meters}m
+                  </span>
                 </div>
-                <p class="text-gray-600 mb-4">per person (group of {itinerary.price_range.group_size})</p>
+                
+                <div class="mb-4">
+                  <div class="text-4xl font-bold gradient-text mb-2">
+                    ₹{itinerary.price_range.min_inr.toLocaleString()}
+                  </div>
+                  <p class="text-gray-600">
+                    {t('common.per_person_onwards', 'per person')} ({t('packages.from', 'group of')} {itinerary.price_range.group_size})
+                  </p>
+                </div>
+                
                 <a 
                   href={getPackageInquiryURL(
                     itinerary.package_name,
                     `₹${itinerary.price_range.min_inr.toLocaleString()}-₹${itinerary.price_range.max_inr.toLocaleString()}`,
-                    `${itinerary.duration.days} Days / ${itinerary.duration.nights} Nights`
+                    `${itinerary.duration.days} ${t('common.days', 'Days')} / ${itinerary.duration.nights} ${t('common.nights', 'Nights')}`
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="btn-whatsapp w-full lg:w-auto"
+                  class="btn-whatsapp w-full"
                 >
-                  Book via WhatsApp
+                  {t('packages.book_via_whatsapp', 'Book via WhatsApp')}
                 </a>
               </div>
             </div>
@@ -99,15 +166,15 @@ const pageDescription = 'Choose from our carefully crafted Adi Kailash tour pack
             <div class="border-t border-gray-200 pt-6">
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div class="text-sm text-gray-600 mb-1">Starting Point</div>
+                  <div class="text-sm text-gray-600 mb-1">{t('packages.starting_point', 'Starting Point')}</div>
                   <div class="font-semibold text-lg text-secondary-800">{itinerary.starting_point}</div>
                 </div>
                 <div>
-                  <div class="text-sm text-gray-600 mb-1">Ending Point</div>
+                  <div class="text-sm text-gray-600 mb-1">{t('packages.ending_point', 'Ending Point')}</div>
                   <div class="font-semibold text-lg text-secondary-800">{itinerary.ending_point}</div>
                 </div>
                 <div>
-                  <div class="text-sm text-gray-600 mb-1">Best Time</div>
+                  <div class="text-sm text-gray-600 mb-1">{t('packages.best_time', 'Best Time')}</div>
                   <div class="font-semibold text-lg text-secondary-800">
                     {itinerary.best_time ? itinerary.best_time.join(', ') : 'May-June, Sept-Oct'}
                   </div>
@@ -118,7 +185,9 @@ const pageDescription = 'Choose from our carefully crafted Adi Kailash tour pack
 
           <!-- Day-by-Day Itinerary -->
           <div class="mb-8">
-            <h3 class="text-2xl font-bold text-secondary-800 mb-6">Detailed Itinerary</h3>
+            <h3 class="text-2xl font-bold text-secondary-800 mb-6">
+              {t('packages.itinerary_heading', 'Detailed Itinerary')}
+            </h3>
             <div class="space-y-4">
               {itinerary.itinerary.map((day: any) => (
                 <details class="card group" open={day.day === 1}>
@@ -127,7 +196,9 @@ const pageDescription = 'Choose from our carefully crafted Adi Kailash tour pack
                       {day.day}
                     </div>
                     <div class="flex-grow">
-                      <h4 class="text-lg font-semibold mb-1">Day {day.day}: {day.title}</h4>
+                      <h4 class="text-lg font-semibold mb-1">
+                        {t('itinerary.day', 'Day')} {day.day}: {day.title}
+                      </h4>
                       <p class="text-sm text-gray-600">
                         {day.distance_km && `${day.distance_km} km`}
                         {day.drive_time_hours && ` • ${day.drive_time_hours} hours drive`}
@@ -147,7 +218,7 @@ const pageDescription = 'Choose from our carefully crafted Adi Kailash tour pack
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
                         </svg>
                         <span>
-                          Altitude: {day.start_altitude_m}m → {day.end_altitude_m || day.max_altitude_m}m
+                          {t('common.altitude', 'Altitude')}: {day.start_altitude_m}m → {day.end_altitude_m || day.max_altitude_m}m
                         </span>
                       </div>
                     )}
@@ -155,7 +226,7 @@ const pageDescription = 'Choose from our carefully crafted Adi Kailash tour pack
                     {/* Activities */}
                     {day.activities && day.activities.length > 0 && (
                       <div>
-                        <h5 class="font-semibold text-secondary-800 mb-2">Activities:</h5>
+                        <h5 class="font-semibold text-secondary-800 mb-2">{t('common.activities', 'Activities')}:</h5>
                         <ul class="list-disc list-inside space-y-1 text-gray-700">
                           {day.activities.map((activity: string) => (
                             <li>{activity}</li>
@@ -170,7 +241,7 @@ const pageDescription = 'Choose from our carefully crafted Adi Kailash tour pack
                         <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
-                        <span>Meals: {day.meals.join(', ')}</span>
+                        <span>{t('common.meals', 'Meals')}: {day.meals.join(', ')}</span>
                       </div>
                     )}
 

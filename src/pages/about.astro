@@ -1,19 +1,30 @@
 ---
 /**
- * About Page - About Adi Kailash and Shiv Yatra Tourism
+ * About Page - REFACTORED WITH DYNAMIC LANGUAGE! 📖
  * 
  * Features:
- * - Adi Kailash introduction and significance
+ * - Adi Kailash introduction with BEAUTIFUL IMAGES
  * - Mythology and history
  * - Religious importance
  * - Company information
  * - Why choose us section
+ * 
+ * ROUTING: /about (English), /hi/about (Hindi)
  */
 
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { detectLanguage } from '../utils/languageHelper';
+import { useTranslation } from '../utils/translations';
 import { loadContent } from '../utils/dataLoader';
 
-console.log('[AboutPage] Loading about page data...');
+// Detect language
+const langContext = detectLanguage(Astro);
+const locale = langContext.locale;
+const t = useTranslation(locale);
+
+console.log('[AboutPage] ========================================');
+console.log('[AboutPage] Loading about page...');
+console.log('[AboutPage] Locale:', locale);
 
 let content: any = {};
 
@@ -28,26 +39,35 @@ const aboutContent = content.about || {};
 const introContent = aboutContent.intro || {};
 const mythologyContent = aboutContent.mythology || {};
 
-const pageTitle = typeof introContent.h1 === 'string' ? introContent.h1 : 'About Adi Kailash - The Sacred Mountain';
-const pageDescription = 'Discover the significance of Adi Kailash, the second of Panch Kailash. Learn about its mythology, history, and why it\'s revered as Lord Shiva\'s earthly abode.';
+const pageTitle = t('about.intro.h1', introContent.h1 || 'About Adi Kailash - The Sacred Mountain');
+const pageDescription = t('about.description', 'Discover the significance of Adi Kailash, the second of Panch Kailash.');
+
+console.log('[AboutPage] ✓ Ready to render');
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  locale="en"
   pageName="about"
 >
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-br from-secondary-900 via-primary-800 to-accent-700 text-white py-16 md:py-24">
-    <div class="absolute inset-0 bg-black/30"></div>
-    <div class="container-custom relative z-10">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+  <!-- Hero Section with Beautiful Image -->
+  <section class="relative h-96 overflow-hidden">
+    <img 
+      src="/images/narendra-modi-adi-kailash-visit-6452306.webp" 
+      alt={t('about.hero_alt', 'Adi Kailash Sacred Mountain')}
+      class="w-full h-full object-cover"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+    
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="container-custom text-center text-white z-10">
+        <div class="text-5xl mb-4">🏔️</div>
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 drop-shadow-2xl">
           {pageTitle}
         </h1>
-        <p class="text-lg md:text-xl opacity-90">
-          The Sacred Replica of Mount Kailash in the Indian Himalayas
+        <p class="text-lg md:text-xl opacity-90 drop-shadow-lg">
+          {t('about.hero_subtitle', 'The Sacred Replica of Mount Kailash in the Indian Himalayas')}
         </p>
       </div>
     </div>

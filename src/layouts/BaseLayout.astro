@@ -1,18 +1,32 @@
 ---
 /**
- * Base Layout Component - NOW WITH BEAUTIFUL SPIRITUAL DESIGN! 🕉️
+ * Base Layout Component - REFACTORED FOR DYNAMIC LANGUAGE DETECTION! 🕉️
  * 
  * Main layout template used by all pages on the website.
- * Now includes gorgeous Header, Footer, and WhatsApp button!
+ * NOW AUTOMATICALLY DETECTS LANGUAGE FROM URL PATH!
+ * 
+ * ARCHITECTURE:
+ * - English pages: / /packages /about → locale = 'en'
+ * - Hindi pages: /hi /hi/packages /hi/about → locale = 'hi'
+ * - Locale detection is automatic - no need to pass locale prop!
  * 
  * Props:
  * - title: Page title
  * - description: Meta description for SEO
  * - image: OpenGraph image URL
- * - locale: Language (en or hi)
  * - pageName: Page identifier for meta tags
- * - faqSchema: Include FAQ schema
- * - organizationSchema: Include organization schema
+ * - noIndex: Prevent search engine indexing
+ * - faqSchema: Include FAQ schema markup
+ * - organizationSchema: Include organization schema markup
+ * 
+ * HOW IT WORKS:
+ * 1. Language helper detects locale from URL path
+ * 2. Locale is passed to all child components
+ * 3. Header, Footer, WhatsApp button receive correct locale
+ * 4. SEO meta tags are generated with proper language info
+ * 5. Alternate language links (hreflang) are automatically added
+ * 
+ * @component BaseLayout
  */
 
 import { ViewTransitions } from 'astro:transitions';
@@ -21,13 +35,13 @@ import Footer from '../components/layout/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import SEO from '../components/SEO.astro';
 import SchemaMarkup from '../components/SchemaMarkup.astro';
+import { detectLanguage } from '../utils/languageHelper';
 import '../styles/global.css';
 
 interface Props {
   title: string;
   description: string;
   image?: string;
-  locale?: 'en' | 'hi';
   pageName?: string;
   noIndex?: boolean;
   faqSchema?: boolean;
@@ -38,16 +52,26 @@ const {
   title,
   description,
   image = '/images/og-image.jpg',
-  locale = 'en',
   pageName = 'home',
   noIndex = false,
   faqSchema = false,
   organizationSchema = true,
 } = Astro.props;
 
-// Console log for debugging
-console.log(`[BaseLayout] Rendering page: ${pageName} (${locale})`);
+// AUTOMATIC LANGUAGE DETECTION FROM URL PATH
+// This is the magic! No need to pass locale as prop anymore
+const langContext = detectLanguage(Astro);
+const locale = langContext.locale;
+
+// Console logs for debugging
+console.log(`[BaseLayout] ========================================`);
+console.log(`[BaseLayout] Rendering page: ${pageName}`);
+console.log(`[BaseLayout] Detected locale: ${locale}`);
+console.log(`[BaseLayout] Current path: ${langContext.fullPath}`);
+console.log(`[BaseLayout] Base path: ${langContext.basePath}`);
+console.log(`[BaseLayout] Alternate path: ${langContext.alternatePath}`);
 console.log(`[BaseLayout] Title: ${title}`);
+console.log(`[BaseLayout] ========================================`);
 
 // Construct full page title
 const fullTitle = `${title} | Shiv Yatra Tourism`;
@@ -55,8 +79,11 @@ const fullTitle = `${title} | Shiv Yatra Tourism`;
 // Get current URL for canonical and og:url
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-// Determine language attribute
+// Determine language attribute for HTML tag
 const htmlLang = locale === 'hi' ? 'hi' : 'en';
+
+// Generate alternate language URL for hreflang tags
+const alternateURL = new URL(langContext.alternatePath, Astro.site);
 ---
 
 <!DOCTYPE html>
@@ -94,14 +121,15 @@ const htmlLang = locale === 'hi' ? 'hi' : 'en';
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   
-  <!-- Alternate Language Links -->
-  {locale === 'en' && (
-    <link rel="alternate" hreflang="hi" href={new URL(`/hi${Astro.url.pathname}`, Astro.site)} />
-  )}
-  {locale === 'hi' && (
-    <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace('/hi', ''), Astro.site)} />
-  )}
-  <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace('/hi', ''), Astro.site)} />
+  <!-- Alternate Language Links (hreflang for SEO) -->
+  <!-- Current language -->
+  <link rel="alternate" hreflang={locale} href={canonicalURL} />
+  
+  <!-- Alternate language -->
+  <link rel="alternate" hreflang={langContext.alternateLocale} href={alternateURL} />
+  
+  <!-- Default language (English) -->
+  <link rel="alternate" hreflang="x-default" href={new URL(langContext.basePath, Astro.site)} />
   
   <!-- Preconnect to External Domains for Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

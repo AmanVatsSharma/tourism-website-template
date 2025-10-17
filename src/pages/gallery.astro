@@ -1,48 +1,71 @@
 ---
 /**
- * Gallery Page - Photo Gallery of Adi Kailash Yatra
+ * Gallery Page - BEAUTIFUL IMAGE GALLERY! 📸
+ * 
+ * Features all the stunning spiritual images from public/images folder
+ * 
+ * ROUTING: /gallery (English), /hi/gallery (Hindi)
  */
 
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { loadImageManifest } from '../utils/dataLoader';
+import { detectLanguage } from '../utils/languageHelper';
+import { useTranslation } from '../utils/translations';
 
-console.log('[GalleryPage] Loading gallery data...');
+// Detect language
+const langContext = detectLanguage(Astro);
+const locale = langContext.locale;
+const t = useTranslation(locale);
 
-let images: any[] = [];
+console.log('[GalleryPage] ========================================');
+console.log('[GalleryPage] Loading gallery...');
+console.log('[GalleryPage] Locale:', locale);
 
-try {
-  images = await loadImageManifest();
-  console.log('[GalleryPage] ✓ Loaded', images.length, 'images');
-} catch (error) {
-  console.error('[GalleryPage] ✗ Error loading images:', error);
-}
+const pageTitle = t('gallery.heading', 'Photo Gallery - Adi Kailash Yatra Images');
+const pageDescription = t('gallery.subheading', 'Explore breathtaking images from Adi Kailash pilgrimage');
 
-const pageTitle = 'Photo Gallery - Adi Kailash Yatra Images';
-const pageDescription = 'Explore breathtaking images from Adi Kailash pilgrimage. View photos of sacred peaks, Om Parvat, Parvati Sarovar, Gunji village, and the spiritual journey.';
-
-// Categories for filtering
-const categories = [
-  { id: 'all', name: 'All Photos', icon: '🖼️' },
-  { id: 'peaks', name: 'Mountains & Peaks', icon: '🏔️' },
-  { id: 'temples', name: 'Temples', icon: '🛕' },
-  { id: 'villages', name: 'Villages', icon: '🏘️' },
-  { id: 'journey', name: 'Journey', icon: '🚗' },
+// Beautiful images from public/images folder
+const galleryImages = [
+  { src: '/images/adi-kailash-parvat.webp', alt: 'Adi Kailash Mountain Peak', category: 'peaks' },
+  { src: '/images/Adi-Kailash.webp', alt: 'Adi Kailash Sacred Mountain', category: 'peaks' },
+  { src: '/images/6d25384b-482d-473c-98c6-d65e9853ad99_Adi-Kailash 1.webp', alt: 'Adi Kailash View', category: 'peaks' },
+  { src: '/images/adi kailash trek_1684871793.webp', alt: 'Adi Kailash Trekking', category: 'journey' },
+  { src: '/images/adi-kailash-900x600-1-680f20db6fde196b9c984b63-45177620.webp', alt: 'Adi Kailash Panorama', category: 'peaks' },
+  { src: '/images/kailashyatra1-1697183775.jpg', alt: 'Kailash Yatra Group', category: 'journey' },
+  { src: '/images/narendra-modi-adi-kailash-visit-6452306.webp', alt: 'VIP Visit to Adi Kailash', category: 'journey' },
+  { src: '/images/modi-parvati-kund-pooja_202310277471.jpg', alt: 'Parvati Kund Pooja Ceremony', category: 'temples' },
+  { src: '/images/66a733e1d19a0455f7a69c0b-adi-kailash-temple.webp', alt: 'Adi Kailash Temple', category: 'temples' },
+  { src: '/images/27_10_2023-adi_kailash_23566403.jpeg', alt: 'Adi Kailash Journey', category: 'journey' },
+  { src: '/images/Adi-Kailash--819x1024.jpeg', alt: 'Adi Kailash Portrait', category: 'peaks' },
+  { src: '/images/adi-kailash-6306783.webp', alt: 'Adi Kailash Summit', category: 'peaks' },
+  { src: '/images/c8b7e532-80b4-40f7-845f-87a4fb581461_Adi-Kailash-3 (1).webp', alt: 'Adi Kailash Landscape', category: 'peaks' },
+  { src: '/images/Adi-Kailash.jpg', alt: 'Adi Kailash Mountain', category: 'peaks' },
+  { src: '/images/adi_kailash_tour16.jpg', alt: 'Adi Kailash Tour', category: 'journey' },
 ];
+
+// Categories
+const categories = [
+  { id: 'all', name: t('gallery.all', 'All Photos'), icon: '🖼️' },
+  { id: 'peaks', name: t('gallery.peaks', 'Mountains & Peaks'), icon: '🏔️' },
+  { id: 'temples', name: t('gallery.temples', 'Temples'), icon: '🛕' },
+  { id: 'journey', name: t('gallery.journey', 'Journey'), icon: '🚗' },
+];
+
+console.log('[GalleryPage] ✓ Ready with', galleryImages.length, 'images');
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  locale="en"
   pageName="gallery"
 >
   <section class="bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-16 md:py-20">
     <div class="container-custom text-center">
+      <div class="text-5xl mb-4">📸</div>
       <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-        Photo Gallery
+        {t('gallery.heading', 'Photo Gallery')}
       </h1>
       <p class="text-base md:text-lg lg:text-xl opacity-90 max-w-3xl mx-auto">
-        Glimpses of the sacred journey to Adi Kailash
+        {t('gallery.subheading', 'Glimpses of the sacred journey to Adi Kailash')}
       </p>
     </div>
   </section>
@@ -68,31 +91,21 @@ const categories = [
   <section class="section bg-gray-50">
     <div class="container-custom">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="galleryGrid">
-        {images.slice(0, 20).map((img, index) => (
-          <div class="gallery-item group cursor-pointer" data-index={index}>
-            <div class="relative aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-primary-200 to-accent-200 shadow-md hover:shadow-xl transition-all duration-300">
-              <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-6 group-hover:scale-105 transition-transform">
-                <div class="text-4xl md:text-5xl mb-3 md:mb-4">
-                  {img.filename.includes('peak') || img.filename.includes('parvat') || img.filename.includes('kailash') ? '🏔️' :
-                   img.filename.includes('temple') || img.filename.includes('dham') ? '🛕' :
-                   img.filename.includes('village') || img.filename.includes('homestay') ? '🏘️' :
-                   img.filename.includes('trek') || img.filename.includes('pilgrim') ? '🚶' :
-                   img.filename.includes('lake') || img.filename.includes('sarovar') ? '💧' :
-                   img.filename.includes('prayer') ? '🙏' :
-                   img.filename.includes('vehicle') || img.filename.includes('road') ? '🚗' : '📸'}
-                </div>
-                <h3 class="text-sm md:text-base font-semibold text-secondary-800 mb-2 line-clamp-2">
-                  {img.caption || img.alt_text || 'Adi Kailash Photo'}
-                </h3>
-                <p class="text-xs md:text-sm text-gray-600 line-clamp-2">
-                  {img.description || ''}
-                </p>
-              </div>
-              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                <div class="bg-white/90 rounded-full p-3 md:p-4">
-                  <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-                  </svg>
+        {galleryImages.map((img, index) => (
+          <div class="gallery-item group cursor-pointer" data-category={img.category} data-index={index}>
+            <div class="relative aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+              <img 
+                src={img.src}
+                alt={img.alt}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <div class="text-3xl mb-2">
+                    {img.category === 'peaks' ? '🏔️' : img.category === 'temples' ? '🛕' : '🚗'}
+                  </div>
+                  <p class="text-sm font-semibold">{img.alt}</p>
                 </div>
               </div>
             </div>

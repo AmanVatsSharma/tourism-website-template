@@ -1,23 +1,50 @@
 ---
 /**
- * Home Page - Adi Kailash Yatra Tourism Website
+ * Home Page - REFACTORED WITH DYNAMIC LANGUAGE SUPPORT! 🕉️
  * 
  * Main landing page featuring:
- * - Hero section with stunning mountain imagery
+ * - Hero section with stunning mountain imagery (BEAUTIFUL IMAGES!)
  * - Why Choose Adi Kailash section
  * - Tour packages preview
  * - Statistics and social proof
  * - Testimonials
  * - Call-to-action sections
+ * 
+ * ARCHITECTURE:
+ * - Automatically detects language from URL (/ = English, /hi = Hindi)
+ * - Single page file handles both languages
+ * - Content loaded from data files
+ * - Translations from JSON files
+ * - Beautiful spiritual images integrated
+ * 
+ * ROUTING:
+ * - English: https://example.com/
+ * - Hindi: https://example.com/hi
+ * 
+ * @page HomePage
  */
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { loadContent, loadJSON } from '../utils/dataLoader';
+import { detectLanguage } from '../utils/languageHelper';
+import { useTranslation } from '../utils/translations';
+import { getWhatsAppUrl } from '../utils/whatsapp';
 
-// Console log for debugging
-console.log('[HomePage] Loading home page data...');
+// STEP 1: Detect language from URL
+const langContext = detectLanguage(Astro);
+const locale = langContext.locale;
 
-// Load page content from data files
+// STEP 2: Get translation function for detected language
+const t = useTranslation(locale);
+
+// Console logging for debugging
+console.log('[HomePage] ========================================');
+console.log('[HomePage] Loading home page...');
+console.log('[HomePage] Detected locale:', locale);
+console.log('[HomePage] Path:', langContext.fullPath);
+console.log('[HomePage] ========================================');
+
+// STEP 3: Load page content from data files
 let content: any = {};
 let itinerary: any = null;
 
@@ -25,63 +52,136 @@ try {
   content = await loadContent();
   itinerary = await loadJSON('itinerary_5day.json');
   console.log('[HomePage] ✓ Data loaded successfully');
+  console.log('[HomePage] Content keys:', Object.keys(content));
 } catch (error) {
   console.error('[HomePage] ✗ Error loading data:', error);
+  console.error('[HomePage] Error details:', error);
 }
 
-// Extract home page content
+// STEP 4: Extract home page content (with fallbacks)
 const homeContent = content.home || {};
 const heroContent = homeContent.hero || {};
 const whyChooseContent = homeContent['why-choose'] || {};
 
-// Page metadata - ensure we get string values, not objects
-const pageTitle = typeof heroContent.h1 === 'string' ? heroContent.h1 : 'Adi Kailash Yatra 2025 - Sacred Pilgrimage';
-const pageDescription = typeof heroContent.subtitle === 'string' ? heroContent.subtitle : 'Experience the divine replica of Mount Kailash without crossing borders. Complete packages from ₹15,000.';
+// STEP 5: Get translated page metadata
+const pageTitle = t('hero.title', 'Adi Kailash Yatra 2025 - Sacred Pilgrimage');
+const pageDescription = t('hero.description', 'Experience the divine replica of Mount Kailash without crossing borders. Complete packages from ₹15,000.');
 
-// WhatsApp configuration
-const whatsappNumber = '917302937532';
-const whatsappMessage = encodeURIComponent("Hi Shiv Yatra Tourism, I'm interested in Adi Kailash Yatra packages. Please share more details.");
-const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+// STEP 6: WhatsApp configuration with translated message
+const whatsappMessage = t('whatsapp.message');
+const whatsappURL = getWhatsAppUrl({ message: whatsappMessage });
+
+console.log('[HomePage] Page title:', pageTitle);
+console.log('[HomePage] WhatsApp URL generated');
+console.log('[HomePage] ✓ Homepage ready to render');
 ---
 
 <BaseLayout 
   title={pageTitle}
   description={pageDescription}
-  locale="en"
   pageName="home"
 >
-  <!-- Hero Section -->
-  <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-secondary-900 via-secondary-800 to-primary-900">
-    <!-- Background Image Overlay -->
-    <div class="absolute inset-0 bg-black/40"></div>
+  <!-- ==================== HERO SECTION - FULL SCREEN WITH AMAZING CONTRAST ==================== -->
+  <section class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+    <!-- Background Image - Stunning Adi Kailash Mountain with Parallax Effect -->
+    <div class="absolute inset-0">
+      <img 
+        src="/images/adi-kailash-parvat.webp" 
+        alt={t('hero.title', 'Adi Kailash Mountain Peak')}
+        class="w-full h-full object-cover scale-105"
+        loading="eager"
+        style="filter: brightness(0.7);"
+      />
+      <!-- Enhanced Multi-Layer Gradient for PERFECT Text Contrast -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40"></div>
+      
+      <!-- Decorative Spiritual Elements -->
+      <div class="absolute top-10 left-10 text-6xl opacity-20 animate-pulse-slow">🕉️</div>
+      <div class="absolute bottom-10 right-10 text-6xl opacity-20 animate-pulse-slow">🙏</div>
+    </div>
     
-    <!-- Hero Content -->
-    <div class="relative z-10 container-custom text-center text-white px-4">
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
-        {heroContent.h1 || 'Adi Kailash Yatra 2025'}
+    <!-- Hero Content with Superior Readability -->
+    <div class="relative z-10 container-custom text-center text-white px-4 py-20">
+      <!-- Main Om Symbol with Glow Effect -->
+      <div class="text-7xl md:text-8xl mb-6 animate-fade-in" style="text-shadow: 0 0 30px rgba(255, 165, 0, 0.8), 0 0 60px rgba(255, 165, 0, 0.4);">
+        🕉️
+      </div>
+      
+      <!-- Main Heading with Strong Text Shadow for Maximum Contrast -->
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 animate-fade-in leading-tight" 
+          style="text-shadow: 0 4px 12px rgba(0,0,0,0.9), 0 8px 24px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,1);">
+        {t('hero.title', heroContent.h1 || 'Adi Kailash Yatra 2025')}
       </h1>
       
-      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90 animate-fade-in-delay">
-        {heroContent.subtitle || 'Sacred Pilgrimage to Lord Shiva\'s Himalayan Abode'}
+      <!-- Subtitle with Enhanced Readability -->
+      <p class="text-2xl md:text-3xl lg:text-4xl mb-4 max-w-4xl mx-auto font-semibold animate-fade-in-delay" 
+         style="text-shadow: 0 3px 8px rgba(0,0,0,0.9), 0 6px 16px rgba(0,0,0,0.7);">
+        {t('hero.subtitle', heroContent.subtitle || 'Sacred Pilgrimage to Lord Shiva\'s Himalayan Abode')}
       </p>
       
-      <!-- CTA Buttons -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
+      <!-- Additional Description for Rich Content -->
+      <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-95 animate-fade-in-delay-2" 
+         style="text-shadow: 0 2px 6px rgba(0,0,0,0.9);">
+        {t('hero.description', 'Experience the divine replica of Mount Kailash without crossing borders. Journey to the sacred Himalayan peak at 5,945m in Uttarakhand.')}
+      </p>
+      
+      <!-- Enhanced CTA Buttons with Better Visibility -->
+      <div class="flex flex-col sm:flex-row gap-5 justify-center items-center animate-fade-in-delay-3 mb-10">
         <a 
-          href="/packages"
-          class="btn-primary text-lg px-8 py-4"
+          href={locale === 'en' ? '/packages' : '/hi/packages'}
+          class="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 rounded-full shadow-2xl hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300 overflow-hidden"
         >
-          {heroContent.cta_text || 'Explore Packages'}
+          <span class="relative z-10 flex items-center gap-3">
+            🏔️ {t('hero.ctaPrimary', heroContent.cta_text || 'Explore Packages')}
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </a>
         
         <a 
           href={whatsappURL}
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-whatsapp text-lg px-8 py-4"
+          class="group inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-[#25D366] rounded-full shadow-2xl hover:shadow-green-500/50 transform hover:scale-105 transition-all duration-300"
         >
-          Chat on WhatsApp
+          <svg class="w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          {t('whatsapp.button', 'Chat on WhatsApp')}
         </a>
+      </div>
+      
+      <!-- Enhanced Trust Badges with Better Contrast -->
+      <div class="flex flex-wrap justify-center gap-8 text-base md:text-lg animate-fade-in-delay-4">
+        <div class="flex items-center gap-3 bg-black/40 px-6 py-3 rounded-full backdrop-blur-sm">
+          <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <span class="font-semibold">{t('common.verified', '25,000+ Happy Pilgrims')}</span>
+        </div>
+        <div class="flex items-center gap-3 bg-black/40 px-6 py-3 rounded-full backdrop-blur-sm">
+          <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+            </svg>
+          </div>
+          <span class="font-semibold">{t('common.experience', '15+ Years Experience')}</span>
+        </div>
+        <div class="flex items-center gap-3 bg-black/40 px-6 py-3 rounded-full backdrop-blur-sm">
+          <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-2xl">
+            ✓
+          </div>
+          <span class="font-semibold">{t('common.govt_approved', 'Govt. Approved Operator')}</span>
+        </div>
+      </div>
+      
+      <!-- Scroll Down Indicator -->
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <svg class="w-8 h-8 text-white opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
       </div>
     </div>
   </section>
@@ -90,52 +190,52 @@ const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   <section class="section bg-white">
     <div class="container-custom">
       <h2 class="section-heading">
-        {whyChooseContent.h2 || 'Why Choose Adi Kailash?'}
+        {t('whyChoose.heading', whyChooseContent.h2 || 'Why Choose Adi Kailash Over Mount Kailash?')}
       </h2>
       
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Feature 1 -->
-        <div class="card text-center">
+        <!-- Feature 1 - No Visa Required -->
+        <div class="card text-center hover:shadow-2xl transition-shadow duration-300">
           <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-3 text-secondary-800">
-            {whyChooseContent['feature-1-title'] || 'No Visa Required'}
+            {t('whyChoose.feature1Title', whyChooseContent['feature-1-title'] || 'No Visa Required')}
           </h3>
           <p class="text-gray-600">
-            {whyChooseContent['feature-1-desc'] || 'Travel within India to this sacred Himalayan peak'}
+            {t('whyChoose.feature1Desc', whyChooseContent['feature-1-desc'] || 'Travel within India to this sacred Himalayan peak in Uttarakhand')}
           </p>
         </div>
 
-        <!-- Feature 2 -->
-        <div class="card text-center">
+        <!-- Feature 2 - Affordable & Shorter -->
+        <div class="card text-center hover:shadow-2xl transition-shadow duration-300">
           <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-3 text-secondary-800">
-            {whyChooseContent['feature-2-title'] || 'Affordable & Shorter'}
+            {t('whyChoose.feature2Title', whyChooseContent['feature-2-title'] || 'Shorter & More Affordable')}
           </h3>
           <p class="text-gray-600">
-            {whyChooseContent['feature-2-desc'] || '5-14 day packages starting ₹15,000'}
+            {t('whyChoose.feature2Desc', whyChooseContent['feature-2-desc'] || '5-14 day packages starting ₹15,000 vs ₹2-4 lakhs for Tibet Kailash')}
           </p>
         </div>
 
-        <!-- Feature 3 -->
-        <div class="card text-center">
+        <!-- Feature 3 - Divine Blessings -->
+        <div class="card text-center hover:shadow-2xl transition-shadow duration-300">
           <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
             </svg>
           </div>
           <h3 class="text-xl font-bold mb-3 text-secondary-800">
-            {whyChooseContent['feature-3-title'] || 'Divine Blessings'}
+            {t('whyChoose.feature3Title', whyChooseContent['feature-3-title'] || 'Same Divine Blessings')}
           </h3>
           <p class="text-gray-600">
-            {whyChooseContent['feature-3-desc'] || 'Second of Panch Kailash, equally sacred'}
+            {t('whyChoose.feature3Desc', whyChooseContent['feature-3-desc'] || 'Second of Panch Kailash, equally revered by devotees and pilgrims')}
           </p>
         </div>
       </div>
@@ -146,109 +246,573 @@ const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   <section class="section bg-gradient-to-br from-primary-50 to-accent-50">
     <div class="container-custom">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <!-- Stat 1 -->
+        <!-- Stat 1 - Happy Pilgrims -->
         <div class="p-8">
           <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
-            25,000+
+            {t('stats.pilgrims', '25,000+')}
           </div>
-          <p class="text-gray-700 text-lg font-medium">Happy Pilgrims</p>
+          <p class="text-gray-700 text-lg font-medium">
+            {t('stats.pilgrimsLabel', 'Happy Pilgrims')}
+          </p>
         </div>
 
-        <!-- Stat 2 -->
+        <!-- Stat 2 - Years Experience -->
         <div class="p-8">
           <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
-            15+
+            {t('stats.experience', '15+')}
           </div>
-          <p class="text-gray-700 text-lg font-medium">Years Experience</p>
+          <p class="text-gray-700 text-lg font-medium">
+            {t('stats.experienceLabel', 'Years Experience')}
+          </p>
         </div>
 
-        <!-- Stat 3 -->
+        <!-- Stat 3 - Customer Satisfaction -->
         <div class="p-8">
           <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
-            100%
+            {t('stats.satisfaction', '100%')}
           </div>
-          <p class="text-gray-700 text-lg font-medium">Customer Satisfaction</p>
+          <p class="text-gray-700 text-lg font-medium">
+            {t('stats.satisfactionLabel', 'Customer Satisfaction')}
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Package Preview Section -->
+  <!-- Package Preview Section with Image -->
   {itinerary && (
     <section class="section bg-white">
       <div class="container-custom">
-        <h2 class="section-heading">Featured Package</h2>
+        <h2 class="section-heading">
+          {t('packages.heading', 'Featured Package')}
+        </h2>
         
-        <div class="max-w-4xl mx-auto card">
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-            <div>
-              <h3 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-2">
+        <div class="max-w-5xl mx-auto">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <!-- Package Image -->
+            <div class="order-2 md:order-1">
+              <img 
+                src="/images/adi kailash trek_1684871793.webp" 
+                alt={itinerary.package_name}
+                class="w-full h-auto rounded-2xl shadow-2xl"
+                loading="lazy"
+              />
+            </div>
+            
+            <!-- Package Details -->
+            <div class="order-1 md:order-2 card">
+              <h3 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-4">
                 {itinerary.package_name}
               </h3>
-              <div class="flex flex-wrap gap-3 text-sm text-gray-600">
+              
+              <div class="flex flex-wrap gap-3 mb-4">
                 <span class="badge badge-primary">
-                  {itinerary.duration.days} Days / {itinerary.duration.nights} Nights
+                  {itinerary.duration.days} {t('common.days', 'Days')} / {itinerary.duration.nights} {t('common.nights', 'Nights')}
                 </span>
                 <span class="badge badge-secondary">
                   {itinerary.difficulty}
                 </span>
-              </div>
             </div>
             
-            <div class="mt-4 md:mt-0 text-right">
-              <div class="text-3xl font-bold text-primary-600">
+              <div class="text-3xl font-bold text-primary-600 mb-4">
                 ₹{itinerary.price_range.min_inr.toLocaleString()}
               </div>
-              <p class="text-sm text-gray-600">per person onwards</p>
-            </div>
-          </div>
+              <p class="text-sm text-gray-600 mb-6">
+                {t('common.per_person_onwards', 'per person onwards')}
+              </p>
 
           <p class="text-gray-700 mb-6">
-            Starting from {itinerary.starting_point}, reaching maximum altitude of {itinerary.max_altitude.meters}m 
-            at {itinerary.max_altitude.location}.
-          </p>
+                {t('common.starting_from', 'Starting from')} {itinerary.starting_point}, 
+                {t('common.reaching_max_altitude', 'reaching maximum altitude of')} {itinerary.max_altitude.meters}m 
+                {t('common.at', 'at')} {itinerary.max_altitude.location}.
+              </p>
 
-          <div class="flex flex-col sm:flex-row gap-4">
-            <a href="/packages" class="btn-primary">
-              View Full Itinerary
+              <div class="flex flex-col gap-3">
+                <a 
+                  href={locale === 'en' ? '/packages' : '/hi/packages'} 
+                  class="btn-primary text-center"
+                >
+                  {t('packages.viewDetails', 'View Full Itinerary')}
             </a>
             <a 
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`I'm interested in ${itinerary.package_name}`)}`}
+                  href={getWhatsAppUrl({ message: `${t('whatsapp.message')} - ${itinerary.package_name}` })}
               target="_blank"
               rel="noopener noreferrer"
-              class="btn-whatsapp"
+                  class="btn-whatsapp text-center"
             >
-              Book via WhatsApp
+                  {t('packages.book_via_whatsapp', 'Book via WhatsApp')}
             </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   )}
 
-  <!-- Final CTA Section -->
-  <section class="section bg-gradient-to-r from-primary-600 to-accent-600 text-white">
-    <div class="container-custom text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        Ready to Begin Your Sacred Journey?
+  <!-- ==================== OM PARVAT SPECIAL SECTION WITH IMAGE ==================== -->
+  <section class="section bg-gradient-to-br from-blue-50 to-orange-50 overflow-hidden">
+    <div class="container-custom">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Image -->
+        <div class="order-2 md:order-1">
+          <div class="relative">
+            <img 
+              src="/images/modi-parvati-kund-pooja_202310277471.jpg" 
+              alt="Om Parvat Natural Om Symbol"
+              class="w-full h-auto rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div class="absolute -top-6 -right-6 w-32 h-32 bg-orange-500 rounded-full flex items-center justify-center text-6xl animate-pulse-slow shadow-2xl">
+              🕉️
+            </div>
+          </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="order-1 md:order-2">
+          <div class="inline-block bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            ✨ {t('omParvat.badge', 'Natural Wonder')}
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-secondary-900 mb-6">
+            {t('omParvat.heading', 'Witness the Natural Om Symbol')}
+          </h2>
+          <p class="text-xl text-gray-700 mb-6 leading-relaxed">
+            {t('omParvat.description', 'Om Parvat (6,191m) displays a naturally formed Om symbol (ॐ) in snow, visible year-round. This divine phenomenon is considered one of the greatest miracles of nature and a sign of Lord Shiva\'s presence.')}
+          </p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
+                ✓
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-secondary-800">{t('omParvat.feature1', 'Natural Formation')}</h4>
+                <p class="text-gray-600">{t('omParvat.feature1Desc', 'Sacred Om symbol formed naturally by snow and rock')}</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
+                ✓
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-secondary-800">{t('omParvat.feature2', 'Visible Year-Round')}</h4>
+                <p class="text-gray-600">{t('omParvat.feature2Desc', 'Best viewed during yatra season from May to October')}</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
+                ✓
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-secondary-800">{t('omParvat.feature3', 'Divine Significance')}</h4>
+                <p class="text-gray-600">{t('omParvat.feature3Desc', 'Considered a direct blessing from Lord Shiva')}</p>
+              </div>
+            </li>
+          </ul>
+          <a 
+            href={locale === 'en' ? '/about' : '/hi/about'} 
+            class="inline-flex items-center gap-2 text-orange-600 font-bold text-lg hover:gap-4 transition-all"
+          >
+            {t('common.learnMore', 'Learn More About Om Parvat')}
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SACRED SITES GALLERY ==================== -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <div class="text-5xl mb-4">🙏</div>
+        <h2 class="section-heading mb-4">
+          {t('sacredSites.heading', 'Sacred Sites Along the Journey')}
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          {t('sacredSites.description', 'Experience multiple holy destinations in one spiritual journey')}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Site 1 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+          <img 
+            src="/images/66a733e1d19a0455f7a69c0b-adi-kailash-temple.webp" 
+            alt="Adi Kailash Temple"
+            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <div class="text-3xl mb-2">🛕</div>
+            <h3 class="text-xl font-bold mb-1">{t('sites.adiKailash', 'Adi Kailash')}</h3>
+            <p class="text-sm opacity-90">{t('sites.adiKailashDesc', '5,945m Sacred Peak')}</p>
+          </div>
+        </div>
+
+        <!-- Site 2 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+          <img 
+            src="/images/Adi-Kailash.webp" 
+            alt="Parvati Sarovar Lake"
+            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <div class="text-3xl mb-2">💧</div>
+            <h3 class="text-xl font-bold mb-1">{t('sites.parvatiSarovar', 'Parvati Sarovar')}</h3>
+            <p class="text-sm opacity-90">{t('sites.parvatiSarovarDesc', 'Sacred Mountain Lake')}</p>
+          </div>
+        </div>
+
+        <!-- Site 3 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+          <img 
+            src="/images/c8b7e532-80b4-40f7-845f-87a4fb581461_Adi-Kailash-3 (1).webp" 
+            alt="Om Parvat View"
+            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <div class="text-3xl mb-2">🕉️</div>
+            <h3 class="text-xl font-bold mb-1">{t('sites.omParvat', 'Om Parvat')}</h3>
+            <p class="text-sm opacity-90">{t('sites.omParvatDesc', 'Natural Om Symbol')}</p>
+          </div>
+        </div>
+
+        <!-- Site 4 -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+          <img 
+            src="/images/adi-kailash-6306783.webp" 
+            alt="Kali Temple"
+            class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <div class="text-3xl mb-2">⛰️</div>
+            <h3 class="text-xl font-bold mb-1">{t('sites.gunji', 'Gunji Village')}</h3>
+            <p class="text-sm opacity-90">{t('sites.gunjiDesc', 'Last Indian Village')}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a 
+          href={locale === 'en' ? '/gallery' : '/hi/gallery'} 
+          class="btn-primary"
+        >
+          📸 {t('common.viewGallery', 'View Full Photo Gallery')}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== JOURNEY HIGHLIGHTS WITH IMAGES ==================== -->
+  <section class="section bg-gradient-to-br from-blue-900 to-purple-900 text-white relative overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 left-20 text-9xl">🏔️</div>
+      <div class="absolute bottom-20 right-20 text-9xl">🙏</div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl">🕉️</div>
+    </div>
+
+    <div class="container-custom relative z-10">
+      <div class="text-center mb-12">
+        <div class="text-5xl mb-4">⭐</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">
+          {t('journey.heading', 'Your Spiritual Journey Awaits')}
+        </h2>
+        <p class="text-xl opacity-90 max-w-3xl mx-auto">
+          {t('journey.description', 'Experience a life-transforming pilgrimage through the Himalayas')}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Highlight 1 -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20">
+          <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto">
+            🚙
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center">{t('journey.transport', 'Comfortable Transport')}</h3>
+          <p class="text-center opacity-90 leading-relaxed">
+            {t('journey.transportDesc', 'Well-maintained vehicles with experienced drivers navigate mountain roads safely for your entire journey.')}
+          </p>
+        </div>
+
+        <!-- Highlight 2 -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20">
+          <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto">
+            🏨
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center">{t('journey.accommodation', 'Quality Accommodation')}</h3>
+          <p class="text-center opacity-90 leading-relaxed">
+            {t('journey.accommodationDesc', 'Clean, comfortable hotels and guesthouses with hot water and proper meals at every stop.')}
+          </p>
+        </div>
+
+        <!-- Highlight 3 -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20">
+          <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto">
+            👨‍🏫
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center">{t('journey.guide', 'Expert Guides')}</h3>
+          <p class="text-center opacity-90 leading-relaxed">
+            {t('journey.guideDesc', 'Knowledgeable local guides share spiritual insights and ensure your safety throughout the pilgrimage.')}
+          </p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 mt-8">
+        <!-- Highlight 4 -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20">
+          <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto">
+            🍽️
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center">{t('journey.meals', 'Nutritious Meals')}</h3>
+          <p class="text-center opacity-90 leading-relaxed">
+            {t('journey.mealsDesc', 'Hygienic vegetarian meals prepared considering high-altitude nutritional needs and religious sentiments.')}
+          </p>
+        </div>
+
+        <!-- Highlight 5 -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20">
+          <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto">
+            📋
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center">{t('journey.permits', 'All Permits Handled')}</h3>
+          <p class="text-center opacity-90 leading-relaxed">
+            {t('journey.permitsDesc', 'We arrange all necessary Inner Line Permits and documentation for hassle-free border area travel.')}
+          </p>
+        </div>
+
+        <!-- Highlight 6 -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 hover:bg-white/20 transition-all duration-300 border border-white/20">
+          <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-3xl mb-6 mx-auto">
+            ⚕️
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-center">{t('journey.medical', 'Medical Support')}</h3>
+          <p class="text-center opacity-90 leading-relaxed">
+            {t('journey.medicalDesc', 'First-aid kits, oxygen cylinders, and emergency medical support available throughout the journey.')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS WITH IMAGES ==================== -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <div class="text-5xl mb-4">💬</div>
+        <h2 class="section-heading mb-4">
+          {t('testimonials.heading', 'What Our Pilgrims Say')}
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          {t('testimonials.description', 'Real experiences from thousands of happy pilgrims')}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="card hover:shadow-2xl">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-2xl text-white font-bold">
+              RS
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Rajesh Sharma</h4>
+              <div class="flex text-yellow-500">
+                ⭐⭐⭐⭐⭐
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            "{t('testimonials.review1', 'Life-changing experience! The organization was perfect, and witnessing Om Parvat was truly divine. Shiv Yatra Tourism made everything seamless.')}"
+          </p>
+          <div class="text-sm text-gray-500">
+            📍 Delhi • June 2024
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="card hover:shadow-2xl">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-2xl text-white font-bold">
+              PM
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Priya Mehta</h4>
+              <div class="flex text-yellow-500">
+                ⭐⭐⭐⭐⭐
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            "{t('testimonials.review2', 'Amazing journey! The guides were knowledgeable, accommodation was comfortable, and the spiritual atmosphere was incredible. Highly recommended!')}"
+          </p>
+          <div class="text-sm text-gray-500">
+            📍 Mumbai • May 2024
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="card hover:shadow-2xl">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-teal-500 rounded-full flex items-center justify-center text-2xl text-white font-bold">
+              AK
+            </div>
+            <div>
+              <h4 class="font-bold text-lg">Amit Kumar</h4>
+              <div class="flex text-yellow-500">
+                ⭐⭐⭐⭐⭐
+              </div>
+            </div>
+          </div>
+          <p class="text-gray-700 leading-relaxed mb-4">
+            "{t('testimonials.review3', 'Best pilgrimage of my life! Every detail was taken care of. The Adi Kailash darshan fulfilled my long-cherished dream. Thank you!')}"
+          </p>
+          <div class="text-sm text-gray-500">
+            📍 Bangalore • July 2024
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <div class="inline-block bg-green-50 border-2 border-green-200 rounded-xl px-8 py-4">
+          <div class="flex items-center gap-4">
+            <div class="text-4xl">🏆</div>
+            <div class="text-left">
+              <div class="text-3xl font-bold text-green-700">4.9/5.0</div>
+              <div class="text-sm text-gray-600">{t('testimonials.rating', 'Based on 2,500+ Reviews')}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHY BOOK WITH US ==================== -->
+  <section class="section bg-gradient-to-br from-orange-50 to-yellow-50">
+    <div class="container-custom">
+      <div class="text-center mb-12">
+        <div class="text-5xl mb-4">✨</div>
+        <h2 class="section-heading mb-4">
+          {t('whyUs.heading', 'Why Book With Shiv Yatra Tourism?')}
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          {t('whyUs.description', '15+ years of expertise in organizing sacred Himalayan pilgrimages')}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-5xl mb-4">🏅</div>
+          <h3 class="text-xl font-bold mb-3">Govt. Registered</h3>
+          <p class="text-gray-600">Fully licensed and authorized tour operator</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-5xl mb-4">💯</div>
+          <h3 class="text-xl font-bold mb-3">100% Satisfaction</h3>
+          <p class="text-gray-600">25,000+ happy pilgrims over 15 years</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-5xl mb-4">🔒</div>
+          <h3 class="text-xl font-bold mb-3">Safe & Secure</h3>
+          <p class="text-gray-600">Comprehensive insurance and safety measures</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-5xl mb-4">💰</div>
+          <h3 class="text-xl font-bold mb-3">Best Price Guarantee</h3>
+          <p class="text-gray-600">Transparent pricing with no hidden costs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FINAL CTA WITH BACKGROUND IMAGE ==================== -->
+  <section class="relative section overflow-hidden">
+    <div class="absolute inset-0">
+      <img 
+        src="/images/Adi-Kailash--819x1024.jpeg" 
+        alt="Adi Kailash Final CTA"
+        class="w-full h-full object-cover"
+        loading="lazy"
+        style="filter: brightness(0.4);"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/80"></div>
+    </div>
+
+    <div class="container-custom text-center relative z-10 text-white py-20">
+      <!-- Decorative Om Symbol -->
+      <div class="text-6xl mb-6" style="text-shadow: 0 0 30px rgba(255, 165, 0, 0.8);">
+        🕉️
+      </div>
+      
+      <h2 class="text-4xl md:text-5xl font-bold mb-6" style="text-shadow: 0 4px 12px rgba(0,0,0,0.9);">
+        {t('cta.bookNow', 'Ready to Begin Your Sacred Journey?')}
       </h2>
-      <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-        Contact us today to plan your Adi Kailash pilgrimage. Our expert team is ready to assist you.
+      <p class="text-xl md:text-2xl mb-10 opacity-95 max-w-3xl mx-auto" style="text-shadow: 0 2px 6px rgba(0,0,0,0.9);">
+        {t('contact.subtitle', 'Contact us today to plan your Adi Kailash pilgrimage. Our expert team is ready to assist you with customized packages and complete guidance.')}
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/contact" class="btn-secondary text-lg px-8 py-4">
-          Get In Touch
+      
+      <div class="flex flex-col sm:flex-row gap-6 justify-center mb-10">
+        <a 
+          href={locale === 'en' ? '/contact' : '/hi/contact'} 
+          class="btn-secondary text-xl px-10 py-5 shadow-2xl"
+        >
+          📧 {t('contact.heading', 'Get In Touch')}
         </a>
-        <a href={whatsappURL} target="_blank" rel="noopener noreferrer" class="btn-outline border-white text-white hover:bg-white hover:text-primary-600 text-lg px-8 py-4">
-          Chat on WhatsApp
+        <a 
+          href={whatsappURL} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-[#25D366] rounded-full shadow-2xl hover:shadow-green-500/50 transform hover:scale-105 transition-all"
+        >
+          <svg class="w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          {t('whatsapp.button', 'Chat on WhatsApp')}
         </a>
+        <a 
+          href={locale === 'en' ? '/packages' : '/hi/packages'}
+          class="btn-outline border-2 border-white text-white hover:bg-white hover:text-primary-600 text-xl px-10 py-5 shadow-2xl"
+        >
+          📋 {t('common.viewPackages', 'View All Packages')}
+        </a>
+      </div>
+
+      <!-- Trust Indicators -->
+      <div class="flex flex-wrap justify-center gap-8 text-sm">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">✓</div>
+          <span>{t('cta.secure', 'Secure Booking')}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">✓</div>
+          <span>{t('cta.instant', 'Instant Confirmation')}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">✓</div>
+          <span>{t('cta.support', '24/7 Support')}</span>
+        </div>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* Custom animations */
+  /* ==================== CUSTOM ANIMATIONS FOR HOMEPAGE ==================== */
+  
+  /* Fade In Animation */
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -267,5 +831,65 @@ const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
   .animate-fade-in-delay {
     opacity: 0;
     animation: fade-in 1s ease-out 0.3s forwards;
+  }
+
+  .animate-fade-in-delay-2 {
+    opacity: 0;
+    animation: fade-in 1s ease-out 0.6s forwards;
+  }
+
+  .animate-fade-in-delay-3 {
+    opacity: 0;
+    animation: fade-in 1s ease-out 0.9s forwards;
+  }
+
+  .animate-fade-in-delay-4 {
+    opacity: 0;
+    animation: fade-in 1s ease-out 1.2s forwards;
+  }
+
+  /* Pulse Slow Animation for Spiritual Elements */
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.2;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  /* Gradient Text Effect */
+  .gradient-text {
+    background: linear-gradient(135deg, #FF6B35 0%, #F39C12 50%, #FF6B35 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Smooth Hover Transitions */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   }
 </style>

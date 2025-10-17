@@ -1,46 +1,85 @@
 ---
 /**
- * Header Component - Beautiful Spiritual Design
+ * Header Component - REFACTORED WITH AUTOMATIC LANGUAGE DETECTION! 🕉️
  * 
- * Features:
+ * Beautiful spiritual design with dynamic language support.
+ * 
+ * FEATURES:
  * - Gradient background with Om symbol
  * - Smooth animations
- * - Language toggle (English/Hindi)
+ * - Automatic language detection from URL
+ * - Dynamic navigation links (correct prefix for each language)
+ * - Language toggle that works from any page
  * - Mobile-responsive hamburger menu
- * - Sticky header with blur effect
+ * - Sticky header with blur effect on scroll
  * - Spiritual design elements
+ * 
+ * ARCHITECTURE:
+ * - Receives currentLocale from BaseLayout
+ * - Generates navigation links with proper language prefix
+ * - Language toggle adds/removes /hi/ prefix
+ * - Active link detection works for both languages
+ * 
+ * @component Header
  */
 
 import { useTranslation } from '../../utils/translations';
+import { getNavigationLinks, getLocalizedPath } from '../../utils/languageHelper';
 
 interface Props {
   currentLocale: 'en' | 'hi';
 }
 
 const { currentLocale } = Astro.props;
+
+// Get translation function for current locale
 const t = useTranslation(currentLocale);
 
+// Get current path for active link detection
 const currentPath = Astro.url.pathname;
 
-// Navigation items
+console.log('[Header] ========================================');
+console.log('[Header] Rendering header');
+console.log('[Header] Current locale:', currentLocale);
+console.log('[Header] Current path:', currentPath);
+
+// Generate navigation links with correct language prefix
+const navLinks = getNavigationLinks(currentLocale);
+
+console.log('[Header] Navigation links:', navLinks);
+
+// Build navigation items with localized URLs and translated labels
 const navItems = [
-  { href: '/', label: t('nav.home'), icon: '🏠' },
-  { href: '/packages', label: t('nav.packages'), icon: '📦' },
-  { href: '/about', label: t('nav.about'), icon: 'ℹ️' },
-  { href: '/permits', label: t('nav.permits'), icon: '📋' },
-  { href: '/how-to-reach', label: t('nav.how_to_reach'), icon: '🗺️' },
-  { href: '/preparation', label: t('nav.preparation'), icon: '🎒' },
-  { href: '/gallery', label: t('nav.gallery'), icon: '📸' },
-  { href: '/blog', label: t('nav.blog'), icon: '📚' },
-  { href: '/faq', label: t('nav.faq'), icon: '❓' },
-  { href: '/contact', label: t('nav.contact'), icon: '📞' },
+  { href: navLinks.home, label: t('nav.home'), icon: '🏠' },
+  { href: navLinks.packages, label: t('nav.packages'), icon: '📦' },
+  { href: navLinks.about, label: t('nav.about'), icon: 'ℹ️' },
+  { href: navLinks.permits, label: t('nav.permits'), icon: '📋' },
+  { href: navLinks.howToReach, label: t('nav.howToReach', 'How to Reach'), icon: '🗺️' },
+  { href: navLinks.preparation, label: t('nav.preparation'), icon: '🎒' },
+  { href: navLinks.gallery, label: t('nav.gallery'), icon: '📸' },
+  { href: navLinks.blog, label: t('nav.blog'), icon: '📚' },
+  { href: navLinks.faq, label: t('nav.faq'), icon: '❓' },
+  { href: navLinks.contact, label: t('nav.contact'), icon: '📞' },
 ];
 
-// Language toggle
+// Language toggle configuration
 const toggleLang = currentLocale === 'en' ? 'hi' : 'en';
-const togglePath = currentLocale === 'en' ? `/hi${currentPath}` : currentPath.replace('/hi', '') || '/';
 
-console.log('[Header] Rendering with locale:', currentLocale);
+// Generate alternate language path
+// Remove /hi prefix for English, add /hi prefix for Hindi
+let togglePath: string;
+if (currentLocale === 'en') {
+  // Switch to Hindi: add /hi prefix
+  togglePath = currentPath === '/' ? '/hi' : `/hi${currentPath}`;
+} else {
+  // Switch to English: remove /hi prefix
+  const basePath = currentPath.replace(/^\/hi/, '') || '/';
+  togglePath = basePath;
+}
+
+console.log('[Header] Language toggle:', currentLocale, '→', toggleLang);
+console.log('[Header] Toggle path:', currentPath, '→', togglePath);
+console.log('[Header] ========================================');
 ---
 
 <header class="header-wrapper sticky top-0 z-[100] transition-all duration-300" id="main-header">
@@ -49,7 +88,7 @@ console.log('[Header] Rendering with locale:', currentLocale);
     <div class="container-custom">
       <div class="flex items-center justify-between py-4">
         <!-- Logo Section with Spiritual Elements -->
-        <a href={currentLocale === 'en' ? '/' : '/hi'} class="flex items-center gap-3 group">
+        <a href={navLinks.home} class="flex items-center gap-3 group">
           <!-- Om Symbol -->
           <div class="text-4xl md:text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
             🕉️
@@ -58,29 +97,33 @@ console.log('[Header] Rendering with locale:', currentLocale);
           <!-- Company Name -->
           <div class="flex flex-col">
             <span class="text-xl md:text-2xl font-bold tracking-wide gradient-text-light">
-              Shiv Yatra Tourism
+              {t('header.companyName', 'Shiv Yatra Tourism')}
             </span>
             <span class="text-xs md:text-sm opacity-90 font-medium">
-              {currentLocale === 'en' ? 'Sacred Himalayan Pilgrimages' : 'पवित्र हिमालयी तीर्थयात्रा'}
+              {t('header.tagline', 'Sacred Himalayan Pilgrimages')}
             </span>
           </div>
         </a>
 
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
-            <a
-              href={currentLocale === 'en' ? item.href : `/hi${item.href}`}
-              class={`nav-link px-4 py-2 rounded-full font-medium transition-all duration-300 hover:bg-white/20 hover:shadow-lg ${
-                currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
-                  ? 'bg-white/30 shadow-md'
-                  : ''
-              }`}
-            >
-              <span class="mr-1">{item.icon}</span>
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            // Check if this link is active
+            const isActive = currentPath === item.href || 
+              (item.href !== '/' && item.href !== '/hi' && currentPath.startsWith(item.href));
+            
+            return (
+              <a
+                href={item.href}
+                class={`nav-link px-4 py-2 rounded-full font-medium transition-all duration-300 hover:bg-white/20 hover:shadow-lg ${
+                  isActive ? 'bg-white/30 shadow-md' : ''
+                }`}
+              >
+                <span class="mr-1">{item.icon}</span>
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
         <!-- Language Toggle & Mobile Menu Button -->
@@ -148,21 +191,25 @@ console.log('[Header] Rendering with locale:', currentLocale);
       <div class="container-custom">
         <!-- Mobile Nav Items -->
         <ul class="space-y-2">
-          {navItems.map((item) => (
-            <li>
-              <a
-                href={currentLocale === 'en' ? item.href : `/hi${item.href}`}
-                class={`mobile-nav-link flex items-center gap-3 px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:bg-white/20 hover:translate-x-2 ${
-                  currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
-                    ? 'bg-white/30 shadow-lg'
-                    : ''
-                }`}
-              >
-                <span class="text-2xl">{item.icon}</span>
-                {item.label}
-              </a>
-            </li>
-          ))}
+          {navItems.map((item) => {
+            // Check if this link is active
+            const isActive = currentPath === item.href || 
+              (item.href !== '/' && item.href !== '/hi' && currentPath.startsWith(item.href));
+            
+            return (
+              <li>
+                <a
+                  href={item.href}
+                  class={`mobile-nav-link flex items-center gap-3 px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:bg-white/20 hover:translate-x-2 ${
+                    isActive ? 'bg-white/30 shadow-lg' : ''
+                  }`}
+                >
+                  <span class="text-2xl">{item.icon}</span>
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <!-- Mobile Language Toggle -->
