@@ -1,0 +1,176 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "packages": "Tour Packages",
+    "itinerary": "Itinerary",
+    "permits": "Permits",
+    "howToReach": "How to Reach",
+    "accommodation": "Accommodation",
+    "preparation": "Preparation",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact Us"
+  },
+  "header": {
+    "companyName": "Shiv Yatra Tourism",
+    "tagline": "Your Trusted Partner for Sacred Himalayan Pilgrimages",
+    "callNow": "Call Now",
+    "whatsapp": "WhatsApp"
+  },
+  "hero": {
+    "title": "Adi Kailash Yatra 2025",
+    "subtitle": "Sacred Pilgrimage to Lord Shiva's Himalayan Abode",
+    "description": "Experience the divine replica of Mount Kailash without crossing borders. Complete packages from ₹15,000 with Inner Line Permit assistance.",
+    "ctaPrimary": "Explore Packages",
+    "ctaSecondary": "Chat on WhatsApp",
+    "ctaTertiary": "Plan Your Journey"
+  },
+  "whyChoose": {
+    "heading": "Why Choose Adi Kailash Over Mount Kailash?",
+    "feature1Title": "No Visa Required",
+    "feature1Desc": "Travel within India to this sacred Himalayan peak in Uttarakhand",
+    "feature2Title": "Shorter & More Affordable",
+    "feature2Desc": "5-14 day packages starting ₹15,000 vs ₹2-4 lakhs for Tibet Kailash",
+    "feature3Title": "Same Divine Blessings",
+    "feature3Desc": "Second of Panch Kailash, equally revered by devotees and pilgrims"
+  },
+  "stats": {
+    "pilgrims": "25,000+",
+    "pilgrimsLabel": "Happy Pilgrims",
+    "experience": "15+",
+    "experienceLabel": "Years Experience",
+    "satisfaction": "100%",
+    "satisfactionLabel": "Customer Satisfaction"
+  },
+  "whatsapp": {
+    "button": "Chat on WhatsApp",
+    "floatingButton": "Need Help? Chat Now",
+    "message": "Hi Shiv Yatra Tourism, I'm interested in Adi Kailash Yatra packages. Please share more details."
+  },
+  "packages": {
+    "heading": "Adi Kailash Tour Packages 2025",
+    "subheading": "Customized & Group Yatra Options",
+    "package5Day": "5-Day Express Package from Dharchula",
+    "package9Day": "9-Day Complete Yatra from Kathgodam",
+    "package14Day": "14-Day Grand Kumaon Circuit from Delhi",
+    "duration": "Duration",
+    "difficulty": "Difficulty",
+    "price": "Price",
+    "bookNow": "Book Now",
+    "viewDetails": "View Details",
+    "from": "From",
+    "perPerson": "per person"
+  },
+  "itinerary": {
+    "heading": "Detailed Itinerary",
+    "day": "Day",
+    "altitude": "Altitude",
+    "distance": "Distance",
+    "activities": "Activities",
+    "meals": "Meals",
+    "accommodation": "Accommodation",
+    "viewFull": "View Full Itinerary"
+  },
+  "permits": {
+    "heading": "Inner Line Permit Guide",
+    "subheading": "How to Get ILP for Adi Kailash",
+    "whatIs": "What is Inner Line Permit?",
+    "documents": "Required Documents",
+    "eligibility": "Eligibility Criteria",
+    "process": "Application Process",
+    "fees": "Permit Fees",
+    "validity": "Validity Period"
+  },
+  "contact": {
+    "heading": "Contact Us",
+    "subheading": "Get in touch for bookings and inquiries",
+    "name": "Your Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "message": "Your Message",
+    "subject": "Subject",
+    "submit": "Send Message",
+    "submitWhatsApp": "Send via WhatsApp",
+    "quickMessages": "Quick Contact Options",
+    "callUs": "Call Us",
+    "emailUs": "Email Us",
+    "visitUs": "Visit Us",
+    "officeAddress": "Office Address",
+    "officeHours": "Office Hours"
+  },
+  "footer": {
+    "companyName": "Shiv Yatra Tourism",
+    "tagline": "Your Trusted Partner for Sacred Himalayan Pilgrimages",
+    "quickLinks": "Quick Links",
+    "ourServices": "Our Services",
+    "resources": "Resources",
+    "followUs": "Follow Us",
+    "copyright": "© 2025 Shiv Yatra Tourism. All rights reserved.",
+    "designedBy": "Designed with devotion for pilgrims"
+  },
+  "blog": {
+    "heading": "Blog & Travel Guides",
+    "latestPosts": "Latest Posts",
+    "readMore": "Read More",
+    "readTime": "min read",
+    "publishedOn": "Published on",
+    "by": "by",
+    "tags": "Tags",
+    "relatedPosts": "Related Posts",
+    "shareArticle": "Share this article",
+    "backToBlog": "Back to Blog"
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "subheading": "Common Questions About Adi Kailash Yatra",
+    "viewAll": "View All FAQs",
+    "stillHaveQuestions": "Still have questions?",
+    "contactUs": "Contact us for personalized assistance"
+  },
+  "gallery": {
+    "heading": "Photo Gallery",
+    "subheading": "Glimpses of the Sacred Journey",
+    "viewMore": "View More",
+    "download": "Download",
+    "share": "Share"
+  },
+  "testimonials": {
+    "heading": "What Our Pilgrims Say",
+    "subheading": "Real experiences from 25,000+ satisfied pilgrims",
+    "readReview": "Read Full Review",
+    "verifiedPilgrim": "Verified Pilgrim"
+  },
+  "cta": {
+    "bookNow": "Book Now",
+    "learnMore": "Learn More",
+    "getQuote": "Get Quote",
+    "downloadBrochure": "Download Brochure",
+    "viewItinerary": "View Itinerary",
+    "checkAvailability": "Check Availability",
+    "requestCallback": "Request Callback"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "tryAgain": "Try Again",
+    "close": "Close",
+    "open": "Open",
+    "menu": "Menu",
+    "search": "Search",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "backToTop": "Back to Top",
+    "share": "Share",
+    "download": "Download",
+    "print": "Print"
+  },
+  "language": {
+    "switchTo": "Switch to",
+    "english": "English",
+    "hindi": "हिंदी",
+    "currentLanguage": "Language"
+  }
+}
+

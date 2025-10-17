@@ -1,0 +1,400 @@
+---
+/**
+ * Permits Page - Inner Line Permit (ILP) Guide for Adi Kailash
+ * 
+ * Features:
+ * - Complete ILP application process
+ * - Required documents checklist
+ * - Eligibility criteria
+ * - Processing time and fees
+ * - Step-by-step guide
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadContent } from '../utils/dataLoader';
+
+console.log('[PermitsPage] Loading permits page data...');
+
+let content: any = {};
+
+try {
+  content = await loadContent();
+  console.log('[PermitsPage] ✓ Data loaded successfully');
+} catch (error) {
+  console.error('[PermitsPage] ✗ Error loading data:', error);
+}
+
+const permitsContent = content.permits || {};
+
+const pageTitle = 'Adi Kailash Inner Line Permit Guide - How to Get ILP in 2025';
+const pageDescription = 'Complete guide to obtaining Inner Line Permit (ILP) for Adi Kailash Yatra. Learn about required documents, eligibility, application process, and fees.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale="en"
+  pageName="permits"
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-16 md:py-20">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-white/20 rounded-full mb-4 md:mb-6">
+          <span class="text-3xl md:text-4xl">📋</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          Inner Line Permit Guide
+        </h1>
+        <p class="text-base md:text-lg lg:text-xl opacity-90">
+          Everything you need to know about getting your ILP for Adi Kailash Yatra
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is ILP Section -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-primary-50 border-l-4 border-primary-500 p-4 md:p-6 rounded-r-xl mb-8 md:mb-12">
+          <h2 class="text-xl md:text-2xl font-bold text-primary-800 mb-3">
+            What is Inner Line Permit (ILP)?
+          </h2>
+          <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+            {permitsContent['what-is']?.body || 
+            'Inner Line Permit (ILP) is a mandatory document required for all visitors to Adi Kailash as it is located near the Indo-Tibet border in a restricted area. The permit is issued by the Sub-Divisional Magistrate (SDM) office in Dharchula and ensures security and regulated access to this sensitive border region.'}
+          </p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 md:mb-12">
+          <div class="text-center p-4 bg-gray-50 rounded-xl">
+            <div class="text-2xl md:text-3xl font-bold text-primary-600 mb-1">7-70</div>
+            <div class="text-xs md:text-sm text-gray-600">Age Range</div>
+          </div>
+          <div class="text-center p-4 bg-gray-50 rounded-xl">
+            <div class="text-2xl md:text-3xl font-bold text-accent-600 mb-1">2-3</div>
+            <div class="text-xs md:text-sm text-gray-600">Days Processing</div>
+          </div>
+          <div class="text-center p-4 bg-gray-50 rounded-xl">
+            <div class="text-2xl md:text-3xl font-bold text-green-600 mb-1">₹100</div>
+            <div class="text-xs md:text-sm text-gray-600">Approx. Fee</div>
+          </div>
+          <div class="text-center p-4 bg-gray-50 rounded-xl">
+            <div class="text-2xl md:text-3xl font-bold text-secondary-600 mb-1">30</div>
+            <div class="text-xs md:text-sm text-gray-600">Days Validity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Required Documents -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-heading">Required Documents for ILP Application</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <!-- Document 1 -->
+          <div class="flex gap-3 md:gap-4 items-start bg-white p-4 md:p-6 rounded-xl shadow-sm">
+            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-sm md:text-base text-secondary-800 mb-1">Valid Government ID</h3>
+              <p class="text-xs md:text-sm text-gray-600">
+                {permitsContent.documents?.['item-1'] || 'Aadhaar Card, Passport, or Voter ID (original + photocopy)'}
+              </p>
+            </div>
+          </div>
+
+          <!-- Document 2 -->
+          <div class="flex gap-3 md:gap-4 items-start bg-white p-4 md:p-6 rounded-xl shadow-sm">
+            <div class="w-10 h-10 bg-accent-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 md:w-6 md:h-6 text-accent-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-sm md:text-base text-secondary-800 mb-1">Passport Size Photos</h3>
+              <p class="text-xs md:text-sm text-gray-600">
+                {permitsContent.documents?.['item-2'] || '2-3 recent colored passport size photographs'}
+              </p>
+            </div>
+          </div>
+
+          <!-- Document 3 -->
+          <div class="flex gap-3 md:gap-4 items-start bg-white p-4 md:p-6 rounded-xl shadow-sm">
+            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 md:w-6 md:h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-sm md:text-base text-secondary-800 mb-1">Medical Fitness Certificate</h3>
+              <p class="text-xs md:text-sm text-gray-600">
+                {permitsContent.documents?.['item-3'] || 'Issued by MBBS doctor certifying fitness for high altitude'}
+              </p>
+            </div>
+          </div>
+
+          <!-- Document 4 -->
+          <div class="flex gap-3 md:gap-4 items-start bg-white p-4 md:p-6 rounded-xl shadow-sm">
+            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 md:w-6 md:h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-semibold text-sm md:text-base text-secondary-800 mb-1">Police Verification</h3>
+              <p class="text-xs md:text-sm text-gray-600">
+                {permitsContent.documents?.['item-4'] || 'Police verification certificate (not older than 15 days)'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eligibility Criteria -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-heading">Eligibility Criteria & Restrictions</h2>
+        
+        <div class="space-y-4">
+          <!-- Eligible -->
+          <div class="bg-green-50 border-2 border-green-200 rounded-xl p-4 md:p-6">
+            <div class="flex items-start gap-3 md:gap-4">
+              <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                </svg>
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-lg md:text-xl font-bold text-green-800 mb-3">✓ Eligible Persons</h3>
+                <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                    </svg>
+                    <span>{permitsContent.eligibility?.['item-1'] || 'Indian citizens aged 7-70 years'}</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                    </svg>
+                    <span>Medically fit for high altitude travel</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                    </svg>
+                    <span>Valid Indian identification documents</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Not Eligible -->
+          <div class="bg-red-50 border-2 border-red-200 rounded-xl p-4 md:p-6">
+            <div class="flex items-start gap-3 md:gap-4">
+              <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"/>
+                </svg>
+              </div>
+              <div class="flex-grow">
+                <h3 class="text-lg md:text-xl font-bold text-red-800 mb-3">✗ Not Eligible</h3>
+                <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"/>
+                    </svg>
+                    <span>{permitsContent.eligibility?.['item-2'] || 'Foreign nationals and NRIs (security restrictions)'}</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"/>
+                    </svg>
+                    <span>Persons below 7 years or above 70 years</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"/>
+                    </svg>
+                    <span>Individuals with serious medical conditions</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Process -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-heading">Step-by-Step Application Process</h2>
+        
+        <div class="space-y-4 md:space-y-6">
+          {/* Step 1 */}
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg md:text-xl shadow-lg">
+              1
+            </div>
+            <div class="flex-grow bg-white p-4 md:p-6 rounded-xl shadow-sm">
+              <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-2">Gather Required Documents</h3>
+              <p class="text-sm md:text-base text-gray-700">
+                Collect all necessary documents including ID proof, medical certificate, photos, and police verification. Ensure all documents are current and valid.
+              </p>
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg md:text-xl shadow-lg">
+              2
+            </div>
+            <div class="flex-grow bg-white p-4 md:p-6 rounded-xl shadow-sm">
+              <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-2">Visit SDM Office Dharchula</h3>
+              <p class="text-sm md:text-base text-gray-700">
+                Go to the Sub-Divisional Magistrate (SDM) office in Dharchula with original documents and photocopies. Our team can assist you with this process if you book through us.
+              </p>
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg md:text-xl shadow-lg">
+              3
+            </div>
+            <div class="flex-grow bg-white p-4 md:p-6 rounded-xl shadow-sm">
+              <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-2">Submit Application Form</h3>
+              <p class="text-sm md:text-base text-gray-700">
+                Fill out the ILP application form completely and accurately. Submit it along with documents and pay the processing fee (approximately ₹100 per person).
+              </p>
+            </div>
+          </div>
+
+          {/* Step 4 */}
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg md:text-xl shadow-lg">
+              4
+            </div>
+            <div class="flex-grow bg-white p-4 md:p-6 rounded-xl shadow-sm">
+              <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-2">Wait for Processing</h3>
+              <p class="text-sm md:text-base text-gray-700">
+                The permit typically takes 2-3 working days to process. You'll need to stay in Dharchula during this time for verification and approval.
+              </p>
+            </div>
+          </div>
+
+          {/* Step 5 */}
+          <div class="flex gap-4 items-start">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg md:text-xl shadow-lg">
+              ✓
+            </div>
+            <div class="flex-grow bg-white p-4 md:p-6 rounded-xl shadow-sm border-2 border-green-200">
+              <h3 class="text-lg md:text-xl font-bold text-green-800 mb-2">Receive Your ILP</h3>
+              <p class="text-sm md:text-base text-gray-700">
+                Once approved, collect your Inner Line Permit from the SDM office. Keep it safe - you'll need to show it at multiple checkpoints during your journey!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- We Handle Your ILP -->
+  <section class="section bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+          Let Us Handle Your ILP Application
+        </h2>
+        <p class="text-base md:text-lg lg:text-xl opacity-90 mb-6 md:mb-8">
+          Book your tour package with us, and we'll assist you with the complete ILP application process, document preparation, and submission.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+            <div class="text-3xl md:text-4xl mb-2">📝</div>
+            <p class="text-sm md:text-base font-medium">Document Guidance</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+            <div class="text-3xl md:text-4xl mb-2">🏢</div>
+            <p class="text-sm md:text-base font-medium">SDM Office Support</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+            <div class="text-3xl md:text-4xl mb-2">⚡</div>
+            <p class="text-sm md:text-base font-medium">Quick Processing</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/packages" class="btn-secondary text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+            View Tour Packages
+          </a>
+          <a 
+            href="https://wa.me/917302937532?text=Hi,%20I%20need%20help%20with%20Inner%20Line%20Permit%20for%20Adi%20Kailash"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-whatsapp text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
+          >
+            Get ILP Assistance
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Important Notes -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 md:p-6 rounded-r-xl">
+          <h3 class="text-lg md:text-xl font-bold text-yellow-800 mb-3 flex items-center gap-2">
+            <svg class="w-5 h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+            </svg>
+            Important Notes
+          </h3>
+          <ul class="space-y-2 text-sm md:text-base text-gray-700">
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-600 flex-shrink-0">•</span>
+              <span>ILP must be obtained <strong>before</strong> starting the journey to restricted areas</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-600 flex-shrink-0">•</span>
+              <span>Permit is valid for <strong>30 days</strong> from the date of issue</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-600 flex-shrink-0">•</span>
+              <span>You must carry the <strong>original ILP</strong> at all times during the yatra</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-600 flex-shrink-0">•</span>
+              <span>Permits are checked at multiple checkpoints - keep it safe and accessible</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-600 flex-shrink-0">•</span>
+              <span>Plan to reach Dharchula at least <strong>3-4 days before</strong> your intended yatra start date</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

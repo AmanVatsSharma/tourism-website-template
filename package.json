@@ -1,5 +1,5 @@
 {
-  "name": "purple-pulsar",
+  "name": "tourism-website-template",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,6 +9,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.14.5"
+    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.14.5",
+    "papaparse": "^5.5.3"
+  },
+  "devDependencies": {
+    "@alpinejs/intersect": "^3.15.0",
+    "@astrojs/react": "^4.4.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "alpinejs": "^3.15.0",
+    "lightningcss": "^1.30.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tailwindcss": "^3.4.18"
   }
 }

@@ -1,0 +1,524 @@
+---
+/**
+ * Preparation Page - Complete Guide for Adi Kailash Yatra Preparation
+ * 
+ * Features:
+ * - Fitness requirements
+ * - Packing checklist
+ * - Medical precautions
+ * - Altitude acclimatization tips
+ * - What to expect during the journey
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadImageManifest } from '../utils/dataLoader';
+
+console.log('[PreparationPage] Loading page data...');
+
+let imageManifest: any[] = [];
+
+try {
+  imageManifest = await loadImageManifest();
+  console.log('[PreparationPage] ✓ Loaded', imageManifest.length, 'image specs');
+} catch (error) {
+  console.error('[PreparationPage] ✗ Error loading data:', error);
+}
+
+const pageTitle = 'Adi Kailash Yatra Preparation Guide - Fitness, Packing & Tips';
+const pageDescription = 'Complete preparation guide for Adi Kailash pilgrimage. Learn about fitness requirements, packing essentials, medical precautions, and altitude acclimatization.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale="en"
+  pageName="preparation"
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-16 md:py-20">
+    <div class="container-custom text-center">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        Preparation Guide
+      </h1>
+      <p class="text-base md:text-lg lg:text-xl opacity-90 max-w-3xl mx-auto">
+        Get ready for your sacred journey with our comprehensive preparation checklist
+      </p>
+    </div>
+  </section>
+
+  <!-- Fitness Requirements -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-heading">Fitness Requirements</h2>
+        
+        <div class="card bg-primary-50 border-2 border-primary-200 mb-8">
+          <h3 class="text-xl md:text-2xl font-bold text-primary-800 mb-4">
+            Why Fitness Matters
+          </h3>
+          <p class="text-sm md:text-base text-gray-700 leading-relaxed mb-4">
+            Adi Kailash Yatra involves reaching altitudes up to <strong>4,770 meters</strong> (Jolingkong Base Camp). Good physical fitness is essential for:
+          </p>
+          <ul class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm md:text-base text-gray-700">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+              </svg>
+              <span>Handling high altitude conditions</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+              </svg>
+              <span>Trekking on mountain terrain</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+              </svg>
+              <span>Long hours of travel</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-primary-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+              </svg>
+              <span>Preventing altitude sickness</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Training Schedule -->
+        <h3 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-6">
+          8-Week Training Program
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div class="card">
+            <h4 class="text-lg font-bold text-secondary-800 mb-4 flex items-center gap-2">
+              <span class="text-2xl">🏃</span>
+              Cardiovascular Training
+            </h4>
+            <ul class="space-y-2 text-sm md:text-base text-gray-700">
+              <li>• Daily brisk walking: 30-45 minutes</li>
+              <li>• Jogging or running: 3-4 times/week</li>
+              <li>• Cycling or swimming: 2-3 times/week</li>
+              <li>• Gradually increase duration & intensity</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4 class="text-lg font-bold text-secondary-800 mb-4 flex items-center gap-2">
+              <span class="text-2xl">💪</span>
+              Strength Training
+            </h4>
+            <ul class="space-y-2 text-sm md:text-base text-gray-700">
+              <li>• Leg exercises: Squats, lunges</li>
+              <li>• Core strengthening: Planks, crunches</li>
+              <li>• Upper body: Push-ups, pull-ups</li>
+              <li>• Practice with loaded backpack</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4 class="text-lg font-bold text-secondary-800 mb-4 flex items-center gap-2">
+              <span class="text-2xl">⛰️</span>
+              Altitude Simulation
+            </h4>
+            <ul class="space-y-2 text-sm md:text-base text-gray-700">
+              <li>• Climb stairs with weight</li>
+              <li>• Practice breathing exercises</li>
+              <li>• Weekend hikes if possible</li>
+              <li>• Yoga for flexibility & breathing</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4 class="text-lg font-bold text-secondary-800 mb-4 flex items-center gap-2">
+              <span class="text-2xl">🧘</span>
+              Mental Preparation
+            </h4>
+            <ul class="space-y-2 text-sm md:text-base text-gray-700">
+              <li>• Meditation for mental strength</li>
+              <li>• Positive visualization</li>
+              <li>• Build stamina gradually</li>
+              <li>• Stay motivated and consistent</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packing Checklist -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="section-heading">Complete Packing Checklist</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Clothing -->
+          <div class="card">
+            <div class="text-3xl mb-3">👕</div>
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-4">Clothing</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600">•</span>
+                <span>Thermal innerwear (2 sets)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600">•</span>
+                <span>Fleece jacket/pullover</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600">•</span>
+                <span>Windproof/waterproof jacket</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600">•</span>
+                <span>Trekking pants (2-3)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600">•</span>
+                <span>Woolen socks (4-5 pairs)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600">•</span>
+                <span>Gloves (waterproof)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600">•</span>
+                <span>Warm cap/beanie</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-primary-600">•</span>
+                <span>Sun hat/cap</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Footwear -->
+          <div class="card">
+            <div class="text-3xl mb-3">👟</div>
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-4">Footwear</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-accent-600">•</span>
+                <span>Trekking shoes (waterproof)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent-600">•</span>
+                <span>Comfortable sandals</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-accent-600">•</span>
+                <span>Extra shoelaces</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Personal Items -->
+          <div class="card">
+            <div class="text-3xl mb-3">🎒</div>
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-4">Personal Items</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-green-600">•</span>
+                <span>Backpack (40-50L)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600">•</span>
+                <span>Sleeping bag (if camping)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600">•</span>
+                <span>Trekking poles</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600">•</span>
+                <span>Sunglasses (UV protection)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600">•</span>
+                <span>Sunscreen (SPF 50+)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600">•</span>
+                <span>Lip balm</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600">•</span>
+                <span>Headlamp/flashlight</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-green-600">•</span>
+                <span>Power bank</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Medical Kit -->
+          <div class="card">
+            <div class="text-3xl mb-3">💊</div>
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-4">Medical Kit</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-red-600">•</span>
+                <span>Diamox (for altitude sickness)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-600">•</span>
+                <span>Pain reliever</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-600">•</span>
+                <span>Anti-diarrheal medicine</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-600">•</span>
+                <span>Antiseptic cream</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-600">•</span>
+                <span>Bandages & band-aids</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-red-600">•</span>
+                <span>Personal medications</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Documents -->
+          <div class="card">
+            <div class="text-3xl mb-3">📄</div>
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-4">Documents</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600">•</span>
+                <span>Original ID proof</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600">•</span>
+                <span>Inner Line Permit</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600">•</span>
+                <span>Medical fitness certificate</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600">•</span>
+                <span>Photocopies of all documents</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600">•</span>
+                <span>Passport size photos</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600">•</span>
+                <span>Insurance papers (if any)</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Miscellaneous -->
+          <div class="card">
+            <div class="text-3xl mb-3">🔦</div>
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-4">Miscellaneous</h3>
+            <ul class="space-y-2 text-sm text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-purple-600">•</span>
+                <span>Water bottles (2L capacity)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-purple-600">•</span>
+                <span>Dry snacks & energy bars</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-purple-600">•</span>
+                <span>Toilet paper & wet wipes</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-purple-600">•</span>
+                <span>Plastic bags (for waste)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-purple-600">•</span>
+                <span>Camera & extra batteries</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-purple-600">•</span>
+                <span>Notebook & pen</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Altitude Acclimatization -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-heading">Altitude Acclimatization Tips</h2>
+        
+        <div class="card bg-yellow-50 border-2 border-yellow-300 mb-8">
+          <h3 class="text-xl font-bold text-yellow-900 mb-4 flex items-center gap-2">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+            </svg>
+            Understanding Altitude Sickness (AMS)
+          </h3>
+          <p class="text-sm md:text-base text-gray-700 mb-4">
+            Acute Mountain Sickness can affect anyone above 2,500m. Symptoms include headache, nausea, dizziness, and shortness of breath.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold text-green-800 flex items-center gap-2">
+              <span class="text-2xl">✓</span>
+              Do's
+            </h3>
+            <ul class="space-y-3 text-sm md:text-base">
+              <li class="flex items-start gap-3 bg-green-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                </svg>
+                <span>Ascend gradually, spend a day in Gunji for acclimatization</span>
+              </li>
+              <li class="flex items-start gap-3 bg-green-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                </svg>
+                <span>Drink 3-4 liters of water daily</span>
+              </li>
+              <li class="flex items-start gap-3 bg-green-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                </svg>
+                <span>Walk slowly, take frequent breaks</span>
+              </li>
+              <li class="flex items-start gap-3 bg-green-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                </svg>
+                <span>Practice deep breathing exercises</span>
+              </li>
+              <li class="flex items-start gap-3 bg-green-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                </svg>
+                <span>Listen to your body, inform guide of any symptoms</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="space-y-4">
+            <h3 class="text-xl font-bold text-red-800 flex items-center gap-2">
+              <span class="text-2xl">✗</span>
+              Don'ts
+            </h3>
+            <ul class="space-y-3 text-sm md:text-base">
+              <li class="flex items-start gap-3 bg-red-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"/>
+                </svg>
+                <span>Don't rush or ascend too quickly</span>
+              </li>
+              <li class="flex items-start gap-3 bg-red-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"/>
+                </svg>
+                <span>Avoid alcohol, smoking, and sleeping pills</span>
+              </li>
+              <li class="flex items-start gap-3 bg-red-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"/>
+                </svg>
+                <span>Don't ignore headache or dizziness</span>
+              </li>
+              <li class="flex items-start gap-3 bg-red-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"/>
+                </svg>
+                <span>Don't overexert yourself</span>
+              </li>
+              <li class="flex items-start gap-3 bg-red-50 p-3 rounded-lg">
+                <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"/>
+                </svg>
+                <span>Don't continue ascending if symptoms worsen</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Expect -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-heading">What to Expect During the Journey</h2>
+        
+        <div class="space-y-6">
+          <div class="card">
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Weather Conditions</h3>
+            <p class="text-sm md:text-base text-gray-700">
+              Expect temperatures ranging from 5°C to 20°C during the day, dropping to -5°C to 5°C at night. Weather can change rapidly in mountains. Pack layers and waterproof gear.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Accommodation</h3>
+            <p class="text-sm md:text-base text-gray-700">
+              Basic guesthouses, homestays, and tented camps. Don't expect luxury - focus on the spiritual journey. Most places have shared facilities. Carry your own sleeping bag for hygiene.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Food</h3>
+            <p class="text-sm md:text-base text-gray-700">
+              Simple vegetarian meals (dal, rice, roti, vegetables). Pure satvik food without onion-garlic. Limited variety in high altitude areas. Carry dry snacks and energy bars.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Communication</h3>
+            <p class="text-sm md:text-base text-gray-700">
+              Limited or no mobile connectivity after Dharchula. BSNL works best in some areas. Inform family in advance. Embrace the digital detox as part of your spiritual journey.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+        Need Help with Preparation?
+      </h2>
+      <p class="text-base md:text-lg opacity-90 mb-6 md:mb-8 max-w-2xl mx-auto">
+        Our team provides detailed preparation guidance to all our pilgrims. Book your package to get personalized assistance.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/packages" class="btn-secondary text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+          View Packages
+        </a>
+        <a 
+          href="https://wa.me/917302937532?text=Hi,%20I%20need%20help%20with%20Adi%20Kailash%20preparation"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-whatsapp text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
+        >
+          Get Guidance
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

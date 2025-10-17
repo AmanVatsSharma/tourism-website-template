@@ -1,0 +1,291 @@
+---
+/**
+ * Header Component - Beautiful Spiritual Design
+ * 
+ * Features:
+ * - Gradient background with Om symbol
+ * - Smooth animations
+ * - Language toggle (English/Hindi)
+ * - Mobile-responsive hamburger menu
+ * - Sticky header with blur effect
+ * - Spiritual design elements
+ */
+
+import { useTranslation } from '../../utils/translations';
+
+interface Props {
+  currentLocale: 'en' | 'hi';
+}
+
+const { currentLocale } = Astro.props;
+const t = useTranslation(currentLocale);
+
+const currentPath = Astro.url.pathname;
+
+// Navigation items
+const navItems = [
+  { href: '/', label: t('nav.home'), icon: '🏠' },
+  { href: '/packages', label: t('nav.packages'), icon: '📦' },
+  { href: '/about', label: t('nav.about'), icon: 'ℹ️' },
+  { href: '/permits', label: t('nav.permits'), icon: '📋' },
+  { href: '/how-to-reach', label: t('nav.how_to_reach'), icon: '🗺️' },
+  { href: '/preparation', label: t('nav.preparation'), icon: '🎒' },
+  { href: '/gallery', label: t('nav.gallery'), icon: '📸' },
+  { href: '/blog', label: t('nav.blog'), icon: '📚' },
+  { href: '/faq', label: t('nav.faq'), icon: '❓' },
+  { href: '/contact', label: t('nav.contact'), icon: '📞' },
+];
+
+// Language toggle
+const toggleLang = currentLocale === 'en' ? 'hi' : 'en';
+const togglePath = currentLocale === 'en' ? `/hi${currentPath}` : currentPath.replace('/hi', '') || '/';
+
+console.log('[Header] Rendering with locale:', currentLocale);
+---
+
+<header class="header-wrapper sticky top-0 z-50 transition-all duration-300" id="main-header">
+  <!-- Main Header Bar -->
+  <div class="bg-gradient-to-r from-primary-600 via-accent-500 to-primary-600 text-white shadow-xl border-b-4 border-accent-400">
+    <div class="container-custom">
+      <div class="flex items-center justify-between py-4">
+        <!-- Logo Section with Spiritual Elements -->
+        <a href={currentLocale === 'en' ? '/' : '/hi'} class="flex items-center gap-3 group">
+          <!-- Om Symbol -->
+          <div class="text-4xl md:text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-lg">
+            🕉️
+          </div>
+          
+          <!-- Company Name -->
+          <div class="flex flex-col">
+            <span class="text-xl md:text-2xl font-bold tracking-wide gradient-text-light">
+              Shiv Yatra Tourism
+            </span>
+            <span class="text-xs md:text-sm opacity-90 font-medium">
+              {currentLocale === 'en' ? 'Sacred Himalayan Pilgrimages' : 'पवित्र हिमालयी तीर्थयात्रा'}
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-1">
+          {navItems.map((item) => (
+            <a
+              href={currentLocale === 'en' ? item.href : `/hi${item.href}`}
+              class={`nav-link px-4 py-2 rounded-full font-medium transition-all duration-300 hover:bg-white/20 hover:shadow-lg ${
+                currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                  ? 'bg-white/30 shadow-md'
+                  : ''
+              }`}
+            >
+              <span class="mr-1">{item.icon}</span>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <!-- Language Toggle & Mobile Menu Button -->
+        <div class="flex items-center gap-3">
+          <!-- Language Toggle -->
+          <a
+            href={togglePath}
+            class="language-toggle hidden sm:flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-md"
+            aria-label={`Switch to ${toggleLang === 'hi' ? 'Hindi' : 'English'}`}
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z"/>
+            </svg>
+            {toggleLang === 'hi' ? 'हिंदी' : 'English'}
+          </a>
+
+          <!-- Mobile Menu Toggle Button -->
+          <button
+            id="mobile-menu-toggle"
+            class="lg:hidden flex items-center justify-center w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+            aria-label="Toggle menu"
+            aria-expanded="false"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path class="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              <path class="menu-icon-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu (Slide-in) -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden fixed inset-0 bg-gradient-to-br from-secondary-900 via-primary-800 to-accent-700 text-white z-40 transform translate-x-full transition-transform duration-300"
+    style="top: 0; padding-top: 80px;"
+  >
+    <!-- Decorative Background -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute top-10 left-10 text-9xl">🕉️</div>
+      <div class="absolute bottom-10 right-10 text-9xl">🌸</div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl">🏔️</div>
+    </div>
+
+    <nav class="relative z-10 h-full overflow-y-auto py-8">
+      <div class="container-custom">
+        <!-- Mobile Nav Items -->
+        <ul class="space-y-2">
+          {navItems.map((item) => (
+            <li>
+              <a
+                href={currentLocale === 'en' ? item.href : `/hi${item.href}`}
+                class={`mobile-nav-link flex items-center gap-3 px-6 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:bg-white/20 hover:translate-x-2 ${
+                  currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
+                    ? 'bg-white/30 shadow-lg'
+                    : ''
+                }`}
+              >
+                <span class="text-2xl">{item.icon}</span>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Mobile Language Toggle -->
+        <div class="mt-8 px-6">
+          <a
+            href={togglePath}
+            class="flex items-center justify-center gap-3 px-6 py-4 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-xl font-semibold text-lg transition-all duration-300"
+          >
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z"/>
+            </svg>
+            {toggleLang === 'hi' ? 'Switch to Hindi (हिंदी)' : 'Switch to English'}
+          </a>
+        </div>
+
+        <!-- Contact Info in Mobile Menu -->
+        <div class="mt-8 px-6 py-6 bg-white/10 backdrop-blur-sm rounded-xl">
+          <h3 class="font-bold mb-3 text-lg">📞 Contact Us</h3>
+          <a href="tel:+917302937532" class="block text-white hover:text-accent-200 transition-colors mb-2">
+            +91-7302937532
+          </a>
+          <a href="https://wa.me/917302937532" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 bg-success hover:bg-green-600 rounded-full font-semibold transition-colors mt-2">
+            💬 Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Gradient Text for Logo */
+  .gradient-text-light {
+    background: linear-gradient(to right, #ffffff, #fef3c7, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Nav Link Hover Effect */
+  .nav-link {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::before {
+    transform: translateX(0);
+  }
+
+  /* Sticky Header Blur Effect */
+  .header-wrapper.scrolled {
+    backdrop-filter: blur(10px);
+  }
+
+  /* Mobile Menu Animation */
+  .mobile-nav-link:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+</style>
+
+<script>
+  // Mobile Menu Toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('[Header] Initializing mobile menu...');
+    
+    const menuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.querySelector('.menu-icon-open');
+    const menuIconClose = document.querySelector('.menu-icon-close');
+    
+    if (menuToggle && mobileMenu && menuIconOpen && menuIconClose) {
+      let isMenuOpen = false;
+      
+      menuToggle.addEventListener('click', () => {
+        isMenuOpen = !isMenuOpen;
+        
+        if (isMenuOpen) {
+          // Open menu
+          mobileMenu.classList.remove('translate-x-full');
+          mobileMenu.classList.add('translate-x-0');
+          menuIconOpen.classList.add('hidden');
+          menuIconClose.classList.remove('hidden');
+          document.body.style.overflow = 'hidden'; // Prevent scroll
+          menuToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          // Close menu
+          mobileMenu.classList.remove('translate-x-0');
+          mobileMenu.classList.add('translate-x-full');
+          menuIconOpen.classList.remove('hidden');
+          menuIconClose.classList.add('hidden');
+          document.body.style.overflow = ''; // Restore scroll
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+        
+        console.log('[Header] Mobile menu toggled:', isMenuOpen ? 'open' : 'closed');
+      });
+      
+      // Close menu when clicking on a link
+      const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          if (isMenuOpen) {
+            menuToggle.click(); // Trigger close
+          }
+        });
+      });
+      
+      // Close menu when pressing Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) {
+          menuToggle.click();
+        }
+      });
+    }
+    
+    // Sticky Header Blur Effect on Scroll
+    const header = document.getElementById('main-header');
+    if (header) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    }
+    
+    console.log('[Header] ✓ Header initialized successfully');
+  });
+</script>
+

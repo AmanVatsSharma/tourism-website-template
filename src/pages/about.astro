@@ -1,0 +1,280 @@
+---
+/**
+ * About Page - About Adi Kailash and Shiv Yatra Tourism
+ * 
+ * Features:
+ * - Adi Kailash introduction and significance
+ * - Mythology and history
+ * - Religious importance
+ * - Company information
+ * - Why choose us section
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadContent } from '../utils/dataLoader';
+
+console.log('[AboutPage] Loading about page data...');
+
+let content: any = {};
+
+try {
+  content = await loadContent();
+  console.log('[AboutPage] ✓ Data loaded successfully');
+} catch (error) {
+  console.error('[AboutPage] ✗ Error loading data:', error);
+}
+
+const aboutContent = content.about || {};
+const introContent = aboutContent.intro || {};
+const mythologyContent = aboutContent.mythology || {};
+
+const pageTitle = typeof introContent.h1 === 'string' ? introContent.h1 : 'About Adi Kailash - The Sacred Mountain';
+const pageDescription = 'Discover the significance of Adi Kailash, the second of Panch Kailash. Learn about its mythology, history, and why it\'s revered as Lord Shiva\'s earthly abode.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale="en"
+  pageName="about"
+>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-secondary-900 via-primary-800 to-accent-700 text-white py-16 md:py-24">
+    <div class="absolute inset-0 bg-black/30"></div>
+    <div class="container-custom relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
+          {pageTitle}
+        </h1>
+        <p class="text-lg md:text-xl opacity-90">
+          The Sacred Replica of Mount Kailash in the Indian Himalayas
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Introduction Section -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-800 mb-4 md:mb-6">
+            What is Adi Kailash?
+          </h2>
+          <div class="prose prose-lg max-w-none text-gray-700 space-y-4">
+            <p>
+              {typeof introContent.body === 'string' ? introContent.body : 
+              'Adi Kailash, standing majestically at 5,945 meters (19,505 feet) in Pithoragarh district of Uttarakhand, is the sacred mountain believed to be Lord Shiva\'s second home after Mount Kailash in Tibet.'}
+            </p>
+            <p>
+              Also known as <strong>Chhota Kailash</strong> or <strong>Baba Kailash</strong>, this divine peak is the second most important among the Panch Kailash (Five Kailashes) and holds immense religious significance for Hindu pilgrims.
+            </p>
+            <p>
+              The mountain's striking resemblance to Mount Kailash in Tibet makes it a popular alternative for devotees, especially after the Chinese occupation of Tibet made the original Kailash difficult to access.
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4 mt-6 md:mt-8">
+            <div class="bg-primary-50 p-4 rounded-xl">
+              <div class="text-2xl md:text-3xl font-bold text-primary-600 mb-1">5,945m</div>
+              <div class="text-sm text-gray-600">Altitude</div>
+            </div>
+            <div class="bg-accent-50 p-4 rounded-xl">
+              <div class="text-2xl md:text-3xl font-bold text-accent-600 mb-1">#2</div>
+              <div class="text-sm text-gray-600">Panch Kailash</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-first lg:order-last">
+          <div class="aspect-square rounded-2xl bg-gradient-to-br from-primary-200 to-accent-200 flex items-center justify-center shadow-xl">
+            <div class="text-center p-6 md:p-8">
+              <div class="text-6xl md:text-8xl mb-4">🏔️</div>
+              <p class="text-lg md:text-xl font-semibold text-secondary-800">
+                Adi Kailash Peak
+              </p>
+              <p class="text-sm md:text-base text-gray-600 mt-2">
+                Lord Shiva's Sacred Abode
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mythology & History -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <h2 class="section-heading">Mythology & History</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <!-- Mythological Significance -->
+        <div class="card">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-primary-100 rounded-full flex items-center justify-center mb-4">
+            <span class="text-2xl md:text-3xl">📿</span>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">
+            Ancient Legends
+          </h3>
+          <p class="text-sm md:text-base text-gray-700">
+            {typeof mythologyContent.body === 'string' ? mythologyContent.body :
+            'Where Ravana meditated to please Lord Shiva and the Pandavas found refuge during their exile, as mentioned in the Mahabharata.'}
+          </p>
+        </div>
+
+        <!-- Religious Importance -->
+        <div class="card">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-accent-100 rounded-full flex items-center justify-center mb-4">
+            <span class="text-2xl md:text-3xl">🕉️</span>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">
+            Spiritual Power
+          </h3>
+          <p class="text-sm md:text-base text-gray-700">
+            Considered equally sacred as Mount Kailash, offering the same divine blessings to pilgrims who complete the yatra with pure devotion.
+          </p>
+        </div>
+
+        <!-- Om Parvat Connection -->
+        <div class="card">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+            <span class="text-2xl md:text-3xl">☸️</span>
+          </div>
+          <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">
+            Om Parvat Nearby
+          </h3>
+          <p class="text-sm md:text-base text-gray-700">
+            Near Adi Kailash lies Om Parvat, where nature has carved the sacred Om (ॐ) symbol in snow, visible throughout the year - a divine miracle.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Pilgrims Choose Adi Kailash -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <h2 class="section-heading">Why Pilgrims Choose Adi Kailash</h2>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="space-y-4 md:space-y-6">
+          <!-- Reason 1 -->
+          <div class="flex flex-col sm:flex-row gap-4 items-start bg-gray-50 p-4 md:p-6 rounded-xl">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg md:text-xl">
+              1
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-2">Accessible Within India</h3>
+              <p class="text-sm md:text-base text-gray-700">
+                No need for international visas or permits to enter Tibet. Adi Kailash is located entirely within Indian territory in Uttarakhand.
+              </p>
+            </div>
+          </div>
+
+          <!-- Reason 2 -->
+          <div class="flex flex-col sm:flex-row gap-4 items-start bg-gray-50 p-4 md:p-6 rounded-xl">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg md:text-xl">
+              2
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-2">More Affordable Pilgrimage</h3>
+              <p class="text-sm md:text-base text-gray-700">
+                Packages start from just ₹15,000 compared to ₹2-4 lakhs for Tibet Kailash tours, making it accessible to more devotees.
+              </p>
+            </div>
+          </div>
+
+          <!-- Reason 3 -->
+          <div class="flex flex-col sm:flex-row gap-4 items-start bg-gray-50 p-4 md:p-6 rounded-xl">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg md:text-xl">
+              3
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-2">Shorter Duration</h3>
+              <p class="text-sm md:text-base text-gray-700">
+                Complete the pilgrimage in 5-14 days depending on your package, compared to 3-4 weeks required for Tibet Kailash.
+              </p>
+            </div>
+          </div>
+
+          <!-- Reason 4 -->
+          <div class="flex flex-col sm:flex-row gap-4 items-start bg-gray-50 p-4 md:p-6 rounded-xl">
+            <div class="w-10 h-10 md:w-12 md:h-12 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg md:text-xl">
+              4
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-2">Same Divine Blessings</h3>
+              <p class="text-sm md:text-base text-gray-700">
+                According to Hindu scriptures, pilgrims receive the same spiritual merit and Lord Shiva's blessings as visiting Mount Kailash.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Shiv Yatra Tourism -->
+  <section class="section bg-gradient-to-br from-secondary-800 to-secondary-900 text-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
+          About Shiv Yatra Tourism
+        </h2>
+        <p class="text-base md:text-lg lg:text-xl opacity-90 mb-6 md:mb-8">
+          Your Trusted Partner for Sacred Himalayan Pilgrimages
+        </p>
+        
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 lg:p-10 mb-6 md:mb-8">
+          <p class="text-sm md:text-base lg:text-lg leading-relaxed mb-4 md:mb-6">
+            With over <strong>15 years of experience</strong> organizing Adi Kailash pilgrimages, Shiv Yatra Tourism has successfully guided <strong>25,000+ pilgrims</strong> on their sacred journey. Based in Dharchula, we understand the terrain, culture, and spiritual significance of every step of the yatra.
+          </p>
+          <p class="text-sm md:text-base lg:text-lg leading-relaxed">
+            Our commitment is to provide safe, comfortable, and spiritually enriching experiences for all our pilgrims. From Inner Line Permit assistance to experienced local guides, we handle every detail so you can focus on your spiritual journey.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+            <div class="text-2xl md:text-3xl font-bold mb-1">15+</div>
+            <div class="text-xs md:text-sm opacity-90">Years Experience</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+            <div class="text-2xl md:text-3xl font-bold mb-1">25K+</div>
+            <div class="text-xs md:text-sm opacity-90">Happy Pilgrims</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+            <div class="text-2xl md:text-3xl font-bold mb-1">100%</div>
+            <div class="text-xs md:text-sm opacity-90">Safety Record</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+            <div class="text-2xl md:text-3xl font-bold mb-1">24/7</div>
+            <div class="text-xs md:text-sm opacity-90">Support</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section bg-white">
+    <div class="container-custom text-center">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-800 mb-4 md:mb-6">
+        Ready to Experience Adi Kailash?
+      </h2>
+      <p class="text-base md:text-lg lg:text-xl text-gray-600 mb-6 md:mb-8 max-w-2xl mx-auto">
+        Join thousands of pilgrims who have embarked on this sacred journey with us
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/packages" class="btn-primary text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+          View Tour Packages
+        </a>
+        <a href="/contact" class="btn-outline text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

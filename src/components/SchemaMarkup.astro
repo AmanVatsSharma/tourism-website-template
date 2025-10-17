@@ -1,0 +1,128 @@
+---
+/**
+ * Schema Markup Component
+ * 
+ * Generates JSON-LD structured data for SEO
+ * Types: organization, faq, localbusiness, article
+ */
+
+import { loadJSON } from '../utils/dataLoader';
+
+interface Props {
+  type: 'organization' | 'faq' | 'localbusiness' | 'article';
+  articleData?: {
+    title: string;
+    description: string;
+    image: string;
+    datePublished: string;
+    dateModified: string;
+    author: string;
+  };
+}
+
+const { type, articleData } = Astro.props;
+
+console.log('[SchemaMarkup] Generating schema for type:', type);
+
+let schemaData: any = null;
+
+try {
+  if (type === 'organization' || type === 'localbusiness') {
+    schemaData = await loadJSON('organization_schema.json');
+    console.log('[SchemaMarkup] ✓ Organization schema loaded');
+  } else if (type === 'faq') {
+    schemaData = await loadJSON('faq_schema.json');
+    console.log('[SchemaMarkup] ✓ FAQ schema loaded');
+  }
+} catch (error) {
+  console.error('[SchemaMarkup] ✗ Failed to load schema:', error);
+}
+
+// Generate Article schema if type is 'article' and articleData is provided
+let articleSchema = null;
+if (type === 'article' && articleData) {
+  articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": articleData.title,
+    "description": articleData.description,
+    "image": articleData.image,
+    "datePublished": articleData.datePublished,
+    "dateModified": articleData.dateModified,
+    "author": {
+      "@type": "Organization",
+      "name": articleData.author || "Shiv Yatra Tourism",
+      "url": "https://shivyatratourism.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Shiv Yatra Tourism",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://shivyatratourism.com/images/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": Astro.url.href
+    }
+  };
+  console.log('[SchemaMarkup] ✓ Article schema generated');
+}
+
+// Add LocalBusiness enhancements if type is localbusiness
+if (type === 'localbusiness' && schemaData) {
+  schemaData["@type"] = ["Organization", "LocalBusiness", "TravelAgency"];
+  schemaData["geo"] = {
+    "@type": "GeoCoordinates",
+    "latitude": "29.8469",
+    "longitude": "80.5420"
+  };
+  schemaData["openingHoursSpecification"] = {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "19:00"
+  };
+  console.log('[SchemaMarkup] ✓ LocalBusiness schema enhanced');
+}
+---
+
+{schemaData && (
+  <script type="application/ld+json" set:html={JSON.stringify(schemaData, null, 2)} />
+)}
+
+{articleSchema && (
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema, null, 2)} />
+)}
+
+{!schemaData && !articleSchema && (
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Shiv Yatra Tourism",
+    "url": "https://shivyatratourism.com",
+    "logo": "https://shivyatratourism.com/images/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-7302937532",
+      "contactType": "Customer Service",
+      "areaServed": "IN",
+      "availableLanguage": ["en", "hi"]
+    },
+    "sameAs": [
+      "https://facebook.com/shivyatratourism",
+      "https://instagram.com/shivyatratourism"
+    ]
+  }
+  </script>
+)}
+

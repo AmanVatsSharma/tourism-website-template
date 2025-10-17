@@ -1,0 +1,171 @@
+---
+/**
+ * Gallery Page - Photo Gallery of Adi Kailash Yatra
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadImageManifest } from '../utils/dataLoader';
+
+console.log('[GalleryPage] Loading gallery data...');
+
+let images: any[] = [];
+
+try {
+  images = await loadImageManifest();
+  console.log('[GalleryPage] ✓ Loaded', images.length, 'images');
+} catch (error) {
+  console.error('[GalleryPage] ✗ Error loading images:', error);
+}
+
+const pageTitle = 'Photo Gallery - Adi Kailash Yatra Images';
+const pageDescription = 'Explore breathtaking images from Adi Kailash pilgrimage. View photos of sacred peaks, Om Parvat, Parvati Sarovar, Gunji village, and the spiritual journey.';
+
+// Categories for filtering
+const categories = [
+  { id: 'all', name: 'All Photos', icon: '🖼️' },
+  { id: 'peaks', name: 'Mountains & Peaks', icon: '🏔️' },
+  { id: 'temples', name: 'Temples', icon: '🛕' },
+  { id: 'villages', name: 'Villages', icon: '🏘️' },
+  { id: 'journey', name: 'Journey', icon: '🚗' },
+];
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale="en"
+  pageName="gallery"
+>
+  <section class="bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-16 md:py-20">
+    <div class="container-custom text-center">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        Photo Gallery
+      </h1>
+      <p class="text-base md:text-lg lg:text-xl opacity-90 max-w-3xl mx-auto">
+        Glimpses of the sacred journey to Adi Kailash
+      </p>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="py-8 bg-white sticky top-16 z-30 border-b border-gray-200">
+    <div class="container-custom">
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+        {categories.map((cat) => (
+          <button 
+            class="filter-btn px-4 md:px-6 py-2 md:py-3 rounded-full bg-gray-100 hover:bg-primary-100 hover:text-primary-700 transition-colors font-medium text-sm md:text-base"
+            data-category={cat.id}
+          >
+            <span class="mr-2">{cat.icon}</span>
+            {cat.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="galleryGrid">
+        {images.slice(0, 20).map((img, index) => (
+          <div class="gallery-item group cursor-pointer" data-index={index}>
+            <div class="relative aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-primary-200 to-accent-200 shadow-md hover:shadow-xl transition-all duration-300">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-6 group-hover:scale-105 transition-transform">
+                <div class="text-4xl md:text-5xl mb-3 md:mb-4">
+                  {img.filename.includes('peak') || img.filename.includes('parvat') || img.filename.includes('kailash') ? '🏔️' :
+                   img.filename.includes('temple') || img.filename.includes('dham') ? '🛕' :
+                   img.filename.includes('village') || img.filename.includes('homestay') ? '🏘️' :
+                   img.filename.includes('trek') || img.filename.includes('pilgrim') ? '🚶' :
+                   img.filename.includes('lake') || img.filename.includes('sarovar') ? '💧' :
+                   img.filename.includes('prayer') ? '🙏' :
+                   img.filename.includes('vehicle') || img.filename.includes('road') ? '🚗' : '📸'}
+                </div>
+                <h3 class="text-sm md:text-base font-semibold text-secondary-800 mb-2 line-clamp-2">
+                  {img.caption || img.alt_text || 'Adi Kailash Photo'}
+                </h3>
+                <p class="text-xs md:text-sm text-gray-600 line-clamp-2">
+                  {img.description || ''}
+                </p>
+              </div>
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <div class="bg-white/90 rounded-full p-3 md:p-4">
+                  <svg class="w-5 h-5 md:w-6 md:h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Note about placeholder images -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 md:p-8">
+          <div class="text-4xl md:text-5xl mb-4">📸</div>
+          <h2 class="text-xl md:text-2xl font-bold text-secondary-800 mb-3">
+            Image Placeholders
+          </h2>
+          <p class="text-sm md:text-base text-gray-700 mb-4">
+            These are placeholder representations. Actual photos from Adi Kailash will be added to showcase the stunning beauty of this sacred pilgrimage.
+          </p>
+          <p class="text-xs md:text-sm text-gray-600">
+            <strong>Want to see real photos?</strong> Contact us or visit our office for a complete photo album of previous yatras.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">
+        Ready to Create Your Own Memories?
+      </h2>
+      <p class="text-base md:text-lg opacity-90 mb-6 md:mb-8 max-w-2xl mx-auto">
+        Join us on this sacred journey and capture your own spiritual moments
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/packages" class="btn-secondary text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+          Book Your Yatra
+        </a>
+        <a href="/contact" class="btn-outline border-white text-white hover:bg-white hover:text-primary-600 text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Simple category filter (client-side)
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+        
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('bg-primary-500', 'text-white'));
+        btn.classList.add('bg-primary-500', 'text-white');
+        
+        // Filter items (show all for now - can be enhanced)
+        galleryItems.forEach(item => {
+          item.style.display = 'block';
+        });
+        
+        console.log(`[Gallery] Filtered to category: ${category}`);
+      });
+    });
+    
+    console.log('[Gallery] Initialized with', galleryItems.length, 'images');
+  });
+</script>
+

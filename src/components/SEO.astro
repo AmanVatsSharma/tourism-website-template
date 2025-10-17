@@ -1,0 +1,120 @@
+---
+/**
+ * SEO Component - Dynamic Meta Tags
+ * 
+ * Features:
+ * - Loads meta tags from meta_tags.json
+ * - Open Graph tags for social sharing
+ * - Twitter Card tags
+ * - Canonical URLs
+ * - hreflang for i18n
+ */
+
+import { loadJSON } from '../utils/dataLoader';
+
+interface Props {
+  page: string;
+}
+
+const { page } = Astro.props;
+
+console.log('[SEO] Loading meta tags for page:', page);
+
+let metaTagsData: any = null;
+try {
+  metaTagsData = await loadJSON('meta_tags.json');
+  console.log('[SEO] ✓ Meta tags loaded successfully');
+} catch (error) {
+  console.error('[SEO] ✗ Failed to load meta tags:', error);
+}
+
+// Find meta tags for the current page
+const pageMetaTags = metaTagsData?.pages?.find((p: any) => p.page_name === page);
+const globalSettings = metaTagsData?.global_settings || {};
+
+// Generate canonical URL
+const currentLocale = Astro.currentLocale || 'en';
+const currentPath = Astro.url.pathname;
+const baseUrl = globalSettings.site_url || 'https://shivyatratourism.com';
+const canonicalUrl = `${baseUrl}${currentPath}`;
+
+// Alternate hreflang URLs
+const alternateLangUrl = currentLocale === 'en' 
+  ? `${baseUrl}/hi${currentPath}` 
+  : `${baseUrl}${currentPath.replace('/hi', '')}`;
+
+console.log('[SEO] Canonical URL:', canonicalUrl);
+console.log('[SEO] Alternate lang URL:', alternateLangUrl);
+---
+
+{pageMetaTags && (
+  <>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content={pageMetaTags.title} />
+    <meta name="description" content={pageMetaTags.description} />
+    <meta name="keywords" content={pageMetaTags.keywords} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Alternate Language URLs -->
+    <link rel="alternate" hreflang="en" href={currentLocale === 'en' ? canonicalUrl : alternateLangUrl} />
+    <link rel="alternate" hreflang="hi" href={currentLocale === 'hi' ? canonicalUrl : alternateLangUrl} />
+    <link rel="alternate" hreflang="x-default" href={currentLocale === 'en' ? canonicalUrl : alternateLangUrl} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={pageMetaTags.og_title || pageMetaTags.title} />
+    <meta property="og:description" content={pageMetaTags.og_description || pageMetaTags.description} />
+    <meta property="og:image" content={pageMetaTags.og_image || `${baseUrl}/images/og-default.jpg`} />
+    <meta property="og:locale" content={currentLocale === 'en' ? 'en_US' : 'hi_IN'} />
+    <meta property="og:site_name" content="Shiv Yatra Tourism" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={pageMetaTags.title} />
+    <meta property="twitter:description" content={pageMetaTags.description} />
+    <meta property="twitter:image" content={pageMetaTags.og_image || `${baseUrl}/images/og-default.jpg`} />
+    
+    <!-- Additional SEO Tags -->
+    <meta name="robots" content={pageMetaTags.robots || 'index, follow'} />
+    <meta name="author" content="Shiv Yatra Tourism" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="language" content={currentLocale === 'en' ? 'English' : 'Hindi'} />
+    
+    <!-- Verification Tags (Placeholders) -->
+    <!-- <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" /> -->
+    <!-- <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" /> -->
+  </>
+)}
+
+<!-- Fallback Meta Tags (if page not found in meta_tags.json) -->
+{!pageMetaTags && (
+  <>
+    <meta name="description" content="Adi Kailash Yatra packages by Shiv Yatra Tourism. Sacred Himalayan pilgrimages with complete assistance." />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content="Shiv Yatra Tourism - Adi Kailash Pilgrimage" />
+    <meta property="og:description" content="Your trusted partner for sacred Adi Kailash Yatra. Book your spiritual journey today!" />
+    <meta property="og:url" content={canonicalUrl} />
+  </>
+)}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{pageMetaTags?.title || 'Shiv Yatra Tourism'}",
+  "description": "{pageMetaTags?.description || 'Adi Kailash Yatra packages'}",
+  "url": "{canonicalUrl}",
+  "inLanguage": "{currentLocale}",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Shiv Yatra Tourism",
+    "url": "{baseUrl}"
+  }
+}
+</script>
+

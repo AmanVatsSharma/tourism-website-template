@@ -1,16 +1,271 @@
 ---
+/**
+ * Home Page - Adi Kailash Yatra Tourism Website
+ * 
+ * Main landing page featuring:
+ * - Hero section with stunning mountain imagery
+ * - Why Choose Adi Kailash section
+ * - Tour packages preview
+ * - Statistics and social proof
+ * - Testimonials
+ * - Call-to-action sections
+ */
 
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadContent, loadJSON } from '../utils/dataLoader';
+
+// Console log for debugging
+console.log('[HomePage] Loading home page data...');
+
+// Load page content from data files
+let content: any = {};
+let itinerary: any = null;
+
+try {
+  content = await loadContent();
+  itinerary = await loadJSON('itinerary_5day.json');
+  console.log('[HomePage] ✓ Data loaded successfully');
+} catch (error) {
+  console.error('[HomePage] ✗ Error loading data:', error);
+}
+
+// Extract home page content
+const homeContent = content.home || {};
+const heroContent = homeContent.hero || {};
+const whyChooseContent = homeContent['why-choose'] || {};
+
+// Page metadata - ensure we get string values, not objects
+const pageTitle = typeof heroContent.h1 === 'string' ? heroContent.h1 : 'Adi Kailash Yatra 2025 - Sacred Pilgrimage';
+const pageDescription = typeof heroContent.subtitle === 'string' ? heroContent.subtitle : 'Experience the divine replica of Mount Kailash without crossing borders. Complete packages from ₹15,000.';
+
+// WhatsApp configuration
+const whatsappNumber = '917302937532';
+const whatsappMessage = encodeURIComponent("Hi Shiv Yatra Tourism, I'm interested in Adi Kailash Yatra packages. Please share more details.");
+const whatsappURL = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout 
+  title={pageTitle}
+  description={pageDescription}
+  locale="en"
+  pageName="home"
+>
+  <!-- Hero Section -->
+  <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-secondary-900 via-secondary-800 to-primary-900">
+    <!-- Background Image Overlay -->
+    <div class="absolute inset-0 bg-black/40"></div>
+    
+    <!-- Hero Content -->
+    <div class="relative z-10 container-custom text-center text-white px-4">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
+        {heroContent.h1 || 'Adi Kailash Yatra 2025'}
+      </h1>
+      
+      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90 animate-fade-in-delay">
+        {heroContent.subtitle || 'Sacred Pilgrimage to Lord Shiva\'s Himalayan Abode'}
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
+        <a 
+          href="/packages"
+          class="btn-primary text-lg px-8 py-4"
+        >
+          {heroContent.cta_text || 'Explore Packages'}
+        </a>
+        
+        <a 
+          href={whatsappURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-whatsapp text-lg px-8 py-4"
+        >
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Adi Kailash Section -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <h2 class="section-heading">
+        {whyChooseContent.h2 || 'Why Choose Adi Kailash?'}
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="card text-center">
+          <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800">
+            {whyChooseContent['feature-1-title'] || 'No Visa Required'}
+          </h3>
+          <p class="text-gray-600">
+            {whyChooseContent['feature-1-desc'] || 'Travel within India to this sacred Himalayan peak'}
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="card text-center">
+          <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800">
+            {whyChooseContent['feature-2-title'] || 'Affordable & Shorter'}
+          </h3>
+          <p class="text-gray-600">
+            {whyChooseContent['feature-2-desc'] || '5-14 day packages starting ₹15,000'}
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="card text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800">
+            {whyChooseContent['feature-3-title'] || 'Divine Blessings'}
+          </h3>
+          <p class="text-gray-600">
+            {whyChooseContent['feature-3-desc'] || 'Second of Panch Kailash, equally sacred'}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section bg-gradient-to-br from-primary-50 to-accent-50">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <!-- Stat 1 -->
+        <div class="p-8">
+          <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
+            25,000+
+          </div>
+          <p class="text-gray-700 text-lg font-medium">Happy Pilgrims</p>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="p-8">
+          <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
+            15+
+          </div>
+          <p class="text-gray-700 text-lg font-medium">Years Experience</p>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="p-8">
+          <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
+            100%
+          </div>
+          <p class="text-gray-700 text-lg font-medium">Customer Satisfaction</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Package Preview Section -->
+  {itinerary && (
+    <section class="section bg-white">
+      <div class="container-custom">
+        <h2 class="section-heading">Featured Package</h2>
+        
+        <div class="max-w-4xl mx-auto card">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+            <div>
+              <h3 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-2">
+                {itinerary.package_name}
+              </h3>
+              <div class="flex flex-wrap gap-3 text-sm text-gray-600">
+                <span class="badge badge-primary">
+                  {itinerary.duration.days} Days / {itinerary.duration.nights} Nights
+                </span>
+                <span class="badge badge-secondary">
+                  {itinerary.difficulty}
+                </span>
+              </div>
+            </div>
+            
+            <div class="mt-4 md:mt-0 text-right">
+              <div class="text-3xl font-bold text-primary-600">
+                ₹{itinerary.price_range.min_inr.toLocaleString()}
+              </div>
+              <p class="text-sm text-gray-600">per person onwards</p>
+            </div>
+          </div>
+
+          <p class="text-gray-700 mb-6">
+            Starting from {itinerary.starting_point}, reaching maximum altitude of {itinerary.max_altitude.meters}m 
+            at {itinerary.max_altitude.location}.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/packages" class="btn-primary">
+              View Full Itinerary
+            </a>
+            <a 
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(`I'm interested in ${itinerary.package_name}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-whatsapp"
+            >
+              Book via WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Final CTA Section -->
+  <section class="section bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        Ready to Begin Your Sacred Journey?
+      </h2>
+      <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+        Contact us today to plan your Adi Kailash pilgrimage. Our expert team is ready to assist you.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="btn-secondary text-lg px-8 py-4">
+          Get In Touch
+        </a>
+        <a href={whatsappURL} target="_blank" rel="noopener noreferrer" class="btn-outline border-white text-white hover:bg-white hover:text-primary-600 text-lg px-8 py-4">
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Custom animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-fade-in-delay {
+    opacity: 0;
+    animation: fade-in 1s ease-out 0.3s forwards;
+  }
+</style>

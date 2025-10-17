@@ -1,0 +1,246 @@
+---
+/**
+ * FAQ Page - Frequently Asked Questions about Adi Kailash Yatra
+ * 
+ * Features:
+ * - 20 FAQs from faq_schema.json
+ * - Accordion UI with expand/collapse
+ * - FAQ schema markup for rich snippets
+ * - Search/filter functionality
+ * - Mobile-first responsive design
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadJSON } from '../utils/dataLoader';
+
+console.log('[FAQPage] Loading FAQ data...');
+
+let faqData: any = null;
+
+try {
+  faqData = await loadJSON('faq_schema.json');
+  console.log('[FAQPage] ✓ Loaded', faqData.mainEntity?.length, 'FAQs');
+} catch (error) {
+  console.error('[FAQPage] ✗ Error loading FAQ data:', error);
+}
+
+const pageTitle = 'Frequently Asked Questions';
+const pageDescription = 'Find answers to common questions about Adi Kailash Yatra, permits, best time to visit, packages, and more. Get all the information you need for your pilgrimage.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale="en"
+  pageName="faq"
+>
+  <!-- Schema Markup for FAQ -->
+  {faqData && (
+    <script type="application/ld+json" set:html={JSON.stringify(faqData)} />
+  )}
+
+  <!-- Page Header -->
+  <section class="bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-16 md:py-20">
+    <div class="container-custom text-center">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        Frequently Asked Questions
+      </h1>
+      <p class="text-base md:text-lg lg:text-xl opacity-90 max-w-2xl mx-auto">
+        Everything you need to know about Adi Kailash Yatra
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ Content -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <!-- Search Box -->
+        <div class="mb-8 md:mb-12">
+          <div class="relative">
+            <input
+              type="text"
+              id="faqSearch"
+              placeholder="Search FAQs..."
+              class="w-full px-4 md:px-6 py-3 md:py-4 pl-12 md:pl-14 rounded-xl border-2 border-gray-300 focus:border-primary-500 focus:ring-4 focus:ring-primary-100 transition-all text-sm md:text-base"
+            />
+            <svg class="w-5 h-5 md:w-6 md:h-6 absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- FAQ Items -->
+        {faqData && faqData.mainEntity && (
+          <div class="space-y-3 md:space-y-4" id="faqList">
+            {faqData.mainEntity.map((faq: any, index: number) => (
+              <details 
+                class="faq-item group bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors"
+                data-question={faq.name.toLowerCase()}
+                data-answer={faq.acceptedAnswer.text.toLowerCase()}
+              >
+                <summary class="cursor-pointer p-4 md:p-6 flex items-start gap-3 md:gap-4 list-none">
+                  <div class="w-8 h-8 md:w-10 md:h-10 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0 text-primary-700 font-bold text-sm md:text-base group-open:bg-primary-500 group-open:text-white transition-colors">
+                    {index + 1}
+                  </div>
+                  <div class="flex-grow">
+                    <h3 class="font-semibold text-base md:text-lg text-secondary-800 group-hover:text-primary-600 transition-colors pr-8">
+                      {faq.name}
+                    </h3>
+                  </div>
+                  <svg class="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </summary>
+                
+                <div class="px-4 md:px-6 pb-4 md:pb-6 ml-0 md:ml-14">
+                  <p class="text-sm md:text-base text-gray-700 leading-relaxed">
+                    {faq.acceptedAnswer.text}
+                  </p>
+                </div>
+              </details>
+            ))}
+          </div>
+        )}
+
+        <!-- No Results Message (Hidden by default) -->
+        <div id="noResults" class="hidden text-center py-12">
+          <div class="text-5xl md:text-6xl mb-4">🔍</div>
+          <p class="text-lg md:text-xl text-gray-600 mb-2">No matching FAQs found</p>
+          <p class="text-sm md:text-base text-gray-500">Try different keywords or <a href="/contact" class="text-primary-600 hover:underline">contact us</a> directly</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Still Have Questions Section -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-secondary-800 mb-4">
+          Still Have Questions?
+        </h2>
+        <p class="text-base md:text-lg text-gray-600 mb-6 md:mb-8">
+          Our team is here to help! Get personalized answers to all your queries.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+          <!-- WhatsApp -->
+          <a 
+            href="https://wa.me/917302937532?text=Hi,%20I%20have%20a%20question%20about%20Adi%20Kailash%20Yatra"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card hover:border-[#25D366] border-2 border-transparent transition-all group"
+          >
+            <div class="text-3xl md:text-4xl mb-3">💬</div>
+            <h3 class="font-semibold text-sm md:text-base text-secondary-800 mb-1">WhatsApp</h3>
+            <p class="text-xs md:text-sm text-gray-600">Instant response</p>
+          </a>
+
+          <!-- Call -->
+          <a 
+            href="tel:+917302937532"
+            class="card hover:border-primary-500 border-2 border-transparent transition-all group"
+          >
+            <div class="text-3xl md:text-4xl mb-3">📞</div>
+            <h3 class="font-semibold text-sm md:text-base text-secondary-800 mb-1">Call Us</h3>
+            <p class="text-xs md:text-sm text-gray-600">+91-7302937532</p>
+          </a>
+
+          <!-- Email -->
+          <a 
+            href="/contact"
+            class="card hover:border-accent-500 border-2 border-transparent transition-all group"
+          >
+            <div class="text-3xl md:text-4xl mb-3">✉️</div>
+            <h3 class="font-semibold text-sm md:text-base text-secondary-800 mb-1">Email</h3>
+            <p class="text-xs md:text-sm text-gray-600">Send message</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Topics -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <h2 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-6 md:mb-8 text-center">
+        Popular Topics
+      </h2>
+      
+      <div class="flex flex-wrap justify-center gap-2 md:gap-3">
+        <a href="/permits" class="px-4 py-2 bg-primary-100 text-primary-700 rounded-full hover:bg-primary-200 transition-colors text-sm md:text-base font-medium">
+          Inner Line Permit
+        </a>
+        <a href="/packages" class="px-4 py-2 bg-accent-100 text-accent-700 rounded-full hover:bg-accent-200 transition-colors text-sm md:text-base font-medium">
+          Tour Packages
+        </a>
+        <a href="/how-to-reach" class="px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full hover:bg-secondary-200 transition-colors text-sm md:text-base font-medium">
+          How to Reach
+        </a>
+        <a href="/preparation" class="px-4 py-2 bg-green-100 text-green-700 rounded-full hover:bg-green-200 transition-colors text-sm md:text-base font-medium">
+          Preparation Guide
+        </a>
+        <a href="/accommodation" class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition-colors text-sm md:text-base font-medium">
+          Accommodation
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // FAQ Search Functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('faqSearch') as HTMLInputElement;
+    const faqList = document.getElementById('faqList');
+    const noResults = document.getElementById('noResults');
+    
+    if (searchInput && faqList && noResults) {
+      searchInput.addEventListener('input', (e) => {
+        const searchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
+        const faqItems = faqList.querySelectorAll('.faq-item');
+        
+        let visibleCount = 0;
+        
+        faqItems.forEach((item) => {
+          const question = item.getAttribute('data-question') || '';
+          const answer = item.getAttribute('data-answer') || '';
+          
+          if (searchTerm === '' || question.includes(searchTerm) || answer.includes(searchTerm)) {
+            (item as HTMLElement).style.display = 'block';
+            visibleCount++;
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+        
+        // Show/hide no results message
+        if (visibleCount === 0 && searchTerm !== '') {
+          faqList.style.display = 'none';
+          noResults.style.display = 'block';
+        } else {
+          faqList.style.display = 'block';
+          noResults.style.display = 'none';
+        }
+        
+        console.log(`[FAQ Search] Found ${visibleCount} matching FAQs for "${searchTerm}"`);
+      });
+    }
+    
+    // Log FAQ page view
+    console.log('[FAQPage] Page loaded with', document.querySelectorAll('.faq-item').length, 'FAQs');
+  });
+</script>
+
+<style>
+  /* Remove default details marker */
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  details summary::marker {
+    display: none;
+  }
+</style>
+

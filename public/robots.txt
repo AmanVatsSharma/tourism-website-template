@@ -1,0 +1,60 @@
+# robots.txt for Shiv Yatra Tourism
+# Adi Kailash Pilgrimage Website
+# Last Updated: January 2025
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow admin/internal pages (if any in future)
+# Disallow: /admin/
+# Disallow: /api/
+
+# Allow images and CSS/JS
+Allow: /images/
+Allow: /styles/
+Allow: /scripts/
+
+# Sitemap location
+Sitemap: https://shivyatratourism.com/sitemap.xml
+
+# Crawl-delay (optional - adjust if needed)
+# Crawl-delay: 1
+
+# Specific rules for major search engines
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Googlebot Images
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+
+# Yandex
+User-agent: Yandex
+Allow: /
+
+# Block bad bots (optional)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Allow social media crawlers for rich previews
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# End of robots.txt
+

@@ -1,0 +1,163 @@
+---
+/**
+ * Accommodation Page - Stay Options During Adi Kailash Yatra
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = 'Accommodation Options - Where to Stay During Adi Kailash Yatra';
+const pageDescription = 'Explore accommodation options during your Adi Kailash pilgrimage. Hotels in Dharchula, guesthouses in Gunji, and camps at Jolingkong with complete facility information.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale="en"
+  pageName="accommodation"
+>
+  <section class="bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-16 md:py-20">
+    <div class="container-custom text-center">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        Accommodation Options
+      </h1>
+      <p class="text-base md:text-lg lg:text-xl opacity-90 max-w-3xl mx-auto">
+        Stay options during your sacred journey
+      </p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-5xl mx-auto">
+        <div class="space-y-8 md:space-y-12">
+          <!-- Dharchula -->
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-6 flex items-center gap-3">
+              <span class="text-3xl md:text-4xl">🏨</span>
+              Dharchula (915m)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="card">
+                <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Hotels & Guesthouses</h3>
+                <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                  <li>• Basic to moderate hotels available</li>
+                  <li>• Price range: ₹500-₹2,000 per night</li>
+                  <li>• Attached bathrooms with hot water</li>
+                  <li>• Electricity (may have power cuts)</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Facilities</h3>
+                <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                  <li>✓ Restaurants serving Indian food</li>
+                  <li>✓ Markets for last-minute shopping</li>
+                  <li>✓ Mobile connectivity available</li>
+                  <li>✓ ATMs & medical facilities</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gunji -->
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-6 flex items-center gap-3">
+              <span class="text-3xl md:text-4xl">🏠</span>
+              Gunji Village (3,200m)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="card">
+                <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Homestays & Guesthouses</h3>
+                <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                  <li>• Traditional Shauka tribe homestays</li>
+                  <li>• Price: ₹300-₹800 per night</li>
+                  <li>• Basic rooms with mattresses</li>
+                  <li>• Shared toilet facilities</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Facilities</h3>
+                <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                  <li>✓ Home-cooked vegetarian meals</li>
+                  <li>✓ Limited electricity (solar power)</li>
+                  <li>✓ No mobile connectivity</li>
+                  <li>✓ Experience local culture</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Jolingkong -->
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-6 flex items-center gap-3">
+              <span class="text-3xl md:text-4xl">⛺</span>
+              Jolingkong Base Camp (4,770m)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="card">
+                <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Tented Camps</h3>
+                <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                  <li>• Basic tented accommodation</li>
+                  <li>• Shared tents (4-6 persons)</li>
+                  <li>• Sleeping bags essential</li>
+                  <li>• Very cold at night (-5°C to 5°C)</li>
+                </ul>
+              </div>
+              <div class="card">
+                <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-3">Facilities</h3>
+                <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                  <li>✓ Basic meals provided</li>
+                  <li>✓ Common toilet tents</li>
+                  <li>✓ No electricity</li>
+                  <li>✓ Prayer flags & spiritual ambiance</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-heading">Important Notes</h2>
+        <div class="card bg-yellow-50 border-2 border-yellow-300">
+          <ul class="space-y-3 text-sm md:text-base text-gray-700">
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-600 font-bold">•</span>
+              <span>Accommodation is basic - this is a pilgrimage, not a luxury tour</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-600 font-bold">•</span>
+              <span>Book early during peak season (May-June, September-October)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-600 font-bold">•</span>
+              <span>Carry your own sleeping bag for hygiene at high altitude camps</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-yellow-600 font-bold">•</span>
+              <span>All our packages include accommodation - we handle bookings for you</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">
+        We Handle All Accommodation Bookings
+      </h2>
+      <p class="text-base md:text-lg opacity-90 mb-6 md:mb-8 max-w-2xl mx-auto">
+        When you book with us, we arrange all accommodations throughout your journey
+      </p>
+      <a href="/packages" class="btn-secondary text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+        View Packages
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+

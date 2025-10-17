@@ -1,0 +1,211 @@
+---
+/**
+ * Base Layout Component - NOW WITH BEAUTIFUL SPIRITUAL DESIGN! 🕉️
+ * 
+ * Main layout template used by all pages on the website.
+ * Now includes gorgeous Header, Footer, and WhatsApp button!
+ * 
+ * Props:
+ * - title: Page title
+ * - description: Meta description for SEO
+ * - image: OpenGraph image URL
+ * - locale: Language (en or hi)
+ * - pageName: Page identifier for meta tags
+ * - faqSchema: Include FAQ schema
+ * - organizationSchema: Include organization schema
+ */
+
+import { ViewTransitions } from 'astro:transitions';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import SEO from '../components/SEO.astro';
+import SchemaMarkup from '../components/SchemaMarkup.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  locale?: 'en' | 'hi';
+  pageName?: string;
+  noIndex?: boolean;
+  faqSchema?: boolean;
+  organizationSchema?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = '/images/og-image.jpg',
+  locale = 'en',
+  pageName = 'home',
+  noIndex = false,
+  faqSchema = false,
+  organizationSchema = true,
+} = Astro.props;
+
+// Console log for debugging
+console.log(`[BaseLayout] Rendering page: ${pageName} (${locale})`);
+console.log(`[BaseLayout] Title: ${title}`);
+
+// Construct full page title
+const fullTitle = `${title} | Shiv Yatra Tourism`;
+
+// Get current URL for canonical and og:url
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Determine language attribute
+const htmlLang = locale === 'hi' ? 'hi' : 'en';
+---
+
+<!DOCTYPE html>
+<html lang={htmlLang} class="scroll-smooth">
+<head>
+  <!-- Basic Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  
+  <!-- SEO Meta Tags -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  {noIndex && <meta name="robots" content="noindex, nofollow" />}
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href={canonicalURL} />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(image, Astro.site)} />
+  <meta property="og:site_name" content="Shiv Yatra Tourism" />
+  <meta property="og:locale" content={locale === 'hi' ? 'hi_IN' : 'en_IN'} />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonicalURL} />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(image, Astro.site)} />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Alternate Language Links -->
+  {locale === 'en' && (
+    <link rel="alternate" hreflang="hi" href={new URL(`/hi${Astro.url.pathname}`, Astro.site)} />
+  )}
+  {locale === 'hi' && (
+    <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace('/hi', ''), Astro.site)} />
+  )}
+  <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace('/hi', ''), Astro.site)} />
+  
+  <!-- Preconnect to External Domains for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  
+  <!-- SEO Component - Dynamic Meta Tags -->
+  <SEO page={pageName} />
+  
+  <!-- Schema Markup -->
+  {organizationSchema && <SchemaMarkup type="organization" />}
+  {faqSchema && <SchemaMarkup type="faq" />}
+  
+  <!-- View Transitions for Smooth Page Navigation -->
+  <ViewTransitions />
+  
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#FF9B35" />
+  
+  <!-- Apple Touch Icon -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  
+  <!-- Alpine.js for Interactive Components -->
+  <script>
+    import Alpine from 'alpinejs';
+    import intersect from '@alpinejs/intersect';
+    Alpine.plugin(intersect);
+    window.Alpine = Alpine;
+    Alpine.start();
+  </script>
+</head>
+
+<body class="font-sans antialiased min-h-screen flex flex-col bg-gray-50">
+  <!-- Skip to Main Content Link for Accessibility -->
+  <a href="#main-content" class="skip-to-main sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-white px-4 py-2 rounded shadow">
+    Skip to main content
+  </a>
+
+  <!-- 🎨 BEAUTIFUL HEADER WITH SPIRITUAL DESIGN! -->
+  <Header currentLocale={locale} />
+
+  <!-- Main Content -->
+  <main id="main-content" class="flex-grow" transition:animate="fade">
+    <slot />
+  </main>
+
+  <!-- 🌸 BEAUTIFUL FOOTER WITH SPIRITUAL DESIGN! -->
+  <Footer currentLocale={locale} />
+  
+  <!-- 💬 FLOATING WHATSAPP BUTTON WITH ANIMATIONS! -->
+  <WhatsAppButton currentLocale={locale} />
+
+  <!-- Back to Top Button (Hidden by default, shown via JS) -->
+  <button 
+    id="back-to-top"
+    class="fixed bottom-28 right-6 z-40 bg-secondary-700 hover:bg-secondary-800 text-white rounded-full p-3 shadow-lg transition-all duration-300 opacity-0 pointer-events-none no-print"
+    aria-label="Back to top"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+    </svg>
+  </button>
+
+  <!-- Global Scripts -->
+  <script>
+    // Back to Top Button Functionality
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    if (backToTopButton) {
+      // Show/hide button based on scroll position
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+          backToTopButton.classList.add('opacity-0', 'pointer-events-none');
+        }
+      });
+      
+      // Scroll to top on click
+      backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+
+    // Log page view for debugging
+    console.log('[BaseLayout] ✓ Page loaded:', document.title);
+    console.log('[BaseLayout] Current URL:', window.location.href);
+    console.log('[BaseLayout] Language:', document.documentElement.lang);
+    
+    // Astro page load events
+    document.addEventListener('astro:page-load', () => {
+      console.log('[BaseLayout] ✓ Astro page load event');
+    });
+    
+    document.addEventListener('astro:after-swap', () => {
+      console.log('[BaseLayout] ✓ Astro after-swap event');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+  
+  <!-- Animation System (Scroll Reveals, Parallax, Counters) -->
+  <script src="../scripts/animations.ts"></script>
+</body>
+</html>

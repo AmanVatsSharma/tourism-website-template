@@ -1,0 +1,343 @@
+---
+/**
+ * Packages Page - Tour Packages for Adi Kailash Yatra
+ * 
+ * Displays all available tour packages with:
+ * - Detailed itineraries
+ * - Pricing information
+ * - Inclusions and exclusions
+ * - Booking options via WhatsApp
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadContent, loadJSON } from '../utils/dataLoader';
+import { getPackageInquiryURL } from '../utils/whatsapp';
+
+console.log('[PackagesPage] Loading packages page data...');
+
+// Load data
+let content: any = {};
+let itinerary: any = null;
+
+try {
+  content = await loadContent();
+  itinerary = await loadJSON('itinerary_5day.json');
+  console.log('[PackagesPage] ✓ Data loaded successfully');
+} catch (error) {
+  console.error('[PackagesPage] ✗ Error loading data:', error);
+}
+
+const packagesContent = content.packages || {};
+const pageTitle = packagesContent.header?.h1 || 'Adi Kailash Tour Packages 2025';
+const pageDescription = 'Choose from our carefully crafted Adi Kailash tour packages. 5-day, 9-day, and 14-day options available with complete Inner Line Permit assistance.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale="en"
+  pageName="packages"
+>
+  <!-- Page Header -->
+  <section class="bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-20">
+    <div class="container-custom text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        {pageTitle}
+      </h1>
+      <p class="text-xl opacity-90 max-w-3xl mx-auto">
+        Customized & Group Yatra Options for Every Pilgrim
+      </p>
+    </div>
+  </section>
+
+  <!-- 5-Day Package (Detailed) -->
+  {itinerary && (
+    <section class="section bg-white">
+      <div class="container-custom">
+        <div class="max-w-5xl mx-auto">
+          <!-- Package Header -->
+          <div class="card mb-8">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6">
+              <div>
+                <h2 class="text-3xl font-bold text-secondary-800 mb-2">
+                  {itinerary.package_name}
+                </h2>
+                <div class="flex flex-wrap gap-2 mt-3">
+                  <span class="badge badge-primary">
+                    {itinerary.duration.days} Days / {itinerary.duration.nights} Nights
+                  </span>
+                  <span class="badge badge-secondary">
+                    Difficulty: {itinerary.difficulty}
+                  </span>
+                  <span class="badge badge-success">
+                    Max Altitude: {itinerary.max_altitude.meters}m
+                  </span>
+                </div>
+              </div>
+              
+              <div class="mt-6 lg:mt-0 text-center lg:text-right">
+                <div class="text-4xl font-bold gradient-text mb-2">
+                  ₹{itinerary.price_range.min_inr.toLocaleString()}
+                </div>
+                <p class="text-gray-600 mb-4">per person (group of {itinerary.price_range.group_size})</p>
+                <a 
+                  href={getPackageInquiryURL(
+                    itinerary.package_name,
+                    `₹${itinerary.price_range.min_inr.toLocaleString()}-₹${itinerary.price_range.max_inr.toLocaleString()}`,
+                    `${itinerary.duration.days} Days / ${itinerary.duration.nights} Nights`
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-whatsapp w-full lg:w-auto"
+                >
+                  Book via WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <!-- Package Overview -->
+            <div class="border-t border-gray-200 pt-6">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div class="text-sm text-gray-600 mb-1">Starting Point</div>
+                  <div class="font-semibold text-lg text-secondary-800">{itinerary.starting_point}</div>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-600 mb-1">Ending Point</div>
+                  <div class="font-semibold text-lg text-secondary-800">{itinerary.ending_point}</div>
+                </div>
+                <div>
+                  <div class="text-sm text-gray-600 mb-1">Best Time</div>
+                  <div class="font-semibold text-lg text-secondary-800">
+                    {itinerary.best_time ? itinerary.best_time.join(', ') : 'May-June, Sept-Oct'}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day-by-Day Itinerary -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-bold text-secondary-800 mb-6">Detailed Itinerary</h3>
+            <div class="space-y-4">
+              {itinerary.itinerary.map((day: any) => (
+                <details class="card group" open={day.day === 1}>
+                  <summary class="cursor-pointer flex items-start gap-4 hover:text-primary-600 transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0 font-bold text-primary-700">
+                      {day.day}
+                    </div>
+                    <div class="flex-grow">
+                      <h4 class="text-lg font-semibold mb-1">Day {day.day}: {day.title}</h4>
+                      <p class="text-sm text-gray-600">
+                        {day.distance_km && `${day.distance_km} km`}
+                        {day.drive_time_hours && ` • ${day.drive_time_hours} hours drive`}
+                        {day.trek_distance_km && ` • ${day.trek_distance_km} km trek`}
+                      </p>
+                    </div>
+                    <svg class="w-6 h-6 text-gray-400 group-open:rotate-180 transition-transform flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </summary>
+                  
+                  <div class="mt-4 ml-16 space-y-4">
+                    {/* Altitude Info */}
+                    {(day.start_altitude_m || day.end_altitude_m) && (
+                      <div class="flex items-center gap-2 text-sm">
+                        <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                        </svg>
+                        <span>
+                          Altitude: {day.start_altitude_m}m → {day.end_altitude_m || day.max_altitude_m}m
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Activities */}
+                    {day.activities && day.activities.length > 0 && (
+                      <div>
+                        <h5 class="font-semibold text-secondary-800 mb-2">Activities:</h5>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700">
+                          {day.activities.map((activity: string) => (
+                            <li>{activity}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Meals */}
+                    {day.meals && day.meals.length > 0 && (
+                      <div class="flex items-center gap-2 text-sm text-gray-600">
+                        <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        <span>Meals: {day.meals.join(', ')}</span>
+                      </div>
+                    )}
+
+                    {/* Accommodation */}
+                    {day.accommodation && (
+                      <div class="flex items-center gap-2 text-sm text-gray-600">
+                        <svg class="w-5 h-5 text-secondary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                        <span>{day.accommodation}</span>
+                      </div>
+                    )}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+
+          <!-- Inclusions & Exclusions -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            {/* Inclusions */}
+            <div class="card bg-green-50 border-2 border-green-200">
+              <h3 class="text-xl font-bold text-green-800 mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+                </svg>
+                Inclusions
+              </h3>
+              <ul class="space-y-2 text-gray-700">
+                {itinerary.inclusions.map((item: string) => (
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Exclusions */}
+            <div class="card bg-red-50 border-2 border-red-200">
+              <h3 class="text-xl font-bold text-red-800 mb-4 flex items-center gap-2">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/>
+                </svg>
+                Exclusions
+              </h3>
+              <ul class="space-y-2 text-gray-700">
+                {itinerary.exclusions.map((item: string) => (
+                  <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"/>
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Final CTA */}
+          <div class="text-center">
+            <a 
+              href={getPackageInquiryURL(itinerary.package_name)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-whatsapp text-lg px-8 py-4"
+            >
+              Book This Package via WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Other Packages Overview -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <h2 class="section-heading">Other Tour Options</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* 9-Day Package */}
+        <div class="card">
+          <h3 class="text-2xl font-bold text-secondary-800 mb-3">
+            {packagesContent['9-day']?.h2 || '9-Day Complete Yatra from Kathgodam'}
+          </h3>
+          <div class="text-3xl font-bold gradient-text mb-4">
+            {packagesContent['9-day']?.price || '₹25,000-₹35,000'}
+          </div>
+          <p class="text-gray-600 mb-4">
+            Comprehensive pilgrimage starting from Kathgodam railway station with additional sightseeing and acclimatization time.
+          </p>
+          <a href="/contact" class="btn-primary">
+            Get Quote
+          </a>
+        </div>
+
+        {/* 14-Day Package */}
+        <div class="card">
+          <h3 class="text-2xl font-bold text-secondary-800 mb-3">
+            {packagesContent['14-day']?.h2 || '14-Day Grand Kumaon Circuit from Delhi'}
+          </h3>
+          <div class="text-3xl font-bold gradient-text mb-4">
+            {packagesContent['14-day']?.price || '₹45,000-₹65,000'}
+          </div>
+          <p class="text-gray-600 mb-4">
+            Extended tour covering multiple sacred sites including Jageshwar, Patal Bhuvaneshwar, and complete Kumaon region exploration.
+          </p>
+          <a href="/contact" class="btn-primary">
+            Get Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Book With Us -->
+  <section class="section bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-8">
+        Why Book Adi Kailash Yatra With Us?
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="p-6">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h4 class="text-lg font-semibold mb-2">Permit Assistance</h4>
+          <p class="text-sm opacity-90">Complete ILP application support</p>
+        </div>
+
+        <div class="p-6">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </div>
+          <h4 class="text-lg font-semibold mb-2">Expert Guides</h4>
+          <p class="text-sm opacity-90">Experienced local team</p>
+        </div>
+
+        <div class="p-6">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+          </div>
+          <h4 class="text-lg font-semibold mb-2">Comfortable Stay</h4>
+          <p class="text-sm opacity-90">Clean accommodations</p>
+        </div>
+
+        <div class="p-6">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h4 class="text-lg font-semibold mb-2">Flexible Timing</h4>
+          <p class="text-sm opacity-90">Multiple departure dates</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

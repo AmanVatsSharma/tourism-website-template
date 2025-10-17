@@ -1,0 +1,58 @@
+
+import csv
+import json
+
+# Create actual downloadable files
+
+# 1. CONTENT.CSV - Website copy
+content_data = [
+    ["page", "section", "key", "copy", "cta_text", "cta_link"],
+    ["home", "hero", "h1", "Adi Kailash Yatra 2025 - Sacred Pilgrimage to Lord Shiva's Himalayan Abode", "Plan Your Journey", "/packages"],
+    ["home", "hero", "subtitle", "Experience the divine replica of Mount Kailash without crossing borders. Complete packages from ₹15,000 with Inner Line Permit assistance.", "", ""],
+    ["home", "why-choose", "h2", "Why Choose Adi Kailash Over Mount Kailash?", "", ""],
+    ["home", "why-choose", "feature-1-title", "No Visa Required", "", ""],
+    ["home", "why-choose", "feature-1-desc", "Travel within India to this sacred Himalayan peak in Uttarakhand", "", ""],
+    ["home", "why-choose", "feature-2-title", "Shorter & More Affordable", "", ""],
+    ["home", "why-choose", "feature-2-desc", "5-14 day packages starting ₹15,000 vs ₹2-4 lakhs for Tibet Kailash", "", ""],
+    ["home", "why-choose", "feature-3-title", "Same Divine Blessings", "", ""],
+    ["home", "why-choose", "feature-3-desc", "Second of Panch Kailash, equally revered by devotees and pilgrims", "", ""],
+    ["home", "sacred-sites", "h2", "Sacred Sites Await", "", ""],
+    ["home", "sacred-sites", "description", "Om Parvat, Parvati Sarovar, and ancient temples in the Trans-Himalaya", "Explore Destinations", "/about"],
+    ["home", "testimonials", "h2", "What Our 25,000+ Pilgrims Say", "Read Reviews", "/testimonials"],
+    ["packages", "header", "h1", "Adi Kailash Tour Packages 2025 - Customized & Group Yatra Options", "", ""],
+    ["packages", "5-day", "h2", "5-Day Express Package from Dharchula", "", ""],
+    ["packages", "5-day", "price", "₹15,000-₹20,000 per person", "Book Now", "/contact"],
+    ["packages", "5-day", "duration", "5 Days / 4 Nights", "", ""],
+    ["packages", "5-day", "difficulty", "Moderate", "", ""],
+    ["packages", "9-day", "h2", "9-Day Complete Yatra from Kathgodam", "", ""],
+    ["packages", "9-day", "price", "₹25,000-₹35,000 per person (group)", "Book Now", "/contact"],
+    ["packages", "14-day", "h2", "14-Day Grand Kumaon Circuit from Delhi", "", ""],
+    ["packages", "14-day", "price", "₹45,000-₹65,000 per person", "Book Now", "/contact"],
+    ["about", "intro", "h1", "Adi Kailash - The Second Panch Kailash", "", ""],
+    ["about", "intro", "body", "Adi Kailash, standing at 5,945 meters in Pithoragarh district, is the sacred mountain believed to be Lord Shiva's second home after Mount Kailash in Tibet.", "", ""],
+    ["about", "mythology", "h2", "Mythology & History", "", ""],
+    ["about", "mythology", "body", "Where Ravana meditated and Pandavas found refuge during exile", "", ""],
+    ["permits", "intro", "h1", "Adi Kailash Inner Line Permit Guide - How to Get ILP in 2025", "", ""],
+    ["permits", "what-is", "h2", "What is Inner Line Permit (ILP)?", "", ""],
+    ["permits", "what-is", "body", "ILP is mandatory for all visitors as Adi Kailash is located near the Indo-Tibet border in a restricted area.", "", ""],
+    ["permits", "documents", "h2", "Required Documents for ILP Application", "", ""],
+    ["permits", "documents", "item-1", "Valid Government ID (Aadhaar/Passport/Voter ID)", "", ""],
+    ["permits", "documents", "item-2", "2-3 Passport size photos (recent colored)", "", ""],
+    ["permits", "documents", "item-3", "Medical Fitness Certificate from MBBS doctor", "", ""],
+    ["permits", "documents", "item-4", "Police Verification Certificate (not older than 15 days)", "", ""],
+    ["permits", "eligibility", "h2", "Eligibility Criteria & Restrictions", "", ""],
+    ["permits", "eligibility", "item-1", "Indian citizens aged 7-70 years eligible", "", ""],
+    ["permits", "eligibility", "item-2", "Foreign nationals NOT allowed", "", ""],
+    ["how-to-reach", "intro", "h1", "How to Reach Adi Kailash - Complete Travel Guide", "", ""],
+    ["how-to-reach", "air", "h2", "By Air to Pantnagar Airport", "", ""],
+    ["how-to-reach", "air", "body", "Pantnagar Airport (PGH) is 301 km from Dharchula. 2h 15m flight from Delhi, then 8-9 hour drive.", "", ""],
+    ["how-to-reach", "rail", "h2", "By Train to Kathgodam/Tanakpur", "", ""],
+    ["how-to-reach", "rail", "body", "Kathgodam: 270 km from Dharchula, 10-12 hour drive. Tanakpur: 237 km, 7-8 hour drive.", "", ""],
+    ["faq", "intro", "h1", "Adi Kailash Yatra FAQs 2025 - Common Questions Answered", "", ""],
+]
+
+with open('content.csv', 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerows(content_data)
+
+print("✅ Created: content.csv")

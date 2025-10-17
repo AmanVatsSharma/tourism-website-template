@@ -1,0 +1,134 @@
+
+# 8. META_TAGS.JSON
+meta_tags = {
+    "pages": [
+        {
+            "page_name": "Home",
+            "url": "/",
+            "title": "Adi Kailash Yatra 2025 | Sacred Pilgrimage to Lord Shiva's Abode",
+            "title_length": 64,
+            "description": "Plan your Adi Kailash & Om Parvat Yatra with expert guides. Complete packages from ₹15,000. Inner Line Permit assistance, safe transport, 25,000+ happy pilgrims. Book now!",
+            "description_length": 171,
+            "keywords": "Adi Kailash yatra, Adi Kailash tour package, Om Parvat darshan, Chhota Kailash pilgrimage",
+            "og_title": "Adi Kailash Yatra 2025 - Sacred Himalayan Pilgrimage",
+            "og_description": "Experience Lord Shiva's divine abode at Adi Kailash. Complete tour packages with permits, safe transport & expert guides.",
+            "canonical_url": "https://[DOMAIN].com/"
+        },
+        {
+            "page_name": "Tour Packages",
+            "url": "/packages",
+            "title": "Adi Kailash Tour Packages 2025 | 5, 9 & 14 Day Itineraries",
+            "title_length": 58,
+            "description": "Choose from flexible Adi Kailash packages starting from ₹15,000. Group tours, customized itineraries, all-inclusive services. Departures from Delhi, Kathgodam & Dharchula.",
+            "description_length": 171,
+            "keywords": "Adi Kailash packages, tour cost, group yatra, private tour",
+            "canonical_url": "https://[DOMAIN].com/packages"
+        },
+        {
+            "page_name": "How to Reach",
+            "url": "/how-to-reach",
+            "title": "How to Reach Adi Kailash | Complete Travel Guide by Air, Rail & Road",
+            "title_length": 68,
+            "description": "Detailed guide to reach Adi Kailash from Delhi, Dehradun & major cities. Distance, transport options, travel time & route maps. Pantnagar Airport 301 km | Kathgodam Rail 270 km.",
+            "description_length": 177,
+            "keywords": "how to reach Adi Kailash, Dharchula route, nearest airport railway",
+            "canonical_url": "https://[DOMAIN].com/how-to-reach"
+        },
+        {
+            "page_name": "Permits & Documentation",
+            "url": "/permits",
+            "title": "Adi Kailash Inner Line Permit 2025 | ILP Process, Documents & Fees",
+            "title_length": 66,
+            "description": "Complete guide to obtain ILP for Adi Kailash Yatra. Required documents: Aadhaar, medical certificate, photos. Apply at SDM Dharchula. Step-by-step process explained.",
+            "description_length": 165,
+            "keywords": "Adi Kailash permit, Inner Line Permit, ILP Dharchula, documents required",
+            "canonical_url": "https://[DOMAIN].com/permits"
+        },
+        {
+            "page_name": "Best Time to Visit",
+            "url": "/best-time",
+            "title": "Best Time to Visit Adi Kailash | Weather, Season & Ideal Months",
+            "title_length": 63,
+            "description": "May-June & Sep-Oct are ideal for Adi Kailash Yatra. Clear skies, 5-20°C temperature, stable weather. Avoid monsoon (Jul-Aug) & winter (Nov-Apr). Plan your trip now!",
+            "description_length": 164,
+            "keywords": "best time Adi Kailash, weather, season, ideal months",
+            "canonical_url": "https://[DOMAIN].com/best-time"
+        },
+        {
+            "page_name": "Itinerary",
+            "url": "/itinerary",
+            "title": "Adi Kailash Yatra Itinerary | Day-by-Day Schedule, Altitude & Attractions",
+            "title_length": 73,
+            "description": "Detailed day-wise itinerary for Adi Kailash & Om Parvat Yatra. Altitude profiles, acclimatization stops, sightseeing highlights. Jolingkong Base Camp at 4,770m. View full schedule.",
+            "description_length": 180,
+            "keywords": "Adi Kailash itinerary, day by day schedule, route map, altitude profile",
+            "canonical_url": "https://[DOMAIN].com/itinerary"
+        },
+        {
+            "page_name": "About Adi Kailash",
+            "url": "/about",
+            "title": "Adi Kailash - The Second Panch Kailash | Mythology, History & Geography",
+            "title_length": 71,
+            "description": "Adi Kailash (5,945m) is Lord Shiva's sacred mountain in Pithoragarh, Uttarakhand. Known as Chhota Kailash. Learn about Panch Kailash significance, mythology & Ravana's meditation site.",
+            "description_length": 184,
+            "keywords": "Adi Kailash about, Chhota Kailash, Panch Kailash, mythology, history",
+            "canonical_url": "https://[DOMAIN].com/about"
+        },
+        {
+            "page_name": "Cost & Pricing",
+            "url": "/cost",
+            "title": "Adi Kailash Yatra Cost 2025 | Package Price, Inclusions & Budget Guide",
+            "title_length": 70,
+            "description": "Adi Kailash packages from ₹15,000-₹65,000 per person. Compare group vs private tours, inclusions, exclusions. Budget breakdown for 5, 9 & 14 day itineraries. Get best deals!",
+            "description_length": 173,
+            "keywords": "Adi Kailash cost, yatra price, package rates, budget",
+            "canonical_url": "https://[DOMAIN].com/cost"
+        },
+        {
+            "page_name": "Preparation Guide",
+            "url": "/preparation",
+            "title": "Adi Kailash Trek Preparation | Fitness, Packing List & Medical Tips",
+            "title_length": 67,
+            "description": "Complete preparation guide for Adi Kailash Yatra. Physical fitness requirements, 2-3 months training, packing essentials, altitude sickness prevention. Medical certificate mandatory.",
+            "description_length": 182,
+            "keywords": "Adi Kailash preparation, packing list, fitness, training, medical",
+            "canonical_url": "https://[DOMAIN].com/preparation"
+        },
+        {
+            "page_name": "FAQ",
+            "url": "/faq",
+            "title": "Adi Kailash Yatra FAQs 2025 | Common Questions Answered",
+            "title_length": 55,
+            "description": "All your questions answered: permits, costs, difficulty, best time, age limit, safety. Plan your Adi Kailash pilgrimage with confidence. Expert advice for first-time pilgrims.",
+            "description_length": 175,
+            "keywords": "Adi Kailash FAQ, questions, answers, pilgrimage guide",
+            "canonical_url": "https://[DOMAIN].com/faq"
+        }
+    ],
+    "global_settings": {
+        "site_name": "[COMPANY NAME - Replace]",
+        "og_type": "website",
+        "og_locale": "en_US",
+        "twitter_card": "summary_large_image",
+        "twitter_site": "@[TWITTER_HANDLE]",
+        "robots": "index, follow",
+        "language": "en",
+        "author": "[COMPANY NAME]",
+        "theme_color": "#FF6B35",
+        "favicon_path": "/favicon.ico"
+    },
+    "implementation_notes": [
+        "Replace [DOMAIN] with actual domain name",
+        "Add structured data (JSON-LD) for each page type",
+        "Implement Open Graph images (1200x630px) for social sharing",
+        "Use canonical URLs to prevent duplicate content",
+        "Keep titles under 60 characters, descriptions under 160",
+        "Include primary keyword naturally in title and description",
+        "Test meta tags using Facebook Debugger and Twitter Card Validator"
+    ]
+}
+
+with open('meta_tags.json', 'w', encoding='utf-8') as f:
+    json.dump(meta_tags, f, indent=2, ensure_ascii=False)
+
+print("✅ Created: meta_tags.json")

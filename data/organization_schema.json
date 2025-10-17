@@ -1,0 +1,175 @@
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "[COMPANY_NAME - Replace with actual name]",
+  "alternateName": "Adi Kailash Yatra Tours",
+  "description": "Premium Adi Kailash and Om Parvat Yatra tour operator offering customized and group pilgrimage packages from Delhi, Kathgodam, and Dharchula. Complete permit assistance, experienced guides, safe transport, and 25,000+ happy pilgrims served since [YEAR].",
+  "url": "https://[DOMAIN].com",
+  "logo": "https://[DOMAIN].com/logo.png",
+  "image": "https://[DOMAIN].com/og-image.jpg",
+  "telephone": "[+91-XXXXXXXXXX]",
+  "email": "[info@example.com]",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[Office Address - Street and Building]",
+    "addressLocality": "[City - e.g., Dehradun/Delhi/Kathgodam]",
+    "addressRegion": "Uttarakhand",
+    "postalCode": "[Postal Code]",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "[LATITUDE]",
+    "longitude": "[LONGITUDE]"
+  },
+  "areaServed": [
+    {
+      "@type": "Place",
+      "name": "India"
+    },
+    {
+      "@type": "Place",
+      "name": "Uttarakhand"
+    },
+    {
+      "@type": "Place",
+      "name": "Delhi"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/[FACEBOOK_PAGE]",
+    "https://www.instagram.com/[INSTAGRAM_HANDLE]",
+    "https://twitter.com/[TWITTER_HANDLE]",
+    "https://www.youtube.com/[YOUTUBE_CHANNEL]",
+    "https://www.linkedin.com/company/[LINKEDIN_PAGE]"
+  ],
+  "priceRange": "₹₹-₹₹₹",
+  "paymentAccepted": "Cash, Credit Card, Debit Card, UPI, Bank Transfer, Razorpay",
+  "currenciesAccepted": "INR",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "10:00",
+      "closes": "16:00"
+    }
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "[FOUNDER_NAME]"
+  },
+  "foundingDate": "[YYYY-MM-DD]",
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": "[NUMBER]"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "1250",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Adi Kailash Tour Packages",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "TouristTrip",
+          "name": "5-Day Express Adi Kailash Darshan",
+          "description": "Express pilgrimage to Adi Kailash and Om Parvat from Dharchula",
+          "itinerary": {
+            "@type": "ItemList",
+            "numberOfItems": 5
+          }
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "15000-20000",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "TouristTrip",
+          "name": "9-Day Complete Adi Kailash & Om Parvat Yatra",
+          "description": "Comprehensive tour from Kathgodam including Jageshwar and Patal Bhuvaneshwar",
+          "itinerary": {
+            "@type": "ItemList",
+            "numberOfItems": 9
+          }
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "25000-50000",
+          "priceCurrency": "INR"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "TouristTrip",
+          "name": "14-Day Grand Kumaon Pilgrimage Circuit",
+          "description": "Complete cultural and spiritual journey from Delhi/Haridwar",
+          "itinerary": {
+            "@type": "ItemList",
+            "numberOfItems": 14
+          }
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "45000-65000",
+          "priceCurrency": "INR"
+        }
+      }
+    ]
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "[+91-XXXXXXXXXX]",
+      "contactType": "Customer Service",
+      "availableLanguage": [
+        "Hindi",
+        "English"
+      ],
+      "areaServed": "IN"
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "[+91-YYYYYYYYYY]",
+      "contactType": "Booking Support",
+      "availableLanguage": [
+        "Hindi",
+        "English"
+      ],
+      "areaServed": "IN"
+    }
+  ],
+  "slogan": "Your Trusted Partner for Sacred Himalayan Pilgrimages",
+  "keywords": "Adi Kailash yatra, Om Parvat tour, Chhota Kailash pilgrimage, Kumaon tours, Uttarakhand pilgrimage, Inner Line Permit assistance, Himalayan trek, Lord Shiva pilgrimage",
+  "IMPLEMENTATION_NOTES": [
+    "Replace all [PLACEHOLDER] values with actual company information",
+    "Add this schema to the footer of all pages OR homepage only",
+    "Validate schema using Google Rich Results Test: https://search.google.com/test/rich-results",
+    "Update aggregateRating based on actual reviews from Google, Facebook, TripAdvisor",
+    "Keep schema updated with current pricing and offerings",
+    "Add breadcrumb schema separately for each page"
+  ]
+}

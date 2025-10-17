@@ -1,0 +1,400 @@
+---
+/**
+ * How to Reach Page - Complete Travel Guide to Adi Kailash
+ * 
+ * Features:
+ * - Travel options by Air, Rail, and Road
+ * - Distance tables and journey times
+ * - Route maps and directions
+ * - Transport recommendations
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadContent } from '../utils/dataLoader';
+
+console.log('[HowToReachPage] Loading page data...');
+
+let content: any = {};
+
+try {
+  content = await loadContent();
+  console.log('[HowToReachPage] ✓ Data loaded successfully');
+} catch (error) {
+  console.error('[HowToReachPage] ✗ Error loading data:', error);
+}
+
+const reachContent = content['how-to-reach'] || {};
+
+const pageTitle = 'How to Reach Adi Kailash - Complete Travel Guide 2025';
+const pageDescription = 'Comprehensive guide on how to reach Adi Kailash from Delhi, Dehradun, and major cities. Travel options by air, rail, and road with distances, times, and routes.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale="en"
+  pageName="how-to-reach"
+>
+  <!-- Hero -->
+  <section class="bg-gradient-to-br from-secondary-900 to-primary-900 text-white py-16 md:py-20">
+    <div class="container-custom text-center">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+        How to Reach Adi Kailash
+      </h1>
+      <p class="text-base md:text-lg lg:text-xl opacity-90 max-w-3xl mx-auto">
+        Your comprehensive guide to reaching the gateway of this sacred pilgrimage
+      </p>
+    </div>
+  </section>
+
+  <!-- Quick Overview -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-5xl mx-auto">
+        <div class="bg-primary-50 border-2 border-primary-200 rounded-2xl p-6 md:p-8 mb-8 md:mb-12">
+          <h2 class="text-2xl md:text-3xl font-bold text-primary-800 mb-4">
+            Journey Overview
+          </h2>
+          <p class="text-sm md:text-base text-gray-700 leading-relaxed mb-4">
+            The gateway to Adi Kailash is <strong>Dharchula</strong>, a small town in Pithoragarh district of Uttarakhand. From Dharchula, you'll proceed to restricted areas with your Inner Line Permit. Here's how to reach Dharchula from major cities:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+            <div class="bg-white p-4 rounded-xl text-center">
+              <div class="text-3xl md:text-4xl mb-2">✈️</div>
+              <div class="font-semibold text-secondary-800">Nearest Airport</div>
+              <div class="text-sm text-gray-600">Pantnagar (301 km)</div>
+            </div>
+            <div class="bg-white p-4 rounded-xl text-center">
+              <div class="text-3xl md:text-4xl mb-2">🚂</div>
+              <div class="font-semibold text-secondary-800">Nearest Railway</div>
+              <div class="text-sm text-gray-600">Kathgodam (270 km)</div>
+            </div>
+            <div class="bg-white p-4 rounded-xl text-center">
+              <div class="text-3xl md:text-4xl mb-2">🚗</div>
+              <div class="font-semibold text-secondary-800">From Delhi</div>
+              <div class="text-sm text-gray-600">560 km (14-16 hrs)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- By Air -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-4 mb-6 md:mb-8">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-100 rounded-full flex items-center justify-center">
+            <span class="text-2xl md:text-3xl">✈️</span>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-secondary-800">By Air</h2>
+            <p class="text-sm md:text-base text-gray-600">Fastest way to reach the region</p>
+          </div>
+        </div>
+
+        <div class="card mb-6">
+          <h3 class="text-xl md:text-2xl font-bold text-secondary-800 mb-4">
+            Pantnagar Airport (PGH)
+          </h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h4 class="font-semibold text-secondary-800 mb-2">Distance & Time</h4>
+              <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                <li class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/>
+                  </svg>
+                  <span><strong>301 km</strong> from Dharchula</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                  </svg>
+                  <span><strong>8-9 hours</strong> drive to Dharchula</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"/>
+                  </svg>
+                  <span>Best option for time-constrained travelers</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-secondary-800 mb-2">Flight Connections</h4>
+              <ul class="space-y-2 text-sm md:text-base text-gray-700">
+                <li class="flex items-start gap-2">
+                  <span class="text-primary-600 font-bold">•</span>
+                  <span><strong>From Delhi:</strong> 2 hours 15 minutes (direct flights available)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-primary-600 font-bold">•</span>
+                  <span><strong>Airlines:</strong> Air India, IndiGo (seasonal)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-primary-600 font-bold">•</span>
+                  <span><strong>Frequency:</strong> 3-4 flights per week (check seasonal availability)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 p-4 rounded-xl">
+            <p class="text-sm md:text-base text-gray-700">
+              <strong>From Airport:</strong> Hire a taxi or pre-book through us for direct transfer to Dharchula (₹5,000-₹7,000 for sedan, ₹8,000-₹10,000 for SUV).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- By Rail -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-4 mb-6 md:mb-8">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-green-100 rounded-full flex items-center justify-center">
+            <span class="text-2xl md:text-3xl">🚂</span>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-secondary-800">By Train</h2>
+            <p class="text-sm md:text-base text-gray-600">Most popular option for budget travelers</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Kathgodam -->
+          <div class="card">
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-4">
+              Kathgodam Railway Station
+            </h3>
+            <div class="space-y-3 text-sm md:text-base">
+              <div class="flex items-center gap-2 text-gray-700">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/>
+                </svg>
+                <span><strong>270 km</strong> from Dharchula</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-700">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                </svg>
+                <span><strong>10-12 hours</strong> drive</span>
+              </div>
+              <div class="bg-green-50 p-3 rounded-lg mt-4">
+                <p class="text-sm"><strong>Major Trains:</strong></p>
+                <ul class="text-xs md:text-sm mt-2 space-y-1">
+                  <li>• Ranikhet Express (Delhi-Kathgodam)</li>
+                  <li>• Uttar Sampark Kranti (Delhi-Kathgodam)</li>
+                  <li>• Shatabdi Express (Delhi-Kathgodam)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tanakpur -->
+          <div class="card">
+            <h3 class="text-lg md:text-xl font-bold text-secondary-800 mb-4">
+              Tanakpur Railway Station
+            </h3>
+            <div class="space-y-3 text-sm md:text-base">
+              <div class="flex items-center gap-2 text-gray-700">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/>
+                </svg>
+                <span><strong>237 km</strong> from Dharchula</span>
+              </div>
+              <div class="flex items-center gap-2 text-gray-700">
+                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
+                </svg>
+                <span><strong>7-8 hours</strong> drive</span>
+              </div>
+              <div class="bg-green-50 p-3 rounded-lg mt-4">
+                <p class="text-sm"><strong>Advantage:</strong></p>
+                <p class="text-xs md:text-sm mt-2">
+                  Closer to Dharchula, shorter road journey. Good option if arriving from western regions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- By Road -->
+  <section class="section bg-gray-50">
+    <div class="container-custom">
+      <div class="max-w-5xl mx-auto">
+        <div class="flex items-center gap-4 mb-6 md:mb-8">
+          <div class="w-12 h-12 md:w-16 md:h-16 bg-orange-100 rounded-full flex items-center justify-center">
+            <span class="text-2xl md:text-3xl">🚗</span>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-secondary-800">By Road</h2>
+            <p class="text-sm md:text-base text-gray-600">Scenic drive through Uttarakhand</p>
+          </div>
+        </div>
+
+        <!-- Distance Table -->
+        <div class="card overflow-x-auto mb-6">
+          <h3 class="text-xl md:text-2xl font-bold text-secondary-800 mb-4">
+            Distance Chart to Dharchula
+          </h3>
+          <table class="w-full text-sm md:text-base">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="text-left p-3 font-semibold text-secondary-800">From</th>
+                <th class="text-center p-3 font-semibold text-secondary-800">Distance</th>
+                <th class="text-center p-3 font-semibold text-secondary-800">Time</th>
+                <th class="text-center p-3 font-semibold text-secondary-800">Route</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-medium">Delhi</td>
+                <td class="p-3 text-center">560 km</td>
+                <td class="p-3 text-center">14-16 hrs</td>
+                <td class="p-3 text-center text-xs md:text-sm">Delhi → Haldwani → Almora → Dharchula</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-medium">Dehradun</td>
+                <td class="p-3 text-center">450 km</td>
+                <td class="p-3 text-center">12-14 hrs</td>
+                <td class="p-3 text-center text-xs md:text-sm">Dehradun → Haridwar → Haldwani → Dharchula</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-medium">Haldwani</td>
+                <td class="p-3 text-center">290 km</td>
+                <td class="p-3 text-center">10-11 hrs</td>
+                <td class="p-3 text-center text-xs md:text-sm">Haldwani → Almora → Pithoragarh → Dharchula</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-medium">Almora</td>
+                <td class="p-3 text-center">195 km</td>
+                <td class="p-3 text-center">7-8 hrs</td>
+                <td class="p-3 text-center text-xs md:text-sm">Almora → Pithoragarh → Dharchula</td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="p-3 font-medium">Pithoragarh</td>
+                <td class="p-3 text-center">90 km</td>
+                <td class="p-3 text-center">3-4 hrs</td>
+                <td class="p-3 text-center text-xs md:text-sm">Direct route via NH309A</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Transport Options -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card bg-orange-50 border-2 border-orange-200">
+            <h4 class="text-lg font-bold text-secondary-800 mb-3">Private Vehicle</h4>
+            <ul class="space-y-2 text-sm md:text-base text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-orange-600">✓</span>
+                <span>Most flexible and comfortable option</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-orange-600">✓</span>
+                <span>Stop at scenic viewpoints along the way</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-orange-600">✓</span>
+                <span>Cost: ₹15,000-₹25,000 (full trip, depends on vehicle)</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card bg-blue-50 border-2 border-blue-200">
+            <h4 class="text-lg font-bold text-secondary-800 mb-3">UPSRTC Buses</h4>
+            <ul class="space-y-2 text-sm md:text-base text-gray-700">
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600">✓</span>
+                <span>Budget-friendly option (₹500-₹1,000)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600">✓</span>
+                <span>Regular services from major towns</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-600">✓</span>
+                <span>Book in advance during peak season</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tips & Recommendations -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-heading">Travel Tips & Recommendations</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card bg-green-50">
+            <h3 class="text-lg font-bold text-green-800 mb-3 flex items-center gap-2">
+              <span class="text-2xl">✓</span>
+              Best Options
+            </h3>
+            <ul class="space-y-2 text-sm md:text-base text-gray-700">
+              <li>• Fly to Pantnagar if short on time</li>
+              <li>• Train to Kathgodam for budget travel</li>
+              <li>• Start early morning for road journeys</li>
+              <li>• Book vehicles in advance during season</li>
+              <li>• Allow buffer day for delays</li>
+            </ul>
+          </div>
+
+          <div class="card bg-yellow-50">
+            <h3 class="text-lg font-bold text-yellow-800 mb-3 flex items-center gap-2">
+              <span class="text-2xl">⚠️</span>
+              Important Notes
+            </h3>
+            <ul class="space-y-2 text-sm md:text-base text-gray-700">
+              <li>• Roads can be challenging in monsoon</li>
+              <li>• Limited ATMs after Pithoragarh</li>
+              <li>• Mobile connectivity weak in mountains</li>
+              <li>• Carry motion sickness medication</li>
+              <li>• Check road conditions before travel</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
+        Let Us Handle Your Travel Arrangements
+      </h2>
+      <p class="text-base md:text-lg opacity-90 mb-6 md:mb-8 max-w-2xl mx-auto">
+        Book your package with us for seamless transportation from Delhi/Kathgodam to Dharchula and back
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/packages" class="btn-secondary text-base md:text-lg px-6 md:px-8 py-3 md:py-4">
+          View Packages
+        </a>
+        <a 
+          href="https://wa.me/917302937532?text=Hi,%20I%20need%20help%20with%20travel%20arrangements%20to%20Adi%20Kailash"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-whatsapp text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
+        >
+          Get Travel Help
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

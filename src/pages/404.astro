@@ -1,0 +1,199 @@
+---
+/**
+ * 404 Error Page - Page Not Found
+ * 
+ * Beautiful spiritual design for 404 errors
+ * Features:
+ * - Spiritual Om and lotus imagery
+ * - Helpful navigation links
+ * - Search suggestion
+ * - WhatsApp contact option
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getWhatsAppUrl } from '../utils/whatsapp';
+
+const whatsappURL = getWhatsAppUrl({ 
+  message: "Hi, I was looking for something on your website but couldn't find it. Can you help me?" 
+});
+
+const popularLinks = [
+  { href: '/packages', label: 'Tour Packages', icon: '📦' },
+  { href: '/permits', label: 'Permits Guide', icon: '📋' },
+  { href: '/how-to-reach', label: 'How to Reach', icon: '🗺️' },
+  { href: '/blog', label: 'Blog & Guides', icon: '📚' },
+  { href: '/contact', label: 'Contact Us', icon: '📞' },
+];
+---
+
+<BaseLayout
+  title="404 - Page Not Found | Shiv Yatra Tourism"
+  description="The page you're looking for doesn't exist. Navigate to our homepage or contact us for assistance."
+  locale="en"
+  pageName="404"
+>
+  <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-accent-50 to-primary-100 relative overflow-hidden py-20">
+    <!-- Decorative Background -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute top-10 left-10 text-9xl animate-pulse">🕉️</div>
+      <div class="absolute top-1/4 right-10 text-8xl animate-bounce" style="animation-delay: 0.5s;">🌸</div>
+      <div class="absolute bottom-10 left-1/4 text-9xl animate-pulse" style="animation-delay: 1s;">🏔️</div>
+      <div class="absolute bottom-1/4 right-1/4 text-8xl animate-bounce" style="animation-delay: 1.5s;">📿</div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20rem] opacity-5">🕉️</div>
+    </div>
+
+    <div class="container-custom relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- 404 Icon -->
+        <div class="mb-8">
+          <div class="text-9xl md:text-[12rem] font-bold gradient-text-404 animate-pulse">
+            404
+          </div>
+          <div class="text-6xl md:text-8xl mt-4 animate-bounce">
+            🙏
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 md:p-12 mb-8">
+          <h1 class="text-3xl md:text-4xl font-bold text-secondary-800 mb-4">
+            Oops! Path Not Found
+          </h1>
+          <p class="text-lg md:text-xl text-gray-700 mb-2">
+            It seems you've wandered off the sacred path. 🧭
+          </p>
+          <p class="text-base md:text-lg text-gray-600">
+            The page you're looking for doesn't exist or has been moved.
+          </p>
+          
+          <!-- Spiritual Quote -->
+          <div class="mt-6 p-4 bg-gradient-to-r from-primary-100 to-accent-100 rounded-lg border-l-4 border-primary-500">
+            <p class="text-gray-700 italic flex items-center justify-center gap-2">
+              <span class="text-2xl">🕉️</span>
+              <span>"Not all those who wander are lost"</span>
+            </p>
+            <p class="text-sm text-gray-600 mt-2">
+              Let us guide you back to your spiritual journey
+            </p>
+          </div>
+        </div>
+
+        <!-- Popular Links -->
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-2xl p-8 mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-6">
+            🧭 Find Your Way
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {popularLinks.map((link) => (
+              <a
+                href={link.href}
+                class="flex items-center gap-3 px-5 py-3 bg-gradient-to-r from-gray-50 to-gray-100 hover:from-primary-100 hover:to-accent-100 rounded-lg font-medium text-gray-800 hover:text-primary-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              >
+                <span class="text-2xl">{link.icon}</span>
+                <span>{link.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="/"
+            class="btn-primary text-lg px-8 py-4 min-w-[200px]"
+          >
+            🏠 Return Home
+          </a>
+          <a
+            href={whatsappURL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-whatsapp text-lg px-8 py-4 min-w-[200px]"
+          >
+            💬 Get Help
+          </a>
+        </div>
+
+        <!-- Search Suggestion -->
+        <div class="mt-8 text-gray-600">
+          <p class="mb-4">Or try searching for what you need:</p>
+          <div class="max-w-md mx-auto relative">
+            <input
+              type="search"
+              placeholder="Search our website..."
+              class="w-full px-6 py-3 rounded-full border-2 border-gray-300 focus:border-primary-500 focus:outline-none text-gray-800"
+              id="search-404"
+            />
+            <button
+              onclick="window.location.href = '/blog'"
+              class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-600 hover:bg-primary-700 text-white px-5 py-2 rounded-full transition-colors"
+            >
+              🔍
+            </button>
+          </div>
+        </div>
+
+        <!-- Helpful Message -->
+        <div class="mt-12 text-gray-600">
+          <p class="text-sm">
+            If you believe this is an error, please <a href="/contact" class="text-primary-600 hover:text-primary-700 font-semibold underline">contact us</a> and we'll help you find what you need.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Gradient Text for 404 Number */
+  .gradient-text-404 {
+    background: linear-gradient(135deg, #FF9B35 0%, #F39C12 50%, #FF9B35 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Floating Animation for Decorative Elements */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+</style>
+
+<script>
+  // Enhanced search functionality (redirect to blog for now)
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('[404Page] 404 page loaded');
+    
+    const searchInput = document.getElementById('search-404');
+    if (searchInput) {
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const query = (e.target as HTMLInputElement).value.trim();
+          if (query) {
+            // Redirect to blog with search query (placeholder - implement actual search later)
+            window.location.href = `/blog?search=${encodeURIComponent(query)}`;
+          }
+        }
+      });
+    }
+    
+    console.log('[404Page] ✓ 404 page initialized');
+  });
+</script>
+

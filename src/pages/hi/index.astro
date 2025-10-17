@@ -1,0 +1,221 @@
+---
+/**
+ * Hindi Home Page - आदि कैलाश यात्रा होम पेज
+ * 
+ * Same structure as English homepage, but with Hindi locale
+ * Content loaded dynamically from translations
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { loadContent, loadJSON } from '../../utils/dataLoader';
+import { getWhatsAppUrl } from '../../utils/whatsapp';
+import { useTranslation } from '../../utils/translations';
+
+console.log('[Hindi HomePage] Loading home page data...');
+
+let content: any = {};
+let itinerary: any = null;
+
+try {
+  content = await loadContent();
+  itinerary = await loadJSON('itinerary_5day.json');
+  console.log('[Hindi HomePage] ✓ Data loaded successfully');
+} catch (error) {
+  console.error('[Hindi HomePage] ✗ Error loading data:', error);
+}
+
+const currentLocale = 'hi';
+const t = useTranslation(currentLocale);
+
+const pageTitle = t('home.hero.h1', 'आदि कैलाश यात्रा 2025 - पवित्र तीर्थयात्रा');
+const pageDescription = t('home.hero.subtitle', 'बिना सीमा पार किए कैलाश पर्वत की दिव्य प्रतिकृति का अनुभव करें।');
+
+const whatsappURL = getWhatsAppUrl({ message: t('whatsapp.message') });
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  locale={currentLocale}
+  pageName="home"
+>
+  <!-- Hero Section -->
+  <section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-secondary-900 via-secondary-800 to-primary-900">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative z-10 container-custom text-center text-white px-4">
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in font-hindi">
+        {t('home.hero.h1')}
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto opacity-90 animate-fade-in-delay font-hindi">
+        {t('home.hero.subtitle')}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
+        <a
+          href="/hi/packages"
+          class="btn-primary text-lg px-8 py-4"
+        >
+          {t('home.hero.cta_text', 'अपनी यात्रा की योजना बनाएं')}
+        </a>
+        <a
+          href={whatsappURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-whatsapp text-lg px-8 py-4"
+        >
+          {t('whatsapp.button', 'व्हाट्सएप पर चैट करें')}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Adi Kailash Section -->
+  <section class="section bg-white">
+    <div class="container-custom">
+      <h2 class="section-heading font-hindi">
+        {t('home.why-choose.h2')}
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="card text-center">
+          <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800 font-hindi">
+            {t('home.why-choose.feature-1-title')}
+          </h3>
+          <p class="text-gray-600 font-hindi">
+            {t('home.why-choose.feature-1-desc')}
+          </p>
+        </div>
+        <div class="card text-center">
+          <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800 font-hindi">
+            {t('home.why-choose.feature-2-title')}
+          </h3>
+          <p class="text-gray-600 font-hindi">
+            {t('home.why-choose.feature-2-desc')}
+          </p>
+        </div>
+        <div class="card text-center">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800 font-hindi">
+            {t('home.why-choose.feature-3-title')}
+          </h3>
+          <p class="text-gray-600 font-hindi">
+            {t('home.why-choose.feature-3-desc')}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section bg-gradient-to-br from-primary-50 to-accent-50">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="p-8">
+          <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
+            25,000+
+          </div>
+          <p class="text-gray-700 text-lg font-medium font-hindi">{t('home.stats.pilgrims')}</p>
+        </div>
+        <div class="p-8">
+          <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
+            15+
+          </div>
+          <p class="text-gray-700 text-lg font-medium font-hindi">{t('home.stats.experience')}</p>
+        </div>
+        <div class="p-8">
+          <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
+            100%
+          </div>
+          <p class="text-gray-700 text-lg font-medium font-hindi">{t('home.stats.satisfaction')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Package Preview Section -->
+  {itinerary && (
+    <section class="section bg-white">
+      <div class="container-custom">
+        <h2 class="section-heading font-hindi">
+          {t('packages.header.h1')}
+        </h2>
+        <div class="max-w-4xl mx-auto card">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+            <div>
+              <h3 class="text-2xl md:text-3xl font-bold text-secondary-800 mb-2 font-hindi">
+                {itinerary.package_name}
+              </h3>
+              <div class="flex flex-wrap gap-3 text-sm text-gray-600">
+                <span class="badge badge-primary">
+                  {itinerary.duration.days} दिन / {itinerary.duration.nights} रातें
+                </span>
+                <span class="badge badge-secondary">
+                  {itinerary.difficulty}
+                </span>
+              </div>
+            </div>
+            <div class="mt-4 md:mt-0 text-right">
+              <div class="text-3xl font-bold text-primary-600">
+                ₹{itinerary.price_range.min_inr.toLocaleString()}
+              </div>
+              <p class="text-sm text-gray-600 font-hindi">प्रति व्यक्ति से शुरू</p>
+            </div>
+          </div>
+          <p class="text-gray-700 mb-6 font-hindi">
+            {itinerary.starting_point} से शुरू, अधिकतम ऊंचाई {itinerary.max_altitude.meters}m ({itinerary.max_altitude.location}).
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/hi/packages" class="btn-primary">
+              पूर्ण यात्रा कार्यक्रम देखें
+            </a>
+            <a
+              href={getWhatsAppUrl({ packageInterest: itinerary.package_name })}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-whatsapp"
+            >
+              व्हाट्सएप के माध्यम से बुक करें
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Final CTA Section -->
+  <section class="section bg-gradient-to-r from-primary-600 to-accent-600 text-white">
+    <div class="container-custom text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 font-hindi">
+        {t('home.cta_final.h2')}
+      </h2>
+      <p class="text-xl mb-8 opacity-90 max-w-2xl mx-auto font-hindi">
+        {t('home.cta_final.subtitle')}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/hi/contact" class="btn-secondary text-lg px-8 py-4">
+          {t('home.cta_final.cta_text', 'संपर्क करें')}
+        </a>
+        <a href={whatsappURL} target="_blank" rel="noopener noreferrer" class="btn-outline border-white text-white hover:bg-white hover:text-primary-600 text-lg px-8 py-4">
+          {t('whatsapp.button')}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .font-hindi {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+  }
+  
+  @keyframes fade-in { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .animate-fade-in { animation: fade-in 1s ease-out forwards; }
+  .animate-fade-in-delay { opacity: 0; animation: fade-in 1s ease-out 0.3s forwards; }
+</style>
+
