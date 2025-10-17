@@ -3,7 +3,8 @@
  * Beautiful sliding sidebar from right side
  */
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface MobileMenuProps {
   currentLocale: 'en' | 'hi';
@@ -42,6 +43,116 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ currentLocale, navLinks, currentPath, togglePath, translations }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement | null>(null);
+  const sheetRef = useRef<HTMLDivElement | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const scrollYRef = useRef<number>(0);
+  const prevBodyStylesRef = useRef<{ overflow: string; touchAction: string; position: string; top: string; width: string } | null>(null);
+  const prevHtmlOverscrollRef = useRef<string | null>(null);
+
+  // Mount flag for portal (avoids SSR mismatches)
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        console.log('[MobileMenu] ESC → closing');
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [isOpen]);
+
+  // Lock body scroll while menu open
+  useEffect(() => {
+    if (!isOpen) return;
+    // Save previous styles
+    prevBodyStylesRef.current = {
+      overflow: document.body.style.overflow,
+      touchAction: document.body.style.touchAction,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+    };
+    prevHtmlOverscrollRef.current = (document.documentElement.style as any).overscrollBehaviorY || '';
+
+    // Lock scroll (robust: prevent iOS page resize/jump)
+    scrollYRef.current = window.scrollY;
+    document.documentElement.style.setProperty('overscroll-behavior-y', 'none');
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.width = '100%';
+    console.log('[MobileMenu] Body scroll locked at Y=', scrollYRef.current);
+
+    const preventTouchScroll = (e: TouchEvent) => {
+      if (!sheetRef.current) return;
+      if (!sheetRef.current.contains(e.target as Node)) {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener('touchmove', preventTouchScroll, { passive: false });
+
+    return () => {
+      // Restore styles
+      const prev = prevBodyStylesRef.current;
+      if (prev) {
+        document.body.style.overflow = prev.overflow;
+        document.body.style.touchAction = prev.touchAction;
+        document.body.style.position = prev.position;
+        document.body.style.top = prev.top;
+        document.body.style.width = prev.width;
+      } else {
+        document.body.style.overflow = '';
+        document.body.style.touchAction = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+      }
+      if (prevHtmlOverscrollRef.current !== null) {
+        document.documentElement.style.setProperty('overscroll-behavior-y', prevHtmlOverscrollRef.current);
+      } else {
+        (document.documentElement.style as any).overscrollBehaviorY = '';
+      }
+      // Restore scroll position
+      window.scrollTo(0, scrollYRef.current || 0);
+
+      document.removeEventListener('touchmove', preventTouchScroll as any);
+      console.log('[MobileMenu] Body scroll restored, scrolled back to Y=', scrollYRef.current);
+    };
+  }, [isOpen]);
+
+  // Close if viewport becomes >= md (prevent stuck-open on rotate)
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 768 && isOpen) {
+        console.log('[MobileMenu] Resize >= md → closing');
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, [isOpen]);
+
+  // Focus management
+  useEffect(() => {
+    if (isOpen) {
+      const id = window.requestAnimationFrame(() => {
+        firstLinkRef.current?.focus();
+        console.log('[MobileMenu] Focus set to first link');
+      });
+      return () => window.cancelAnimationFrame(id);
+    } else {
+      buttonRef.current?.focus();
+    }
+  }, [isOpen]);
 
   const isActive = (path: string) => {
     if (path === '/' || path === '/hi') {
@@ -68,9 +179,15 @@ export default function MobileMenu({ currentLocale, navLinks, currentPath, toggl
     <>
       {/* Mobile Menu Button - Hamburger Icon */}
       <button
-        onClick={() => setIsOpen(true)}
+        ref={buttonRef}
+        onClick={() => {
+          console.log('[MobileMenu] Open click');
+          setIsOpen(true);
+        }}
         className="md:hidden relative z-50 p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors"
         aria-label="Open menu"
+        aria-expanded={isOpen}
+        aria-controls="mobile-menu-sheet"
         type="button"
       >
         <svg
@@ -88,23 +205,34 @@ export default function MobileMenu({ currentLocale, navLinks, currentPath, toggl
         </svg>
       </button>
 
-      {/* Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-[100] md:hidden animate-fade-in"
-          onClick={() => setIsOpen(false)}
-          aria-hidden="true"
-        />
-      )}
+      {/* Overlay + Sheet rendered via portal to body for full-viewport coverage */}
+      {isMounted && createPortal(
+        <div className="fixed inset-0 z-[10001] md:hidden" style={{ height: '100dvh' }}>
+          {isOpen && (
+            <div
+              className="absolute inset-0 bg-black/50 animate-fade-in pointer-events-auto"
+              onClick={() => {
+                console.log('[MobileMenu] Overlay click → closing');
+                setIsOpen(false);
+              }}
+              aria-hidden="true"
+              style={{ height: '100dvh' }}
+            />
+          )}
 
-      {/* Sheet - Sliding Sidebar from Right */}
-      <div
-        className={`
-          fixed top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl z-[101]
-          transform transition-transform duration-300 ease-in-out md:hidden
-          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
-        `}
-      >
+          <div
+            ref={sheetRef}
+            id="mobile-menu-sheet"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation menu"
+            className={`
+              absolute top-0 right-0 h-full w-[85%] max-w-sm bg-white shadow-2xl
+              transform transition-transform duration-300 ease-in-out pointer-events-auto
+              ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+            `}
+            style={{ height: '100dvh' }}
+          >
         {/* Sheet Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-orange-50 to-blue-50">
           <div className="flex items-center gap-3">
@@ -119,7 +247,10 @@ export default function MobileMenu({ currentLocale, navLinks, currentPath, toggl
             </div>
           </div>
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              console.log('[MobileMenu] Close click');
+              setIsOpen(false);
+            }}
             className="p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-colors"
             aria-label="Close menu"
             type="button"
@@ -143,10 +274,11 @@ export default function MobileMenu({ currentLocale, navLinks, currentPath, toggl
         {/* Sheet Content - Scrollable Menu */}
         <div className="overflow-y-auto h-[calc(100%-140px)] p-4">
           <nav className="space-y-1">
-            {menuItems.map((item) => (
+            {menuItems.map((item, index) => (
               <a
                 key={item.href}
                 href={item.href}
+                ref={index === 0 ? firstLinkRef : undefined}
                 className={`
                   flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
                   ${
@@ -155,7 +287,10 @@ export default function MobileMenu({ currentLocale, navLinks, currentPath, toggl
                       : 'text-gray-700 hover:bg-gray-100 active:bg-gray-200'
                   }
                 `}
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  console.log('[MobileMenu] Nav link click → closing');
+                  setIsOpen(false);
+                }}
               >
                 <span className="text-2xl">{item.icon}</span>
                 <span className="font-medium">{item.label}</span>
@@ -182,7 +317,10 @@ export default function MobileMenu({ currentLocale, navLinks, currentPath, toggl
           <a
             href={togglePath}
             className="flex items-center justify-center gap-3 w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl active:scale-95 transition-all"
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              console.log('[MobileMenu] Language toggle click → closing');
+              setIsOpen(false);
+            }}
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path
@@ -196,7 +334,9 @@ export default function MobileMenu({ currentLocale, navLinks, currentPath, toggl
             </span>
           </a>
         </div>
-      </div>
+          </div>
+        </div>, document.body)
+      }
 
       <style>{`
         @keyframes fade-in {

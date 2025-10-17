@@ -62,6 +62,10 @@ const navItems = [
   { href: navLinks.contact, label: t('nav.contact'), icon: '📞' },
 ];
 
+// Primary vs extra items for desktop to prevent wrapping
+const navPrimary = navItems.slice(0, 6);
+const navExtra = navItems.slice(6);
+
 // Language toggle configuration
 const toggleLang = currentLocale === 'en' ? 'hi' : 'en';
 
@@ -96,7 +100,7 @@ console.log('[Header] ========================================');
           
           <!-- Company Name -->
           <div class="flex flex-col">
-            <span class="text-xl md:text-2xl font-bold tracking-wide gradient-text-light">
+            <span class="text-xl md:text-2xl font-bold tracking-wide text-white">
               {t('header.companyName', 'Shiv Yatra Tourism')}
             </span>
             <span class="text-xs md:text-sm opacity-90 font-medium">
@@ -107,7 +111,7 @@ console.log('[Header] ========================================');
 
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => {
+          {navPrimary.map((item) => {
             // Check if this link is active
             const isActive = currentPath === item.href || 
               (item.href !== '/' && item.href !== '/hi' && currentPath.startsWith(item.href));
@@ -115,7 +119,7 @@ console.log('[Header] ========================================');
             return (
               <a
                 href={item.href}
-                class={`nav-link px-4 py-2 rounded-full font-medium transition-all duration-300 hover:bg-white/20 hover:shadow-lg ${
+                class={`nav-link px-4 py-2 rounded-full font-medium text-white transition-all duration-300 hover:bg-white/20 hover:shadow-lg ${
                   isActive ? 'bg-white/30 shadow-md' : ''
                 }`}
               >
@@ -124,6 +128,37 @@ console.log('[Header] ========================================');
               </a>
             );
           })}
+
+          {navExtra.length > 0 && (
+            <div class="relative group">
+              <button
+                class="px-4 py-2 rounded-full font-medium text-white transition-all duration-300 hover:bg-white/20 hover:shadow-lg flex items-center gap-1"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span>More</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+              <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute right-0 mt-2 min-w-[220px] bg-white text-gray-800 rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-[120]">
+                {navExtra.map((item) => {
+                  const isActive = currentPath === item.href || 
+                    (item.href !== '/' && item.href !== '/hi' && currentPath.startsWith(item.href));
+                  return (
+                    <a
+                      href={item.href}
+                      class={`block px-4 py-3 text-sm font-semibold hover:bg-gray-50 ${isActive ? 'bg-gray-100 text-primary-700' : ''}`}
+                    >
+                      <span class="mr-2">{item.icon}</span>
+                      {item.label}
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </nav>
 
         <!-- Language Toggle & Mobile Menu Button -->
@@ -131,7 +166,7 @@ console.log('[Header] ========================================');
           <!-- Language Toggle -->
           <a
             href={togglePath}
-            class="language-toggle hidden sm:flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-md"
+            class="language-toggle hidden sm:flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-md text-white"
             aria-label={`Switch to ${toggleLang === 'hi' ? 'Hindi' : 'English'}`}
           >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -167,7 +202,7 @@ console.log('[Header] ========================================');
   <div
     id="mobile-menu"
     class="lg:hidden fixed inset-0 bg-gradient-to-br from-secondary-900 via-primary-800 to-accent-700 text-white z-[9999] transform translate-x-full transition-transform duration-300"
-    style="top: 0;"
+    style="top: 0; height: 100dvh;"
   >
     <!-- Close Button (Top Right) -->
     <button
@@ -216,7 +251,7 @@ console.log('[Header] ========================================');
         <div class="mt-8 px-6">
           <a
             href={togglePath}
-            class="flex items-center justify-center gap-3 px-6 py-4 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-xl font-semibold text-lg transition-all duration-300"
+            class="flex items-center justify-center gap-3 px-6 py-4 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-xl font-semibold text-lg transition-all duration-300 text-white"
           >
             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
               <path d="M7 2a1 1 0 011 1v1h3a1 1 0 110 2H9.578a18.87 18.87 0 01-1.724 4.78c.29.354.596.696.914 1.026a1 1 0 11-1.44 1.389c-.188-.196-.373-.396-.554-.6a19.098 19.098 0 01-3.107 3.567 1 1 0 01-1.334-1.49 17.087 17.087 0 003.13-3.733 18.992 18.992 0 01-1.487-2.494 1 1 0 111.79-.89c.234.47.489.928.764 1.372.417-.934.752-1.913.997-2.927H3a1 1 0 110-2h3V3a1 1 0 011-1zm6 6a1 1 0 01.894.553l2.991 5.982a.869.869 0 01.02.037l.99 1.98a1 1 0 11-1.79.895L15.383 16h-4.764l-.724 1.447a1 1 0 11-1.788-.894l.99-1.98.019-.038 2.99-5.982A1 1 0 0113 8zm-1.382 6h2.764L13 11.236 11.618 14z"/>
@@ -237,6 +272,35 @@ console.log('[Header] ========================================');
         </div>
       </div>
     </nav>
+  </div>
+
+  <!-- First-Visit Language Preference Dialog -->
+  <div
+    id="lang-pref-overlay"
+    class="fixed inset-0 z-[10050] opacity-0 pointer-events-none transition-opacity duration-300"
+    aria-hidden="true"
+  >
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative mx-auto mt-24 w-[90%] max-w-md rounded-2xl bg-gradient-to-br from-secondary-900 via-primary-800 to-accent-700 text-white shadow-2xl p-6">
+      <button
+        id="lang-pref-close"
+        class="absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+        aria-label="Close language selector"
+      >
+        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="text-3xl">🕉️</div>
+        <h3 class="text-xl font-bold">Choose your preferred language</h3>
+      </div>
+      <p class="text-white/90 mb-6">You can change it anytime from the sidebar language toggle.</p>
+      <div class="grid grid-cols-2 gap-3">
+        <a id="lang-choose-en" href="#" class="px-4 py-3 rounded-xl bg-white/20 hover:bg-white/30 text-center font-semibold transition-colors">English</a>
+        <a id="lang-choose-hi" href="#" class="px-4 py-3 rounded-xl bg-white/20 hover:bg-white/30 text-center font-semibold transition-colors">हिंदी</a>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -276,6 +340,11 @@ console.log('[Header] ========================================');
     backdrop-filter: blur(10px);
   }
 
+  /* Hide-on-scroll behavior */
+  .header-wrapper.header-hidden {
+    transform: translateY(-100%);
+  }
+
   /* Mobile Menu Animation */
   .mobile-nav-link:hover {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
@@ -299,6 +368,11 @@ console.log('[Header] ========================================');
     const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
     const menuIconOpen = document.querySelector('.menu-icon-open');
     const menuIconClose = document.querySelector('.menu-icon-close');
+    const headerEl = document.getElementById('main-header');
+    const langOverlay = document.getElementById('lang-pref-overlay');
+    const langClose = document.getElementById('lang-pref-close');
+    const langEn = document.getElementById('lang-choose-en');
+    const langHi = document.getElementById('lang-choose-hi');
     
     if (menuToggle && mobileMenu && menuIconOpen && menuIconClose) {
       let isMenuOpen = false;
@@ -309,7 +383,13 @@ console.log('[Header] ========================================');
         mobileMenu.classList.add('translate-x-0');
         menuIconOpen.classList.add('hidden');
         menuIconClose.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Prevent scroll
+      // Robust scroll lock to avoid page height jump on mobile
+      const scrollY = window.scrollY || 0;
+      document.body.dataset.scrollY = String(scrollY);
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
         menuToggle.setAttribute('aria-expanded', 'true');
         
         // Show backdrop
@@ -327,7 +407,13 @@ console.log('[Header] ========================================');
         mobileMenu.classList.add('translate-x-full');
         menuIconOpen.classList.remove('hidden');
         menuIconClose.classList.add('hidden');
-        document.body.style.overflow = ''; // Restore scroll
+      // Restore scroll position and styles
+      const scrollY = Number(document.body.dataset.scrollY || 0);
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+      document.body.style.overflow = '';
+      window.scrollTo(0, scrollY);
         menuToggle.setAttribute('aria-expanded', 'false');
         
         // Hide backdrop
@@ -370,6 +456,34 @@ console.log('[Header] ========================================');
           closeMenu();
         }
       });
+
+      // Hide-on-scroll (mobile): hide header on scroll down, show on scroll up
+      let lastY = window.scrollY || 0;
+      let ticking = false;
+      const handleScroll = () => {
+        if (!headerEl) return;
+        const y = window.scrollY || 0;
+        const delta = y - lastY;
+        // Only apply on mobile/tablet widths
+        const isMobile = window.innerWidth < 1024;
+        if (isMobile && !isMenuOpen) {
+          if (delta > 8 && y > 50) {
+            headerEl.classList.add('header-hidden');
+          } else if (delta < -8 || y <= 50) {
+            headerEl.classList.remove('header-hidden');
+          }
+        } else {
+          headerEl.classList.remove('header-hidden');
+        }
+        lastY = y;
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(handleScroll);
+          ticking = true;
+        }
+      }, { passive: true });
     }
     
     // Sticky Header Blur Effect on Scroll
@@ -385,6 +499,62 @@ console.log('[Header] ========================================');
     }
     
     console.log('[Header] ✓ Header initialized successfully');
+
+    // First-visit language selection dialog
+    try {
+      const preferred = localStorage.getItem('preferredLocale');
+      const showLangDialog = () => {
+        if (!langOverlay) return;
+        langOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        langOverlay.classList.add('opacity-100', 'pointer-events-auto');
+        document.body.style.overflow = 'hidden';
+      };
+      const hideLangDialog = () => {
+        if (!langOverlay) return;
+        langOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+        langOverlay.classList.add('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = '';
+      };
+      const redirectToLocale = (target) => {
+        const path = window.location.pathname;
+        const isHi = path.startsWith('/hi');
+        if (target === 'hi' && !isHi) {
+          const base = path === '/' ? '' : path;
+          window.location.assign(`/hi${base}`);
+          return;
+        }
+        if (target === 'en' && isHi) {
+          const base = path.replace(/^\/hi/, '') || '/';
+          window.location.assign(base);
+          return;
+        }
+        hideLangDialog();
+      };
+      if (!preferred && langOverlay && langEn && langHi) {
+        setTimeout(showLangDialog, 600);
+        langEn.addEventListener('click', (e) => {
+          e.preventDefault();
+          localStorage.setItem('preferredLocale', 'en');
+          redirectToLocale('en');
+        });
+        langHi.addEventListener('click', (e) => {
+          e.preventDefault();
+          localStorage.setItem('preferredLocale', 'hi');
+          redirectToLocale('hi');
+        });
+        if (langClose) {
+          langClose.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Persist current locale to avoid asking again immediately
+            const isHi = (window.location.pathname || '').startsWith('/hi');
+            localStorage.setItem('preferredLocale', isHi ? 'hi' : 'en');
+            hideLangDialog();
+          });
+        }
+      }
+    } catch (err) {
+      console.warn('[Header] Language dialog init error', err);
+    }
   });
 </script>
 
