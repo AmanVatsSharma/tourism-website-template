@@ -81,59 +81,63 @@ console.log('[HomePage] ✓ Homepage ready to render');
   description={pageDescription}
   pageName="home"
 >
-  <!-- ==================== HERO SECTION - FULL SCREEN WITH AMAZING CONTRAST ==================== -->
-  <section class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+  <!-- ==================== HERO SECTION - MOBILE OPTIMIZED WITH AMAZING CONTRAST ==================== -->
+  <section class="relative min-h-screen sm:h-screen flex items-center justify-center overflow-hidden">
     <!-- Background Image - Stunning Adi Kailash Mountain with Parallax Effect -->
     <div class="absolute inset-0">
       <img 
         src="/images/adi-kailash-parvat.webp" 
         alt={t('hero.title', 'Adi Kailash Mountain Peak')}
-        class="w-full h-full object-cover scale-105"
+        class="w-full h-full object-cover object-center sm:scale-105"
         loading="eager"
         style="filter: brightness(0.7);"
       />
       <!-- Enhanced Multi-Layer Gradient for PERFECT Text Contrast -->
-      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-black/85 via-black/60 to-black/85"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50"></div>
       
-      <!-- Decorative Spiritual Elements -->
-      <div class="absolute top-10 left-10 text-6xl opacity-20 animate-pulse-slow">🕉️</div>
-      <div class="absolute bottom-10 right-10 text-6xl opacity-20 animate-pulse-slow">🙏</div>
+      <!-- Decorative Spiritual Elements (Hidden on mobile for cleaner look) -->
+      <div class="hidden md:block absolute top-10 left-10 text-6xl opacity-20 animate-pulse-slow">🕉️</div>
+      <div class="hidden md:block absolute bottom-10 right-10 text-6xl opacity-20 animate-pulse-slow">🙏</div>
     </div>
     
-    <!-- Hero Content with Superior Readability -->
-    <div class="relative z-10 container-custom text-center text-white px-4 py-20">
+    <!-- Hero Content with Superior Readability - MOBILE OPTIMIZED -->
+    <div class="relative z-10 w-full text-center text-white px-4 sm:px-6 py-16 sm:py-20">
       <!-- Main Om Symbol with Glow Effect -->
-      <div class="text-7xl md:text-8xl mb-6 animate-fade-in" style="text-shadow: 0 0 30px rgba(255, 165, 0, 0.8), 0 0 60px rgba(255, 165, 0, 0.4);">
+      <div class="text-6xl sm:text-7xl md:text-8xl mb-4 sm:mb-6 animate-fade-in" style="text-shadow: 0 0 30px rgba(255, 165, 0, 0.8), 0 0 60px rgba(255, 165, 0, 0.4);">
         🕉️
       </div>
       
-      <!-- Main Heading with Strong Text Shadow for Maximum Contrast -->
-      <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 animate-fade-in leading-tight" 
-          style="text-shadow: 0 4px 12px rgba(0,0,0,0.9), 0 8px 24px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,1);">
-        {t('hero.title', heroContent.h1 || 'Adi Kailash Yatra 2025')}
+      <!-- Main Heading with INCREDIBLE 3D CONTRAST - Enhanced! -->
+      <div class="relative inline-block px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 mb-4 sm:mb-6 rounded-2xl backdrop-blur-sm bg-black/30 border-2 border-white/20 shadow-2xl">
+        <h1 class="hero-title text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold animate-fade-in leading-tight relative z-10">
+          {t('hero.title', heroContent.h1 || 'Adi Kailash Yatra 2025')}
       </h1>
+      </div>
       
-      <!-- Subtitle with Enhanced Readability -->
-      <p class="text-2xl md:text-3xl lg:text-4xl mb-4 max-w-4xl mx-auto font-semibold animate-fade-in-delay" 
-         style="text-shadow: 0 3px 8px rgba(0,0,0,0.9), 0 6px 16px rgba(0,0,0,0.7);">
-        {t('hero.subtitle', heroContent.subtitle || 'Sacred Pilgrimage to Lord Shiva\'s Himalayan Abode')}
-      </p>
+      <!-- Subtitle with Enhanced Readability - Mobile Optimized -->
+      <div class="inline-block px-4 sm:px-6 py-2 sm:py-3 mb-3 sm:mb-4 rounded-xl backdrop-blur-sm bg-black/25 border border-white/10">
+        <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl max-w-4xl mx-auto font-semibold animate-fade-in-delay hero-subtitle">
+          {t('hero.subtitle', heroContent.subtitle || 'Sacred Pilgrimage to Lord Shiva\'s Himalayan Abode')}
+        </p>
+      </div>
       
-      <!-- Additional Description for Rich Content -->
-      <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-95 animate-fade-in-delay-2" 
-         style="text-shadow: 0 2px 6px rgba(0,0,0,0.9);">
-        {t('hero.description', 'Experience the divine replica of Mount Kailash without crossing borders. Journey to the sacred Himalayan peak at 5,945m in Uttarakhand.')}
-      </p>
+      <!-- Additional Description - Mobile Optimized -->
+      <div class="inline-block px-4 sm:px-6 py-2 sm:py-3 mb-8 sm:mb-10 rounded-lg backdrop-blur-sm bg-black/20">
+        <p class="text-base sm:text-lg md:text-xl max-w-3xl mx-auto animate-fade-in-delay-2 hero-description">
+          {t('hero.description', 'Experience the divine replica of Mount Kailash without crossing borders. Journey to the sacred Himalayan peak at 5,945m in Uttarakhand.')}
+        </p>
+      </div>
       
-      <!-- Enhanced CTA Buttons with Better Visibility -->
-      <div class="flex flex-col sm:flex-row gap-5 justify-center items-center animate-fade-in-delay-3 mb-10">
+      <!-- Enhanced CTA Buttons - MOBILE OPTIMIZED (min 48px height for touch) -->
+      <div class="flex flex-col gap-4 justify-center items-stretch sm:items-center animate-fade-in-delay-3 mb-8 sm:mb-10 px-2 max-w-md sm:max-w-none mx-auto">
         <a 
           href={locale === 'en' ? '/packages' : '/hi/packages'}
-          class="group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 rounded-full shadow-2xl hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300 overflow-hidden"
+          class="group relative inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-bold text-white bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 rounded-full shadow-2xl hover:shadow-orange-500/50 active:scale-95 sm:transform sm:hover:scale-105 transition-all duration-300 overflow-hidden min-h-[48px] w-full sm:w-auto"
         >
-          <span class="relative z-10 flex items-center gap-3">
-            🏔️ {t('hero.ctaPrimary', heroContent.cta_text || 'Explore Packages')}
+          <span class="relative z-10 flex items-center gap-2 sm:gap-3">
+            <span class="text-2xl">🏔️</span>
+            <span>{t('hero.ctaPrimary', heroContent.cta_text || 'Explore Packages')}</span>
           </span>
           <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </a>
@@ -142,58 +146,58 @@ console.log('[HomePage] ✓ Homepage ready to render');
           href={whatsappURL}
           target="_blank"
           rel="noopener noreferrer"
-          class="group inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-[#25D366] rounded-full shadow-2xl hover:shadow-green-500/50 transform hover:scale-105 transition-all duration-300"
+          class="group inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-bold text-white bg-[#25D366] rounded-full shadow-2xl hover:shadow-green-500/50 active:scale-95 sm:transform sm:hover:scale-105 transition-all duration-300 min-h-[48px] w-full sm:w-auto"
         >
-          <svg class="w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-6 h-6 sm:w-7 sm:h-7 mr-2 sm:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
-          {t('whatsapp.button', 'Chat on WhatsApp')}
+          <span>{t('whatsapp.button', 'Chat on WhatsApp')}</span>
         </a>
       </div>
       
-      <!-- Enhanced Trust Badges with Better Contrast -->
-      <div class="flex flex-wrap justify-center gap-8 text-base md:text-lg animate-fade-in-delay-4">
-        <div class="flex items-center gap-3 bg-black/40 px-6 py-3 rounded-full backdrop-blur-sm">
-          <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
-            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+      <!-- Enhanced Trust Badges - MOBILE RESPONSIVE -->
+      <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 md:gap-6 text-sm sm:text-base md:text-lg animate-fade-in-delay-4 px-2">
+        <div class="flex items-center gap-2 sm:gap-3 bg-black/40 px-4 sm:px-6 py-3 rounded-full backdrop-blur-sm">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
               <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
           </div>
           <span class="font-semibold">{t('common.verified', '25,000+ Happy Pilgrims')}</span>
         </div>
-        <div class="flex items-center gap-3 bg-black/40 px-6 py-3 rounded-full backdrop-blur-sm">
-          <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
-            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+        <div class="flex items-center gap-2 sm:gap-3 bg-black/40 px-4 sm:px-6 py-3 rounded-full backdrop-blur-sm">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"/>
             </svg>
           </div>
           <span class="font-semibold">{t('common.experience', '15+ Years Experience')}</span>
         </div>
-        <div class="flex items-center gap-3 bg-black/40 px-6 py-3 rounded-full backdrop-blur-sm">
-          <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-2xl">
+        <div class="flex items-center gap-2 sm:gap-3 bg-black/40 px-4 sm:px-6 py-3 rounded-full backdrop-blur-sm">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 bg-green-500 rounded-full flex items-center justify-center text-xl sm:text-2xl flex-shrink-0">
             ✓
           </div>
           <span class="font-semibold">{t('common.govt_approved', 'Govt. Approved Operator')}</span>
         </div>
       </div>
       
-      <!-- Scroll Down Indicator -->
-      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg class="w-8 h-8 text-white opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <!-- Scroll Down Indicator (Hidden on small mobile) -->
+      <div class="hidden sm:block absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white opacity-75" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
         </svg>
       </div>
     </div>
   </section>
 
-  <!-- Why Choose Adi Kailash Section -->
-  <section class="section bg-white">
-    <div class="container-custom">
-      <h2 class="section-heading">
+  <!-- Why Choose Adi Kailash Section - MOBILE OPTIMIZED -->
+  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-secondary-800">
         {t('whyChoose.heading', whyChooseContent.h2 || 'Why Choose Adi Kailash Over Mount Kailash?')}
       </h2>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
         <!-- Feature 1 - No Visa Required -->
         <div class="card text-center hover:shadow-2xl transition-shadow duration-300">
           <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -242,10 +246,10 @@ console.log('[HomePage] ✓ Homepage ready to render');
     </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="section bg-gradient-to-br from-primary-50 to-accent-50">
-    <div class="container-custom">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+  <!-- Stats Section - MOBILE OPTIMIZED -->
+  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-primary-50 to-accent-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center">
         <!-- Stat 1 - Happy Pilgrims -->
         <div class="p-8">
           <div class="text-5xl md:text-6xl font-bold gradient-text mb-2">
@@ -279,16 +283,16 @@ console.log('[HomePage] ✓ Homepage ready to render');
     </div>
   </section>
 
-  <!-- Package Preview Section with Image -->
+  <!-- Package Preview Section - MOBILE OPTIMIZED -->
   {itinerary && (
-    <section class="section bg-white">
-      <div class="container-custom">
-        <h2 class="section-heading">
+    <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-secondary-800">
           {t('packages.heading', 'Featured Package')}
         </h2>
         
-        <div class="max-w-5xl mx-auto">
-          <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             <!-- Package Image -->
             <div class="order-2 md:order-1">
               <img 
@@ -423,20 +427,20 @@ console.log('[HomePage] ✓ Homepage ready to render');
     </div>
   </section>
 
-  <!-- ==================== SACRED SITES GALLERY ==================== -->
-  <section class="section bg-white">
-    <div class="container-custom">
-      <div class="text-center mb-12">
-        <div class="text-5xl mb-4">🙏</div>
-        <h2 class="section-heading mb-4">
+  <!-- ==================== SACRED SITES GALLERY - MOBILE OPTIMIZED ==================== -->
+  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 sm:mb-12">
+        <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">🙏</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-secondary-800">
           {t('sacredSites.heading', 'Sacred Sites Along the Journey')}
         </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
           {t('sacredSites.description', 'Experience multiple holy destinations in one spiritual journey')}
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <!-- Site 1 -->
         <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
           <img 
@@ -605,20 +609,20 @@ console.log('[HomePage] ✓ Homepage ready to render');
     </div>
   </section>
 
-  <!-- ==================== TESTIMONIALS WITH IMAGES ==================== -->
-  <section class="section bg-white">
-    <div class="container-custom">
-      <div class="text-center mb-12">
-        <div class="text-5xl mb-4">💬</div>
-        <h2 class="section-heading mb-4">
+  <!-- ==================== TESTIMONIALS - MOBILE OPTIMIZED ==================== -->
+  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 sm:mb-12">
+        <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">💬</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-secondary-800">
           {t('testimonials.heading', 'What Our Pilgrims Say')}
         </h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
           {t('testimonials.description', 'Real experiences from thousands of happy pilgrims')}
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
         <!-- Testimonial 1 -->
         <div class="card hover:shadow-2xl">
           <div class="flex items-center gap-4 mb-4">
@@ -738,71 +742,73 @@ console.log('[HomePage] ✓ Homepage ready to render');
     </div>
   </section>
 
-  <!-- ==================== FINAL CTA WITH BACKGROUND IMAGE ==================== -->
-  <section class="relative section overflow-hidden">
+  <!-- ==================== FINAL CTA - MOBILE OPTIMIZED WITH BACKGROUND IMAGE ==================== -->
+  <section class="relative py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
     <div class="absolute inset-0">
       <img 
         src="/images/Adi-Kailash--819x1024.jpeg" 
         alt="Adi Kailash Final CTA"
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover object-center"
         loading="lazy"
         style="filter: brightness(0.4);"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/85"></div>
     </div>
 
-    <div class="container-custom text-center relative z-10 text-white py-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 text-white">
       <!-- Decorative Om Symbol -->
-      <div class="text-6xl mb-6" style="text-shadow: 0 0 30px rgba(255, 165, 0, 0.8);">
+      <div class="text-5xl sm:text-6xl mb-4 sm:mb-6" style="text-shadow: 0 0 30px rgba(255, 165, 0, 0.8);">
         🕉️
       </div>
       
-      <h2 class="text-4xl md:text-5xl font-bold mb-6" style="text-shadow: 0 4px 12px rgba(0,0,0,0.9);">
+      <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 px-2" style="text-shadow: 0 4px 12px rgba(0,0,0,0.9);">
         {t('cta.bookNow', 'Ready to Begin Your Sacred Journey?')}
       </h2>
-      <p class="text-xl md:text-2xl mb-10 opacity-95 max-w-3xl mx-auto" style="text-shadow: 0 2px 6px rgba(0,0,0,0.9);">
+      <p class="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-10 opacity-95 max-w-3xl mx-auto px-2" style="text-shadow: 0 2px 6px rgba(0,0,0,0.9);">
         {t('contact.subtitle', 'Contact us today to plan your Adi Kailash pilgrimage. Our expert team is ready to assist you with customized packages and complete guidance.')}
       </p>
       
-      <div class="flex flex-col sm:flex-row gap-6 justify-center mb-10">
+      <div class="flex flex-col gap-4 justify-center mb-8 sm:mb-10 px-2 max-w-md sm:max-w-none mx-auto">
         <a 
           href={locale === 'en' ? '/contact' : '/hi/contact'} 
-          class="btn-secondary text-xl px-10 py-5 shadow-2xl"
+          class="inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-bold text-white bg-white/20 backdrop-blur-sm hover:bg-white hover:text-primary-600 rounded-full shadow-2xl active:scale-95 sm:transform sm:hover:scale-105 transition-all min-h-[48px] w-full sm:w-auto"
         >
-          📧 {t('contact.heading', 'Get In Touch')}
+          <span class="text-2xl mr-2">📧</span>
+          <span>{t('contact.heading', 'Get In Touch')}</span>
         </a>
         <a 
           href={whatsappURL} 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white bg-[#25D366] rounded-full shadow-2xl hover:shadow-green-500/50 transform hover:scale-105 transition-all"
+          class="inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-bold text-white bg-[#25D366] rounded-full shadow-2xl hover:shadow-green-500/50 active:scale-95 sm:transform sm:hover:scale-105 transition-all min-h-[48px] w-full sm:w-auto"
         >
-          <svg class="w-7 h-7 mr-3" fill="currentColor" viewBox="0 0 24 24">
+          <svg class="w-6 h-6 sm:w-7 sm:h-7 mr-2 sm:mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
-          {t('whatsapp.button', 'Chat on WhatsApp')}
+          <span>{t('whatsapp.button', 'Chat on WhatsApp')}</span>
         </a>
         <a 
           href={locale === 'en' ? '/packages' : '/hi/packages'}
-          class="btn-outline border-2 border-white text-white hover:bg-white hover:text-primary-600 text-xl px-10 py-5 shadow-2xl"
+          class="inline-flex items-center justify-center px-8 py-4 sm:px-10 sm:py-5 text-lg sm:text-xl font-bold text-white border-2 border-white hover:bg-white hover:text-primary-600 rounded-full shadow-2xl active:scale-95 sm:transform sm:hover:scale-105 transition-all min-h-[48px] w-full sm:w-auto"
         >
-          📋 {t('common.viewPackages', 'View All Packages')}
+          <span class="text-2xl mr-2">📋</span>
+          <span>{t('common.viewPackages', 'View All Packages')}</span>
         </a>
       </div>
 
-      <!-- Trust Indicators -->
-      <div class="flex flex-wrap justify-center gap-8 text-sm">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">✓</div>
-          <span>{t('cta.secure', 'Secure Booking')}</span>
+      <!-- Trust Indicators - Mobile Optimized -->
+      <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-6 md:gap-8 text-sm sm:text-base px-2">
+        <div class="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-green-500 rounded-full flex items-center justify-center text-sm flex-shrink-0">✓</div>
+          <span class="font-semibold">{t('cta.secure', 'Secure Booking')}</span>
         </div>
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">✓</div>
-          <span>{t('cta.instant', 'Instant Confirmation')}</span>
+        <div class="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-blue-500 rounded-full flex items-center justify-center text-sm flex-shrink-0">✓</div>
+          <span class="font-semibold">{t('cta.instant', 'Instant Confirmation')}</span>
         </div>
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">✓</div>
-          <span>{t('cta.support', '24/7 Support')}</span>
+        <div class="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 bg-orange-500 rounded-full flex items-center justify-center text-sm flex-shrink-0">✓</div>
+          <span class="font-semibold">{t('cta.support', '24/7 Support')}</span>
         </div>
       </div>
     </div>
@@ -891,5 +897,101 @@ console.log('[HomePage] ✓ Homepage ready to render');
   .hover-lift:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ==================== INCREDIBLE 3D HERO TITLE WITH PERFECT CONTRAST ==================== */
+  .hero-title {
+    /* MULTI-LAYER TEXT SHADOWS for 3D Depth */
+    text-shadow: 
+      /* Black outline/stroke effect - creates the border */
+      -2px -2px 0 #000,
+      2px -2px 0 #000,
+      -2px 2px 0 #000,
+      2px 2px 0 #000,
+      -3px -3px 0 #000,
+      3px -3px 0 #000,
+      -3px 3px 0 #000,
+      3px 3px 0 #000,
+      /* Deep 3D shadow layers */
+      0 4px 8px rgba(0, 0, 0, 0.95),
+      0 8px 16px rgba(0, 0, 0, 0.9),
+      0 12px 24px rgba(0, 0, 0, 0.85),
+      0 16px 32px rgba(0, 0, 0, 0.8),
+      0 20px 40px rgba(0, 0, 0, 0.7),
+      /* Orange glow for spiritual effect */
+      0 0 20px rgba(255, 165, 0, 0.4),
+      0 0 40px rgba(255, 165, 0, 0.3),
+      0 0 60px rgba(255, 165, 0, 0.2);
+    
+    /* Text stroke for webkit browsers (additional outline) */
+    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.8);
+    
+    /* Ensure white color stays vibrant */
+    color: #ffffff;
+    
+    /* Letter spacing for better readability */
+    letter-spacing: 0.02em;
+    
+    /* Smooth rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    /* Subtle animation */
+    animation: hero-glow 4s ease-in-out infinite;
+  }
+
+  /* Glowing pulse animation for hero title */
+  @keyframes hero-glow {
+    0%, 100% {
+      filter: drop-shadow(0 0 20px rgba(255, 165, 0, 0.4));
+    }
+    50% {
+      filter: drop-shadow(0 0 40px rgba(255, 165, 0, 0.6));
+    }
+  }
+
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 640px) {
+    .hero-title {
+      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.8);
+      text-shadow: 
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000,
+        0 2px 4px rgba(0, 0, 0, 0.95),
+        0 4px 8px rgba(0, 0, 0, 0.9),
+        0 6px 12px rgba(0, 0, 0, 0.85),
+        0 8px 16px rgba(0, 0, 0, 0.8),
+        0 0 15px rgba(255, 165, 0, 0.4);
+    }
+  }
+
+  /* Hero Subtitle - Enhanced Contrast */
+  .hero-subtitle {
+    text-shadow: 
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000,
+      0 3px 8px rgba(0, 0, 0, 0.95),
+      0 6px 16px rgba(0, 0, 0, 0.85),
+      0 0 15px rgba(255, 165, 0, 0.2);
+    color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Hero Description - Enhanced Contrast */
+  .hero-description {
+    text-shadow: 
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000,
+      0 2px 6px rgba(0, 0, 0, 0.95),
+      0 4px 12px rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    opacity: 0.98;
+    -webkit-font-smoothing: antialiased;
   }
 </style>
