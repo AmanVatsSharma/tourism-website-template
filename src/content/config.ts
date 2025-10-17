@@ -10,8 +10,8 @@ import { defineCollection, z } from 'astro:content';
 const blogCollection = defineCollection({
   type: 'content',
   schema: z.object({
-    title: z.string().max(100),
-    description: z.string().max(200),
+    title: z.string().max(150),
+    description: z.string().max(400), // Increased for SEO-optimized descriptions
     pubDate: z.coerce.date(),
     author: z.string().default('Shiv Yatra Tourism'),
     updatedDate: z.coerce.date().optional(),
