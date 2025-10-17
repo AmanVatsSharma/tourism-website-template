@@ -43,7 +43,7 @@ const togglePath = currentLocale === 'en' ? `/hi${currentPath}` : currentPath.re
 console.log('[Header] Rendering with locale:', currentLocale);
 ---
 
-<header class="header-wrapper sticky top-0 z-50 transition-all duration-300" id="main-header">
+<header class="header-wrapper sticky top-0 z-[100] transition-all duration-300" id="main-header">
   <!-- Main Header Bar -->
   <div class="bg-gradient-to-r from-primary-600 via-accent-500 to-primary-600 text-white shadow-xl border-b-4 border-accent-400">
     <div class="container-custom">
@@ -114,12 +114,29 @@ console.log('[Header] Rendering with locale:', currentLocale);
     </div>
   </div>
 
-  <!-- Mobile Navigation Menu (Slide-in) -->
+  <!-- Mobile Menu Backdrop (Click to close) -->
+  <div
+    id="mobile-menu-backdrop"
+    class="lg:hidden fixed inset-0 bg-black/50 z-[9998] opacity-0 pointer-events-none transition-opacity duration-300"
+  ></div>
+
+  <!-- Mobile Navigation Menu (Slide-in) - FIXED Z-INDEX -->
   <div
     id="mobile-menu"
-    class="lg:hidden fixed inset-0 bg-gradient-to-br from-secondary-900 via-primary-800 to-accent-700 text-white z-40 transform translate-x-full transition-transform duration-300"
-    style="top: 0; padding-top: 80px;"
+    class="lg:hidden fixed inset-0 bg-gradient-to-br from-secondary-900 via-primary-800 to-accent-700 text-white z-[9999] transform translate-x-full transition-transform duration-300"
+    style="top: 0;"
   >
+    <!-- Close Button (Top Right) -->
+    <button
+      id="mobile-menu-close"
+      class="absolute top-6 right-6 z-[10000] w-12 h-12 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+      aria-label="Close menu"
+    >
+      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
     <!-- Decorative Background -->
     <div class="absolute inset-0 opacity-10 pointer-events-none">
       <div class="absolute top-10 left-10 text-9xl">🕉️</div>
@@ -127,7 +144,7 @@ console.log('[Header] Rendering with locale:', currentLocale);
       <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl">🏔️</div>
     </div>
 
-    <nav class="relative z-10 h-full overflow-y-auto py-8">
+    <nav class="relative z-10 h-full overflow-y-auto py-20">
       <div class="container-custom">
         <!-- Mobile Nav Items -->
         <ul class="space-y-2">
@@ -216,6 +233,12 @@ console.log('[Header] Rendering with locale:', currentLocale);
   .mobile-nav-link:hover {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   }
+  
+  /* Hide WhatsApp button when mobile menu is open */
+  body:has(#mobile-menu.translate-x-0) .whatsapp-float {
+    opacity: 0;
+    pointer-events: none;
+  }
 </style>
 
 <script>
@@ -225,50 +248,79 @@ console.log('[Header] Rendering with locale:', currentLocale);
     
     const menuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
     const menuIconOpen = document.querySelector('.menu-icon-open');
     const menuIconClose = document.querySelector('.menu-icon-close');
     
     if (menuToggle && mobileMenu && menuIconOpen && menuIconClose) {
       let isMenuOpen = false;
       
-      menuToggle.addEventListener('click', () => {
-        isMenuOpen = !isMenuOpen;
+      const openMenu = () => {
+        isMenuOpen = true;
+        mobileMenu.classList.remove('translate-x-full');
+        mobileMenu.classList.add('translate-x-0');
+        menuIconOpen.classList.add('hidden');
+        menuIconClose.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+        menuToggle.setAttribute('aria-expanded', 'true');
         
-        if (isMenuOpen) {
-          // Open menu
-          mobileMenu.classList.remove('translate-x-full');
-          mobileMenu.classList.add('translate-x-0');
-          menuIconOpen.classList.add('hidden');
-          menuIconClose.classList.remove('hidden');
-          document.body.style.overflow = 'hidden'; // Prevent scroll
-          menuToggle.setAttribute('aria-expanded', 'true');
-        } else {
-          // Close menu
-          mobileMenu.classList.remove('translate-x-0');
-          mobileMenu.classList.add('translate-x-full');
-          menuIconOpen.classList.remove('hidden');
-          menuIconClose.classList.add('hidden');
-          document.body.style.overflow = ''; // Restore scroll
-          menuToggle.setAttribute('aria-expanded', 'false');
+        // Show backdrop
+        if (mobileMenuBackdrop) {
+          mobileMenuBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+          mobileMenuBackdrop.classList.add('opacity-100', 'pointer-events-auto');
         }
         
-        console.log('[Header] Mobile menu toggled:', isMenuOpen ? 'open' : 'closed');
+        console.log('[Header] Mobile menu opened');
+      };
+      
+      const closeMenu = () => {
+        isMenuOpen = false;
+        mobileMenu.classList.remove('translate-x-0');
+        mobileMenu.classList.add('translate-x-full');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+        document.body.style.overflow = ''; // Restore scroll
+        menuToggle.setAttribute('aria-expanded', 'false');
+        
+        // Hide backdrop
+        if (mobileMenuBackdrop) {
+          mobileMenuBackdrop.classList.remove('opacity-100', 'pointer-events-auto');
+          mobileMenuBackdrop.classList.add('opacity-0', 'pointer-events-none');
+        }
+        
+        console.log('[Header] Mobile menu closed');
+      };
+      
+      // Toggle button click
+      menuToggle.addEventListener('click', () => {
+        if (isMenuOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
       });
+      
+      // Close button click (inside mobile menu)
+      if (mobileMenuClose) {
+        mobileMenuClose.addEventListener('click', closeMenu);
+      }
+      
+      // Close menu when clicking backdrop
+      if (mobileMenuBackdrop) {
+        mobileMenuBackdrop.addEventListener('click', closeMenu);
+      }
       
       // Close menu when clicking on a link
       const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
       mobileNavLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          if (isMenuOpen) {
-            menuToggle.click(); // Trigger close
-          }
-        });
+        link.addEventListener('click', closeMenu);
       });
       
       // Close menu when pressing Escape key
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isMenuOpen) {
-          menuToggle.click();
+          closeMenu();
         }
       });
     }
