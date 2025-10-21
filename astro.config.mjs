@@ -18,7 +18,7 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
   // Site URL - IMPORTANT: Update this with your actual domain before deployment
-  site: 'https://shivyatratourism.com',
+  site: 'https://www.shivyaatrakailash.in',
   
   // Integrations for enhanced functionality
   integrations: [
@@ -52,7 +52,7 @@ export default defineConfig({
   
   // Image optimization settings
   image: {
-    domains: ['shivyatratourism.com', 'images.unsplash.com', 'images.pexels.com'],
+    domains: ['www.shivyaatrakailash.in', 'shivyaatrakailash.in', 'images.unsplash.com', 'images.pexels.com'],
     // Allow images from Unsplash and Pexels for placeholders
   },
   

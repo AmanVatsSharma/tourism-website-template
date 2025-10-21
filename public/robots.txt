@@ -16,7 +16,7 @@ Allow: /styles/
 Allow: /scripts/
 
 # Sitemap location
-Sitemap: https://shivyatratourism.com/sitemap.xml
+Sitemap: https://www.shivyaatrakailash.in/sitemap-index.xml
 
 # Crawl-delay (optional - adjust if needed)
 # Crawl-delay: 1

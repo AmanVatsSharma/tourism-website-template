@@ -140,7 +140,12 @@ const alternateURL = new URL(langContext.alternatePath, Astro.site);
   <SEO page={pageName} />
   
   <!-- Schema Markup -->
-  {organizationSchema && <SchemaMarkup type="organization" />}
+  {organizationSchema && <>
+    <SchemaMarkup type="organization" />
+    <SchemaMarkup type="website" />
+    <SchemaMarkup type="localbusiness" />
+    <SchemaMarkup type="breadcrumbs" />
+  </>}
   {faqSchema && <SchemaMarkup type="faq" />}
   
   <!-- View Transitions for Smooth Page Navigation -->
@@ -157,7 +162,7 @@ const alternateURL = new URL(langContext.alternatePath, Astro.site);
     import Alpine from 'alpinejs';
     import intersect from '@alpinejs/intersect';
     Alpine.plugin(intersect);
-    window.Alpine = Alpine;
+    (window as any).Alpine = Alpine;
     Alpine.start();
   </script>
 </head>

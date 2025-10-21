@@ -35,13 +35,14 @@ const globalSettings = metaTagsData?.global_settings || {};
 // Generate canonical URL
 const currentLocale = Astro.currentLocale || 'en';
 const currentPath = Astro.url.pathname;
-const baseUrl = globalSettings.site_url || 'https://shivyatratourism.com';
+const baseUrl = Astro.site?.origin || globalSettings.site_url || 'https://www.shivyaatrakailash.in';
 const canonicalUrl = `${baseUrl}${currentPath}`;
 
-// Alternate hreflang URLs
-const alternateLangUrl = currentLocale === 'en' 
-  ? `${baseUrl}/hi${currentPath}` 
-  : `${baseUrl}${currentPath.replace('/hi', '')}`;
+// Alternate hreflang URLs (force x-default/en to English root, hi to /hi)
+const isHindi = currentPath === '/hi' || currentPath.startsWith('/hi/');
+const englishPath = isHindi ? currentPath.replace(/^\/hi/, '') || '/' : currentPath;
+const hindiPath = isHindi ? currentPath : (currentPath === '/' ? '/hi' : `/hi${currentPath}`);
+const alternateLangUrl = `${baseUrl}${isHindi ? englishPath : hindiPath}`;
 
 console.log('[SEO] Canonical URL:', canonicalUrl);
 console.log('[SEO] Alternate lang URL:', alternateLangUrl);
@@ -58,9 +59,9 @@ console.log('[SEO] Alternate lang URL:', alternateLangUrl);
     <link rel="canonical" href={canonicalUrl} />
     
     <!-- Alternate Language URLs -->
-    <link rel="alternate" hreflang="en" href={currentLocale === 'en' ? canonicalUrl : alternateLangUrl} />
-    <link rel="alternate" hreflang="hi" href={currentLocale === 'hi' ? canonicalUrl : alternateLangUrl} />
-    <link rel="alternate" hreflang="x-default" href={currentLocale === 'en' ? canonicalUrl : alternateLangUrl} />
+    <link rel="alternate" hreflang="x-default" href={`${baseUrl}${englishPath}`} />
+    <link rel="alternate" hreflang="en" href={`${baseUrl}${englishPath}`} />
+    <link rel="alternate" hreflang="hi" href={`${baseUrl}${hindiPath}`} />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />

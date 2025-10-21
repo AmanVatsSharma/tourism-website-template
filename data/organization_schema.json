@@ -1,20 +1,20 @@
 {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
-  "name": "[COMPANY_NAME - Replace with actual name]",
+  "name": "Shiv Yatra Tourism",
   "alternateName": "Adi Kailash Yatra Tours",
-  "description": "Premium Adi Kailash and Om Parvat Yatra tour operator offering customized and group pilgrimage packages from Delhi, Kathgodam, and Dharchula. Complete permit assistance, experienced guides, safe transport, and 25,000+ happy pilgrims served since [YEAR].",
-  "url": "https://[DOMAIN].com",
-  "logo": "https://[DOMAIN].com/logo.png",
-  "image": "https://[DOMAIN].com/og-image.jpg",
-  "telephone": "[+91-XXXXXXXXXX]",
-  "email": "[info@example.com]",
+  "description": "Premium Adi Kailash and Om Parvat Yatra tour operator offering customized and group pilgrimage packages from Delhi, Kathgodam, and Dharchula. Complete permit assistance, experienced guides, safe transport, and 25,000+ happy pilgrims served since 2010.",
+  "url": "https://www.shivyaatrakailash.in",
+  "logo": "https://www.shivyaatrakailash.in/favicon.svg",
+  "image": "https://www.shivyaatrakailash.in/images/Adi-Kailash.jpg",
+  "telephone": "+91-7302937532",
+  "email": "info@shivyatratourism.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "[Office Address - Street and Building]",
-    "addressLocality": "[City - e.g., Dehradun/Delhi/Kathgodam]",
+    "streetAddress": "Dharchula, Pithoragarh",
+    "addressLocality": "Dharchula",
     "addressRegion": "Uttarakhand",
-    "postalCode": "[Postal Code]",
+    "postalCode": "",
     "addressCountry": "IN"
   },
   "geo": {
@@ -36,13 +36,7 @@
       "name": "Delhi"
     }
   ],
-  "sameAs": [
-    "https://www.facebook.com/[FACEBOOK_PAGE]",
-    "https://www.instagram.com/[INSTAGRAM_HANDLE]",
-    "https://twitter.com/[TWITTER_HANDLE]",
-    "https://www.youtube.com/[YOUTUBE_CHANNEL]",
-    "https://www.linkedin.com/company/[LINKEDIN_PAGE]"
-  ],
+  "sameAs": [],
   "priceRange": "₹₹-₹₹₹",
   "paymentAccepted": "Cash, Credit Card, Debit Card, UPI, Bank Transfer, Razorpay",
   "currenciesAccepted": "INR",
@@ -67,15 +61,7 @@
       "closes": "16:00"
     }
   ],
-  "founder": {
-    "@type": "Person",
-    "name": "[FOUNDER_NAME]"
-  },
-  "foundingDate": "[YYYY-MM-DD]",
-  "numberOfEmployees": {
-    "@type": "QuantitativeValue",
-    "value": "[NUMBER]"
-  },
+  "foundingDate": "2010-01-01",
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.8",

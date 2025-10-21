@@ -9,7 +9,7 @@
 import { loadJSON } from '../utils/dataLoader';
 
 interface Props {
-  type: 'organization' | 'faq' | 'localbusiness' | 'article';
+  type: 'organization' | 'faq' | 'localbusiness' | 'article' | 'website' | 'breadcrumbs';
   articleData?: {
     title: string;
     description: string;
@@ -33,6 +33,50 @@ try {
   } else if (type === 'faq') {
     schemaData = await loadJSON('faq_schema.json');
     console.log('[SchemaMarkup] ✓ FAQ schema loaded');
+  } else if (type === 'website') {
+    const origin = Astro.site?.origin || 'https://www.shivyaatrakailash.in';
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": origin + '/',
+      "name": "Shiv Yatra Tourism",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": origin + '/search?q={search_term_string}',
+        "query-input": "required name=search_term_string"
+      }
+    };
+    console.log('[SchemaMarkup] ✓ WebSite schema generated');
+  } else if (type === 'breadcrumbs') {
+    const origin = Astro.site?.origin || 'https://www.shivyaatrakailash.in';
+    const path = Astro.url.pathname;
+    const isHindi = path === '/hi' || path.startsWith('/hi/');
+    const basePath = isHindi ? path.replace(/^\/hi/, '') || '/' : path;
+    const segments = basePath.split('/').filter(Boolean);
+    const items = [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": origin + '/'
+      },
+      ...segments.map((seg, idx) => {
+        const name = seg.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+        const url = origin + '/' + segments.slice(0, idx + 1).join('/');
+        return {
+          "@type": "ListItem",
+          "position": idx + 2,
+          "name": name,
+          "item": url
+        };
+      })
+    ];
+    schemaData = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items
+    };
+    console.log('[SchemaMarkup] ✓ BreadcrumbList schema generated');
   }
 } catch (error) {
   console.error('[SchemaMarkup] ✗ Failed to load schema:', error);
@@ -52,14 +96,14 @@ if (type === 'article' && articleData) {
     "author": {
       "@type": "Organization",
       "name": articleData.author || "Shiv Yatra Tourism",
-      "url": "https://shivyatratourism.com"
+      "url": "https://www.shivyaatrakailash.in"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Shiv Yatra Tourism",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://shivyatratourism.com/images/logo.png"
+        "url": "https://www.shivyaatrakailash.in/favicon.svg"
       }
     },
     "mainEntityOfPage": {
@@ -109,19 +153,15 @@ if (type === 'localbusiness' && schemaData) {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Shiv Yatra Tourism",
-    "url": "https://shivyatratourism.com",
-    "logo": "https://shivyatratourism.com/images/logo.png",
+    "url": "https://www.shivyaatrakailash.in",
+    "logo": "https://www.shivyaatrakailash.in/favicon.svg",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+91-7302937532",
       "contactType": "Customer Service",
       "areaServed": "IN",
       "availableLanguage": ["en", "hi"]
-    },
-    "sameAs": [
-      "https://facebook.com/shivyatratourism",
-      "https://instagram.com/shivyatratourism"
-    ]
+    }
   }
   </script>
 )}
