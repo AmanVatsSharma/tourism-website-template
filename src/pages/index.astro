@@ -418,129 +418,245 @@ console.log('[HomePage] ✓ Homepage ready to render');
     </div>
   </section>
 
-  <!-- ==================== PANCH KAILASH SECTION - FIVE SACRED PEAKS ==================== -->
-  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-purple-50 to-blue-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8 sm:mb-12">
-        <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">🏔️</div>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-secondary-800">
-          {t('panchKailash.heading', 'The Five Sacred Kailash Peaks')}
+  <!-- ==================== PANCH KAILASH SECTION - BEAUTIFUL DESIGN ==================== -->
+  <section class="py-20 sm:py-24 md:py-32 lg:py-40 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+      <div class="absolute top-20 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <!-- Header Section -->
+      <div class="text-center mb-16 sm:mb-20">
+        <div class="inline-block mb-6">
+          <div class="flex items-center gap-3 bg-white/10 backdrop-blur-lg rounded-full px-6 py-3 border border-white/20">
+            <div class="text-3xl animate-bounce">🏔️</div>
+            <span class="text-white font-semibold text-sm uppercase tracking-wider">Sacred Peaks</span>
+          </div>
+        </div>
+        
+        <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+          <span class="bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
+            {t('panchKailash.heading', 'The Five Sacred Kailash Peaks')}
+          </span>
         </h2>
-        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+        
+        <p class="text-xl sm:text-2xl text-purple-200 max-w-4xl mx-auto mb-8 leading-relaxed">
           {t('panchKailash.subheading', 'Discover the complete Panch Kailash system - five divine abodes of Lord Shiva')}
         </p>
-        <p class="text-base sm:text-lg text-gray-500 max-w-4xl mx-auto px-2 mt-4">
+        
+        <p class="text-lg text-gray-300 max-w-5xl mx-auto leading-relaxed">
           {t('panchKailash.description', 'Explore all five sacred Kailash peaks across the Himalayas, each holding unique spiritual significance and divine blessings.')}
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8">
+      <!-- Peaks Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 lg:gap-10">
         <!-- Mount Kailash (Tibet) -->
-        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-blue-100 to-purple-100">
-          <div class="p-6 text-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
-              🏔️
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600/20 to-purple-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25">
+            <div class="p-8 text-center relative z-10">
+              <div class="relative mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-3xl text-white font-bold mx-auto shadow-2xl">
+                  🏔️
+                </div>
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center text-xs text-white font-bold">
+                  ∞
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold mb-3 text-white">
+                {t('panchKailash.mountKailash.name', 'Mount Kailash')}
+              </h3>
+              
+              <div class="space-y-2 mb-4">
+                <p class="text-sm text-blue-200 font-medium">
+                  {t('panchKailash.mountKailash.location', 'Tibet')}
+                </p>
+                <p class="text-lg font-bold text-white">
+                  {t('panchKailash.mountKailash.altitude', '6,638m')}
+                </p>
+              </div>
+              
+              <p class="text-xs text-gray-300 leading-relaxed">
+                {t('panchKailash.mountKailash.significance', 'Original abode of Lord Shiva, most sacred peak')}
+              </p>
             </div>
-            <h3 class="text-xl font-bold mb-2 text-secondary-800">
-              {t('panchKailash.mountKailash.name', 'Mount Kailash')}
-            </h3>
-            <p class="text-sm text-gray-600 mb-2">
-              {t('panchKailash.mountKailash.location', 'Tibet')} • {t('panchKailash.mountKailash.altitude', '6,638m')}
-            </p>
-            <p class="text-xs text-gray-500 leading-relaxed">
-              {t('panchKailash.mountKailash.significance', 'Original abode of Lord Shiva, most sacred peak')}
-            </p>
+            
+            <!-- Hover Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
 
         <!-- Adi Kailash (Uttarakhand) - Main Focus -->
-        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-orange-100 to-red-100 border-2 border-orange-300">
-          <div class="p-6 text-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
-              🕉️
+        <div class="group relative lg:col-span-2">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-500/30 to-red-500/30 backdrop-blur-lg border-2 border-orange-400/50 hover:border-orange-300 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/40">
+            <!-- Special Badge -->
+            <div class="absolute top-4 right-4 z-20">
+              <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg">
+                MAIN DESTINATION
+              </div>
             </div>
-            <h3 class="text-xl font-bold mb-2 text-secondary-800">
-              {t('panchKailash.adiKailash.name', 'Adi Kailash')}
-            </h3>
-            <p class="text-sm text-gray-600 mb-2">
-              {t('panchKailash.adiKailash.location', 'Uttarakhand')} • {t('panchKailash.adiKailash.altitude', '5,945m')}
-            </p>
-            <p class="text-xs text-gray-500 leading-relaxed">
-              {t('panchKailash.adiKailash.significance', 'Second of Panch Kailash, accessible without visa')}
-            </p>
+            
+            <div class="p-8 text-center relative z-10">
+              <div class="relative mb-6">
+                <div class="w-24 h-24 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-4xl text-white font-bold mx-auto shadow-2xl animate-pulse">
+                  🕉️
+                </div>
+                <div class="absolute -top-2 -right-2 w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center text-sm text-white font-bold">
+                  ⭐
+                </div>
+              </div>
+              
+              <h3 class="text-2xl font-bold mb-4 text-white">
+                {t('panchKailash.adiKailash.name', 'Adi Kailash')}
+              </h3>
+              
+              <div class="space-y-2 mb-4">
+                <p class="text-sm text-orange-200 font-medium">
+                  {t('panchKailash.adiKailash.location', 'Uttarakhand')}
+                </p>
+                <p class="text-xl font-bold text-white">
+                  {t('panchKailash.adiKailash.altitude', '5,945m')}
+                </p>
+              </div>
+              
+              <p class="text-sm text-gray-200 leading-relaxed mb-4">
+                {t('panchKailash.adiKailash.significance', 'Second of Panch Kailash, accessible without visa')}
+              </p>
+              
+              <div class="flex flex-wrap gap-2 justify-center">
+                <span class="bg-white/20 text-white text-xs px-2 py-1 rounded-full">No Visa Required</span>
+                <span class="bg-white/20 text-white text-xs px-2 py-1 rounded-full">₹15,000+</span>
+                <span class="bg-white/20 text-white text-xs px-2 py-1 rounded-full">5-14 Days</span>
+              </div>
+            </div>
+            
+            <!-- Hover Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-orange-600/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
-          <div class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
-            MAIN DESTINATION
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-orange-200/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
 
         <!-- Kinner Kailash (Himachal Pradesh) -->
-        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-green-100 to-teal-100">
-          <div class="p-6 text-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
-              ⛰️
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-600/20 to-teal-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25">
+            <div class="p-8 text-center relative z-10">
+              <div class="relative mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-3xl text-white font-bold mx-auto shadow-2xl">
+                  ⛰️
+                </div>
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center text-xs text-white font-bold">
+                  3
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold mb-3 text-white">
+                {t('panchKailash.kinnerKailash.name', 'Kinner Kailash')}
+              </h3>
+              
+              <div class="space-y-2 mb-4">
+                <p class="text-sm text-green-200 font-medium">
+                  {t('panchKailash.kinnerKailash.location', 'Himachal Pradesh')}
+                </p>
+                <p class="text-lg font-bold text-white">
+                  {t('panchKailash.kinnerKailash.altitude', '6,050m')}
+                </p>
+              </div>
+              
+              <p class="text-xs text-gray-300 leading-relaxed">
+                {t('panchKailash.kinnerKailash.significance', 'Sacred peak in Kinnaur district')}
+              </p>
             </div>
-            <h3 class="text-xl font-bold mb-2 text-secondary-800">
-              {t('panchKailash.kinnerKailash.name', 'Kinner Kailash')}
-            </h3>
-            <p class="text-sm text-gray-600 mb-2">
-              {t('panchKailash.kinnerKailash.location', 'Himachal Pradesh')} • {t('panchKailash.kinnerKailash.altitude', '6,050m')}
-            </p>
-            <p class="text-xs text-gray-500 leading-relaxed">
-              {t('panchKailash.kinnerKailash.significance', 'Sacred peak in Kinnaur district')}
-            </p>
+            
+            <!-- Hover Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-green-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
 
         <!-- Manimahesh Kailash (Himachal Pradesh) -->
-        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-indigo-100 to-purple-100">
-          <div class="p-6 text-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
-              🌊
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600/20 to-purple-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/25">
+            <div class="p-8 text-center relative z-10">
+              <div class="relative mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-3xl text-white font-bold mx-auto shadow-2xl">
+                  🌊
+                </div>
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-indigo-400 rounded-full flex items-center justify-center text-xs text-white font-bold">
+                  4
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold mb-3 text-white">
+                {t('panchKailash.manimaheshKailash.name', 'Manimahesh Kailash')}
+              </h3>
+              
+              <div class="space-y-2 mb-4">
+                <p class="text-sm text-indigo-200 font-medium">
+                  {t('panchKailash.manimaheshKailash.location', 'Himachal Pradesh')}
+                </p>
+                <p class="text-lg font-bold text-white">
+                  {t('panchKailash.manimaheshKailash.altitude', '5,653m')}
+                </p>
+              </div>
+              
+              <p class="text-xs text-gray-300 leading-relaxed">
+                {t('panchKailash.manimaheshKailash.significance', 'Sacred peak near Manimahesh Lake')}
+              </p>
             </div>
-            <h3 class="text-xl font-bold mb-2 text-secondary-800">
-              {t('panchKailash.manimaheshKailash.name', 'Manimahesh Kailash')}
-            </h3>
-            <p class="text-sm text-gray-600 mb-2">
-              {t('panchKailash.manimaheshKailash.location', 'Himachal Pradesh')} • {t('panchKailash.manimaheshKailash.altitude', '5,653m')}
-            </p>
-            <p class="text-xs text-gray-500 leading-relaxed">
-              {t('panchKailash.manimaheshKailash.significance', 'Sacred peak near Manimahesh Lake')}
-            </p>
+            
+            <!-- Hover Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-indigo-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
 
         <!-- Shrikhand Kailash (Himachal Pradesh) -->
-        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-pink-100 to-rose-100">
-          <div class="p-6 text-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
-              🌸
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-pink-600/20 to-rose-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/25">
+            <div class="p-8 text-center relative z-10">
+              <div class="relative mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center text-3xl text-white font-bold mx-auto shadow-2xl">
+                  🌸
+                </div>
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-pink-400 rounded-full flex items-center justify-center text-xs text-white font-bold">
+                  5
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold mb-3 text-white">
+                {t('panchKailash.shrikhandKailash.name', 'Shrikhand Kailash')}
+              </h3>
+              
+              <div class="space-y-2 mb-4">
+                <p class="text-sm text-pink-200 font-medium">
+                  {t('panchKailash.shrikhandKailash.location', 'Himachal Pradesh')}
+                </p>
+                <p class="text-lg font-bold text-white">
+                  {t('panchKailash.shrikhandKailash.altitude', '5,227m')}
+                </p>
+              </div>
+              
+              <p class="text-xs text-gray-300 leading-relaxed">
+                {t('panchKailash.shrikhandKailash.significance', 'Sacred peak in Kullu district')}
+              </p>
             </div>
-            <h3 class="text-xl font-bold mb-2 text-secondary-800">
-              {t('panchKailash.shrikhandKailash.name', 'Shrikhand Kailash')}
-            </h3>
-            <p class="text-sm text-gray-600 mb-2">
-              {t('panchKailash.shrikhandKailash.location', 'Himachal Pradesh')} • {t('panchKailash.shrikhandKailash.altitude', '5,227m')}
-            </p>
-            <p class="text-xs text-gray-500 leading-relaxed">
-              {t('panchKailash.shrikhandKailash.significance', 'Sacred peak in Kullu district')}
-            </p>
+            
+            <!-- Hover Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-pink-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
       </div>
 
-      <div class="text-center mt-10">
+      <!-- CTA Section -->
+      <div class="text-center mt-16 sm:mt-20">
         <a 
           href={locale === 'en' ? '/about' : '/hi/about'} 
-          class="inline-flex items-center gap-2 text-purple-600 font-bold text-lg hover:gap-4 transition-all"
+          class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-purple-500/50 active:scale-95 transform hover:scale-105 transition-all duration-300"
         >
-          {t('panchKailash.learnMore', 'Learn More About Panch Kailash')}
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">🏔️</span>
+          <span>{t('panchKailash.learnMore', 'Learn More About Panch Kailash')}</span>
+          <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
         </a>
@@ -548,179 +664,417 @@ console.log('[HomePage] ✓ Homepage ready to render');
     </div>
   </section>
 
-  <!-- ==================== CHOTA KAILASH SECTION ==================== -->
-  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- Image -->
-        <div class="order-2 md:order-1">
-          <div class="relative">
-            <img 
-              src="/images/gallery/bada-kailash-parvat.jpeg" 
-              alt="Chota Kailash (Adi Kailash) Mountain Peak"
-              class="w-full h-auto rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-            <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-6xl animate-pulse-slow shadow-2xl">
-              🏔️
+  <!-- ==================== CHOTA KAILASH SECTION - STUNNING DESIGN ==================== -->
+  <section class="py-20 sm:py-24 md:py-32 lg:py-40 bg-gradient-to-br from-orange-50 via-white to-red-50 relative overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute inset-0">
+      <div class="absolute top-10 left-10 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 right-10 w-80 h-80 bg-red-200/30 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-yellow-200/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        <!-- Image Section -->
+        <div class="order-2 lg:order-1">
+          <div class="relative group">
+            <!-- Main Image Container -->
+            <div class="relative overflow-hidden rounded-3xl shadow-2xl">
+              <img 
+                src="/images/gallery/bada-kailash-parvat.jpeg" 
+                alt="Chota Kailash (Adi Kailash) Sacred Peak"
+                class="w-full h-[500px] lg:h-[600px] object-cover transform group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+              />
+              
+              <!-- Gradient Overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+              
+              <!-- Floating Badge -->
+              <div class="absolute top-6 left-6">
+                <div class="bg-white/90 backdrop-blur-lg rounded-full px-4 py-2 border border-white/50">
+                  <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                      ⛰️
+                    </div>
+                    <span class="text-gray-800 font-bold text-sm">Sacred Peak</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Altitude Badge -->
+              <div class="absolute top-6 right-6">
+                <div class="bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full px-4 py-2 shadow-lg">
+                  <div class="text-center">
+                    <div class="text-lg font-bold">5,945m</div>
+                    <div class="text-xs opacity-90">Elevation</div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Bottom Content -->
+              <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                <h3 class="text-2xl font-bold mb-2">Chota Kailash</h3>
+                <p class="text-orange-200 text-sm">Sacred Abode of Lord Shiva</p>
+              </div>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white text-2xl shadow-2xl animate-bounce">
+              🕉️
+            </div>
+            
+            <div class="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center text-white text-lg shadow-xl animate-pulse">
+              ⭐
             </div>
           </div>
         </div>
-        
-        <!-- Content -->
-        <div class="order-1 md:order-2">
-          <div class="inline-block bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-            ✨ {t('chotaKailash.heading', 'Chota Kailash - The Little Kailash')}
+
+        <!-- Content Section -->
+        <div class="order-1 lg:order-2">
+          <div class="max-w-2xl">
+            <!-- Header Badge -->
+            <div class="inline-block mb-6">
+              <div class="flex items-center gap-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full px-6 py-3 shadow-lg">
+                <div class="text-2xl animate-pulse">⛰️</div>
+                <span class="font-bold text-sm uppercase tracking-wider">Sacred Destination</span>
+              </div>
+            </div>
+            
+            <!-- Main Heading -->
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight">
+              <span class="bg-gradient-to-r from-orange-600 via-red-600 to-orange-600 bg-clip-text text-transparent">
+                {t('chotaKailash.heading', 'Chota Kailash - The Sacred Peak')}
+              </span>
+            </h2>
+            
+            <!-- Subheading -->
+            <p class="text-xl sm:text-2xl text-gray-600 mb-8 leading-relaxed">
+              {t('chotaKailash.subheading', 'Another name for Adi Kailash, representing the divine connection')}
+            </p>
+            
+            <!-- Description -->
+            <p class="text-lg text-gray-500 mb-10 leading-relaxed">
+              {t('chotaKailash.description', 'Chota Kailash is another revered name for Adi Kailash, emphasizing its spiritual significance as one of the five sacred Kailash peaks. This majestic peak offers pilgrims a profound spiritual experience without the complexities of international travel.')}
+            </p>
+            
+            <!-- Features Grid -->
+            <div class="grid sm:grid-cols-2 gap-6 mb-10">
+              <div class="group flex items-start gap-4 p-6 bg-white/50 backdrop-blur-lg rounded-2xl border border-orange-200/50 hover:border-orange-300/50 transition-all duration-300 hover:shadow-lg">
+                <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  🕉️
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-800 mb-1">Sacred Shiva Lingam</h3>
+                  <p class="text-sm text-gray-600">{t('chotaKailash.features.spiritual', 'Sacred Shiva Lingam at the summit')}</p>
+                </div>
+              </div>
+              
+              <div class="group flex items-start gap-4 p-6 bg-white/50 backdrop-blur-lg rounded-2xl border border-blue-200/50 hover:border-blue-300/50 transition-all duration-300 hover:shadow-lg">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  🏔️
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-800 mb-1">High Altitude</h3>
+                  <p class="text-sm text-gray-600">{t('chotaKailash.features.altitude', 'Elevation of 5,945 meters above sea level')}</p>
+                </div>
+              </div>
+              
+              <div class="group flex items-start gap-4 p-6 bg-white/50 backdrop-blur-lg rounded-2xl border border-green-200/50 hover:border-green-300/50 transition-all duration-300 hover:shadow-lg">
+                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  🛤️
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-800 mb-1">Easy Access</h3>
+                  <p class="text-sm text-gray-600">{t('chotaKailash.features.accessibility', 'Accessible trekking route from Dharchula')}</p>
+                </div>
+              </div>
+              
+              <div class="group flex items-start gap-4 p-6 bg-white/50 backdrop-blur-lg rounded-2xl border border-purple-200/50 hover:border-purple-300/50 transition-all duration-300 hover:shadow-lg">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  🌟
+                </div>
+                <div>
+                  <h3 class="font-bold text-gray-800 mb-1">Spiritual Journey</h3>
+                  <p class="text-sm text-gray-600">Transformative pilgrimage experience</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a 
+                href={locale === 'en' ? '/packages' : '/hi/packages'} 
+                class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-orange-500/50 active:scale-95 transform hover:scale-105 transition-all duration-300"
+              >
+                <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">⛰️</span>
+                <span>{t('chotaKailash.explore', 'Explore Chota Kailash')}</span>
+                <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+              
+              <a 
+                href={locale === 'en' ? '/about' : '/hi/about'} 
+                class="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white/80 backdrop-blur-lg text-gray-800 font-bold text-lg rounded-full border-2 border-orange-200 hover:border-orange-300 hover:bg-white transition-all duration-300"
+              >
+                <span class="text-xl">📖</span>
+                <span>Learn More</span>
+              </a>
+            </div>
           </div>
-          <h2 class="text-4xl md:text-5xl font-bold text-secondary-900 mb-6">
-            {t('chotaKailash.subheading', 'Another name for Adi Kailash, equally divine and accessible')}
-          </h2>
-          <p class="text-xl text-gray-700 mb-6 leading-relaxed">
-            {t('chotaKailash.description', 'Chota Kailash is another name for Adi Kailash, representing the same sacred peak that offers Lord Shiva\'s blessings without the need for international travel.')}
-          </p>
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-start gap-3">
-              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
-                ✓
-              </div>
-              <div>
-                <h4 class="font-bold text-lg text-secondary-800">{t('chotaKailash.significance', 'Same spiritual significance as Adi Kailash')}</h4>
-                <p class="text-gray-600">{t('chotaKailash.accessibility', 'No visa required, within India')}</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
-                ✓
-              </div>
-              <div>
-                <h4 class="font-bold text-lg text-secondary-800">{t('chotaKailash.blessings', 'Equal divine blessings and spiritual experience')}</h4>
-                <p class="text-gray-600">Experience the same sacred energy and divine presence</p>
-              </div>
-            </li>
-            <li class="flex items-start gap-3">
-              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
-                ✓
-              </div>
-              <div>
-                <h4 class="font-bold text-lg text-secondary-800">Perfect Alternative</h4>
-                <p class="text-gray-600">Same spiritual journey, easier accessibility, better affordability</p>
-              </div>
-            </li>
-          </ul>
-          <a 
-            href={locale === 'en' ? '/packages' : '/hi/packages'} 
-            class="inline-flex items-center gap-2 text-orange-600 font-bold text-lg hover:gap-4 transition-all"
-          >
-            {t('chotaKailash.learnMore', 'Discover Adi Kailash Journey')}
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-            </svg>
-          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ==================== NALA LAKE SECTION WITH VIDEO ==================== -->
-  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-green-50 to-blue-50">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8 sm:mb-12">
-        <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">🏞️</div>
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-secondary-800">
-          {t('nalaLake.heading', 'Nala Lake (Nalalekh) - Hidden Spiritual Gem')}
+  <!-- ==================== NALA LAKE SECTION - BEAUTIFUL DESIGN ==================== -->
+  <section class="py-20 sm:py-24 md:py-32 lg:py-40 bg-gradient-to-br from-emerald-900 via-teal-900 to-blue-900 relative overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+      <div class="absolute top-20 left-20 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-20 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <!-- Header Section -->
+      <div class="text-center mb-16 sm:mb-20">
+        <div class="inline-block mb-6">
+          <div class="flex items-center gap-3 bg-white/10 backdrop-blur-lg rounded-full px-6 py-3 border border-white/20">
+            <div class="text-3xl animate-bounce">🏞️</div>
+            <span class="text-white font-semibold text-sm uppercase tracking-wider">Hidden Gem</span>
+          </div>
+        </div>
+        
+        <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+          <span class="bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent">
+            {t('nalaLake.heading', 'Nala Lake (Nalalekh) - Hidden Spiritual Gem')}
+          </span>
         </h2>
-        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+        
+        <p class="text-xl sm:text-2xl text-emerald-200 max-w-4xl mx-auto mb-8 leading-relaxed">
           {t('nalaLake.subheading', 'Discover the serene lake near Dharchula with ancient Shiv temple')}
         </p>
-        <p class="text-base sm:text-lg text-gray-500 max-w-4xl mx-auto px-2 mt-4">
+        
+        <p class="text-lg text-gray-300 max-w-5xl mx-auto leading-relaxed">
           {t('nalaLake.description', 'Experience the tranquil beauty of Nala Lake, featuring the sacred Nalalekh Shiv temple. A perfect addition to your Himalayan pilgrimage journey.')}
         </p>
       </div>
 
       <!-- Full-width Video Embed -->
-      <div class="mb-12">
-        <div class="max-w-6xl mx-auto">
-          <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl">
-            <iframe
-              src="https://www.youtube.com/embed/ILjH6Vquks4?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
-              title={t('nalaLake.videoTitle', 'Nalalekh Shiv Temple - Divine Blessings')}
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerpolicy="strict-origin-when-cross-origin"
-              allowfullscreen
-              loading="lazy"
-              class="w-full h-full"
-            ></iframe>
+      <div class="mb-16 sm:mb-20">
+        <div class="max-w-7xl mx-auto">
+          <div class="relative group">
+            <div class="aspect-video rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20">
+              <iframe
+                src="https://www.youtube.com/embed/ILjH6Vquks4?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
+                title={t('nalaLake.videoTitle', 'Nalalekh Shiv Temple - Divine Blessings')}
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                loading="lazy"
+                class="w-full h-full"
+              ></iframe>
+            </div>
+            
+            <!-- Video Overlay Badge -->
+            <div class="absolute top-6 left-6">
+              <div class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white rounded-full px-4 py-2 shadow-lg">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-sm">▶️</div>
+                  <span class="font-bold text-sm">Watch Divine Experience</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Features Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12">
-        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="text-5xl mb-4">🛕</div>
-          <h3 class="text-xl font-bold mb-3 text-secondary-800">{t('nalaLake.features.temple', 'Ancient Shiv temple with divine energy')}</h3>
-          <p class="text-gray-600">Sacred Nalalekh Shiv temple with spiritual significance</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16 sm:mb-20">
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600/20 to-teal-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/25">
+            <div class="p-8 text-center relative z-10">
+              <div class="relative mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-3xl text-white font-bold mx-auto shadow-2xl">
+                  🛕
+                </div>
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-emerald-400 rounded-full flex items-center justify-center text-xs text-white font-bold">
+                  1
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold mb-3 text-white">
+                {t('nalaLake.features.temple', 'Ancient Shiv temple with divine energy')}
+              </h3>
+              
+              <p class="text-sm text-gray-300 leading-relaxed">
+                Sacred Nalalekh Shiv temple with spiritual significance
+              </p>
+            </div>
+            
+            <!-- Hover Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-emerald-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
         </div>
 
-        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="text-5xl mb-4">💧</div>
-          <h3 class="text-xl font-bold mb-3 text-secondary-800">{t('nalaLake.features.nature', 'Crystal clear lake surrounded by mountains')}</h3>
-          <p class="text-gray-600">Pristine natural beauty with mountain reflections</p>
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25">
+            <div class="p-8 text-center relative z-10">
+              <div class="relative mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-full flex items-center justify-center text-3xl text-white font-bold mx-auto shadow-2xl">
+                  💧
+                </div>
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center text-xs text-white font-bold">
+                  2
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold mb-3 text-white">
+                {t('nalaLake.features.nature', 'Crystal clear lake surrounded by mountains')}
+              </h3>
+              
+              <p class="text-sm text-gray-300 leading-relaxed">
+                Pristine natural beauty with mountain reflections
+              </p>
+            </div>
+            
+            <!-- Hover Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
         </div>
 
-        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="text-5xl mb-4">🧘</div>
-          <h3 class="text-xl font-bold mb-3 text-secondary-800">{t('nalaLake.features.peace', 'Perfect spot for meditation and spiritual reflection')}</h3>
-          <p class="text-gray-600">Tranquil environment for inner peace and contemplation</p>
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-600/20 to-indigo-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25">
+            <div class="p-8 text-center relative z-10">
+              <div class="relative mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center text-3xl text-white font-bold mx-auto shadow-2xl">
+                  🧘
+                </div>
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-purple-400 rounded-full flex items-center justify-center text-xs text-white font-bold">
+                  3
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold mb-3 text-white">
+                {t('nalaLake.features.peace', 'Perfect spot for meditation and spiritual reflection')}
+              </h3>
+              
+              <p class="text-sm text-gray-300 leading-relaxed">
+                Tranquil environment for inner peace and contemplation
+              </p>
+            </div>
+            
+            <!-- Hover Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-purple-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
         </div>
 
-        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="text-5xl mb-4">🚗</div>
-          <h3 class="text-xl font-bold mb-3 text-secondary-800">{t('nalaLake.features.accessibility', 'Easy access from Dharchula')}</h3>
-          <p class="text-gray-600">Convenient location for day trips and extended stays</p>
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-green-600/20 to-emerald-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25">
+            <div class="p-8 text-center relative z-10">
+              <div class="relative mb-6">
+                <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-3xl text-white font-bold mx-auto shadow-2xl">
+                  🚗
+                </div>
+                <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full flex items-center justify-center text-xs text-white font-bold">
+                  4
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold mb-3 text-white">
+                {t('nalaLake.features.accessibility', 'Easy access from Dharchula')}
+              </h3>
+              
+              <p class="text-sm text-gray-300 leading-relaxed">
+                Convenient location for day trips and extended stays
+              </p>
+            </div>
+            
+            <!-- Hover Effect Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-green-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          </div>
         </div>
       </div>
 
       <!-- Images Gallery -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-          <img 
-            src="/images/NaraLake_Image.jpeg" 
-            alt="Nala Lake (Nalalekh) near Dharchula"
-            class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <h3 class="text-2xl font-bold mb-2">🏞️ Nala Lake</h3>
-            <p class="text-sm opacity-90">Serene lake with mountain reflections</p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 sm:mb-20">
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white/20">
+            <img 
+              src="/images/NaraLake_Image.jpeg" 
+              alt="Nala Lake (Nalalekh) near Dharchula"
+              class="w-full h-[400px] lg:h-[500px] object-cover group-hover:scale-110 transition-transform duration-700"
+              loading="lazy"
+            />
+            
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+            
+            <!-- Floating Badge -->
+            <div class="absolute top-6 left-6">
+              <div class="bg-white/90 backdrop-blur-lg rounded-full px-4 py-2 border border-white/50">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                    🏞️
+                  </div>
+                  <span class="text-gray-800 font-bold text-sm">Sacred Lake</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Bottom Content -->
+            <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+              <h3 class="text-3xl font-bold mb-2">🏞️ Nala Lake</h3>
+              <p class="text-emerald-200 text-lg">Serene lake with mountain reflections</p>
+            </div>
           </div>
         </div>
 
-        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-          <img 
-            src="/images/खुमती का नालालेख.jpeg" 
-            alt="Nalalekh Shiv Temple near Dharchula"
-            class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-            <h3 class="text-2xl font-bold mb-2">🛕 Nalalekh Temple</h3>
-            <p class="text-sm opacity-90">Ancient Shiv temple with divine energy</p>
+        <div class="group relative">
+          <div class="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white/20">
+            <img 
+              src="/images/खुमती का नालालेख.jpeg" 
+              alt="Nalalekh Shiv Temple near Dharchula"
+              class="w-full h-[400px] lg:h-[500px] object-cover group-hover:scale-110 transition-transform duration-700"
+              loading="lazy"
+            />
+            
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+            
+            <!-- Floating Badge -->
+            <div class="absolute top-6 left-6">
+              <div class="bg-white/90 backdrop-blur-lg rounded-full px-4 py-2 border border-white/50">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                    🛕
+                  </div>
+                  <span class="text-gray-800 font-bold text-sm">Sacred Temple</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Bottom Content -->
+            <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+              <h3 class="text-3xl font-bold mb-2">🛕 Nalalekh Temple</h3>
+              <p class="text-teal-200 text-lg">Ancient Shiv temple with divine energy</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- CTA -->
+      <!-- CTA Section -->
       <div class="text-center">
         <a 
           href={locale === 'en' ? '/blog/nala-lake-nalalekh-dharchula' : '/hi/blog/nala-lake-nalalekh-dharchula-hi'} 
-          class="inline-flex items-center gap-2 text-green-600 font-bold text-lg hover:gap-4 transition-all"
+          class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-emerald-500/50 active:scale-95 transform hover:scale-105 transition-all duration-300"
         >
-          {t('nalaLake.learnMore', 'Read Complete Nala Lake Guide')}
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">🏞️</span>
+          <span>{t('nalaLake.learnMore', 'Read Complete Nala Lake Guide')}</span>
+          <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
           </svg>
         </a>
@@ -1070,197 +1424,272 @@ console.log('[HomePage] ✓ Homepage ready to render');
     </div>
   </section>
 
-  <!-- ==================== EXPERT GUIDE SECTION ==================== -->
-  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-blue-900 to-purple-900 text-white relative overflow-hidden">
-    <!-- Decorative Background Elements -->
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-20 left-20 text-9xl">🏔️</div>
-      <div class="absolute bottom-20 right-20 text-9xl">👨‍🏫</div>
-      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl">⭐</div>
+  <!-- ==================== EXPERT GUIDE SECTION - PROFESSIONAL SHOWCASE ==================== -->
+  <section class="py-20 sm:py-24 md:py-32 lg:py-40 bg-gradient-to-br from-slate-800 via-indigo-900 to-slate-800 text-white relative overflow-hidden">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+      <div class="absolute top-20 left-20 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
     </div>
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="text-center mb-12">
-        <div class="text-5xl mb-4">👨‍🏫</div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">
-          {t('expertGuide.heading', 'Meet Your Expert Guide')}
+      <!-- Header Section -->
+      <div class="text-center mb-16 sm:mb-20">
+        <div class="inline-block mb-6">
+          <div class="flex items-center gap-3 bg-white/10 backdrop-blur-lg rounded-full px-6 py-3 border border-white/20">
+            <div class="text-3xl animate-bounce">👨‍🏫</div>
+            <span class="text-white font-semibold text-sm uppercase tracking-wider">Expert Guide</span>
+          </div>
+        </div>
+        
+        <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+          <span class="bg-gradient-to-r from-white via-indigo-200 to-white bg-clip-text text-transparent">
+            {t('expertGuide.heading', 'Meet Your Expert Guide')}
+          </span>
         </h2>
-        <p class="text-xl opacity-90 max-w-3xl mx-auto mb-6">
+        
+        <p class="text-xl sm:text-2xl text-indigo-200 max-w-4xl mx-auto mb-8 leading-relaxed">
           {t('expertGuide.subheading', '10+ Years of Himalayan Expertise')}
         </p>
-        <p class="text-lg opacity-80 max-w-4xl mx-auto">
+        
+        <p class="text-lg text-gray-300 max-w-5xl mx-auto leading-relaxed">
           {t('expertGuide.description', 'Travel with confidence under the guidance of our experienced local expert who knows every trail, every story, and every sacred site in the region.')}
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
         <!-- Guide Images -->
-        <div class="order-2 md:order-1">
-          <div class="grid grid-cols-2 gap-4">
-            <div class="group relative overflow-hidden rounded-2xl shadow-2xl">
-              <img 
-                src="/images/hero-boy-01.jpeg" 
-                alt="Expert Guide - Professional Mountain Guide"
-                class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
-                <h3 class="text-lg font-bold">Expert Guide</h3>
-                <p class="text-sm opacity-90">10+ Years Experience</p>
+        <div class="order-2 lg:order-1">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="group relative">
+              <div class="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white/20">
+                <img 
+                  src="/images/hero-boy-01.jpeg" 
+                  alt="Expert Guide - Professional Mountain Guide"
+                  class="w-full h-[400px] lg:h-[500px] object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                />
+                
+                <!-- Gradient Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                
+                <!-- Floating Badge -->
+                <div class="absolute top-6 left-6">
+                  <div class="bg-white/90 backdrop-blur-lg rounded-full px-4 py-2 border border-white/50">
+                    <div class="flex items-center gap-2">
+                      <div class="w-6 h-6 bg-indigo-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                        👨‍🏫
+                      </div>
+                      <span class="text-gray-800 font-bold text-sm">Expert Guide</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Bottom Content -->
+                <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 class="text-2xl font-bold mb-2">Professional Guide</h3>
+                  <p class="text-indigo-200 text-lg">10+ Years Experience</p>
+                </div>
               </div>
             </div>
 
-            <div class="group relative overflow-hidden rounded-2xl shadow-2xl">
-              <img 
-                src="/images/hero-boy-02.jpeg" 
-                alt="Expert Guide - Local Himalayan Expert"
-                class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-                loading="lazy"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
-                <h3 class="text-lg font-bold">Local Expert</h3>
-                <p class="text-sm opacity-90">Born in Himalayas</p>
+            <div class="group relative">
+              <div class="relative overflow-hidden rounded-3xl shadow-2xl border-4 border-white/20">
+                <img 
+                  src="/images/hero-boy-02.jpeg" 
+                  alt="Expert Guide - Local Himalayan Expert"
+                  class="w-full h-[400px] lg:h-[500px] object-cover group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                />
+                
+                <!-- Gradient Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                
+                <!-- Floating Badge -->
+                <div class="absolute top-6 left-6">
+                  <div class="bg-white/90 backdrop-blur-lg rounded-full px-4 py-2 border border-white/50">
+                    <div class="flex items-center gap-2">
+                      <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                        🏔️
+                      </div>
+                      <span class="text-gray-800 font-bold text-sm">Local Expert</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Bottom Content -->
+                <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 class="text-2xl font-bold mb-2">Local Expert</h3>
+                  <p class="text-blue-200 text-lg">Born in Himalayas</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Guide Information -->
-        <div class="order-1 md:order-2">
-          <!-- Experience Stats -->
-          <div class="grid grid-cols-2 gap-6 mb-8">
-            <div class="text-center p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
-              <div class="text-3xl font-bold text-orange-400 mb-2">
-                {t('expertGuide.experience.years', '10+ Years')}
+        <div class="order-1 lg:order-2">
+          <div class="max-w-2xl">
+            <!-- Experience Stats -->
+            <div class="grid grid-cols-2 gap-6 mb-10">
+              <div class="group relative">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-600/20 to-red-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25">
+                  <div class="p-6 text-center relative z-10">
+                    <div class="text-4xl font-bold text-orange-400 mb-2">
+                      {t('expertGuide.experience.years', '10+ Years')}
+                    </div>
+                    <p class="text-sm text-gray-300">Experience</p>
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-orange-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
               </div>
-              <p class="text-sm opacity-90">Experience</p>
-            </div>
-            <div class="text-center p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
-              <div class="text-3xl font-bold text-green-400 mb-2">
-                {t('expertGuide.experience.pilgrims', '5000+ Pilgrims Guided')}
-              </div>
-              <p class="text-sm opacity-90">Successfully Guided</p>
-            </div>
-            <div class="text-center p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
-              <div class="text-3xl font-bold text-blue-400 mb-2">
-                {t('expertGuide.experience.knowledge', 'Deep Local Knowledge')}
-              </div>
-              <p class="text-sm opacity-90">Regional Expertise</p>
-            </div>
-            <div class="text-center p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
-              <div class="text-3xl font-bold text-purple-400 mb-2">
-                {t('expertGuide.experience.safety', '100% Safety Record')}
-              </div>
-              <p class="text-sm opacity-90">Safety Record</p>
-            </div>
-          </div>
 
-          <!-- Expertise Areas -->
-          <div class="space-y-4 mb-8">
-            <h3 class="text-2xl font-bold mb-4">Expertise Areas</h3>
-            
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
-                🛤️
+              <div class="group relative">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-600/20 to-emerald-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/25">
+                  <div class="p-6 text-center relative z-10">
+                    <div class="text-4xl font-bold text-green-400 mb-2">
+                      {t('expertGuide.experience.pilgrims', '5000+ Pilgrims Guided')}
+                    </div>
+                    <p class="text-sm text-gray-300">Successfully Guided</p>
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-green-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
               </div>
-              <div>
-                <h4 class="font-bold text-lg">{t('expertGuide.expertise.trails', 'Expert knowledge of all mountain trails')}</h4>
-                <p class="text-gray-300">{t('expertGuide.expertise.culture', 'Deep understanding of local culture and traditions')}</p>
+
+              <div class="group relative">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25">
+                  <div class="p-6 text-center relative z-10">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">
+                      {t('expertGuide.experience.knowledge', 'Deep Local Knowledge')}
+                    </div>
+                    <p class="text-sm text-gray-300">Regional Expertise</p>
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-blue-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+              </div>
+
+              <div class="group relative">
+                <div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 backdrop-blur-lg border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25">
+                  <div class="p-6 text-center relative z-10">
+                    <div class="text-4xl font-bold text-purple-400 mb-2">
+                      {t('expertGuide.experience.safety', '100% Safety Record')}
+                    </div>
+                    <p class="text-sm text-gray-300">Safety Record</p>
+                  </div>
+                  <div class="absolute inset-0 bg-gradient-to-t from-purple-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
               </div>
             </div>
 
-            <div class="flex items-start gap-3">
-              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
-                🛡️
-              </div>
-              <div>
-                <h4 class="font-bold text-lg">{t('expertGuide.expertise.safety', 'Comprehensive safety protocols and emergency procedures')}</h4>
-                <p class="text-gray-300">{t('expertGuide.expertise.spiritual', 'Spiritual insights and temple guidance')}</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Credentials -->
-          <div class="space-y-4 mb-8">
-            <h3 class="text-2xl font-bold mb-4">Professional Credentials</h3>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
-                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white">
-                  🏅
+            <!-- Expertise Areas -->
+            <div class="space-y-6 mb-10">
+              <h3 class="text-3xl font-bold mb-6">Expertise Areas</h3>
+              
+              <div class="group flex items-start gap-4 p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:shadow-lg">
+                <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  🛤️
                 </div>
                 <div>
-                  <h4 class="font-semibold">{t('expertGuide.credentials.certified', 'Certified Mountain Guide')}</h4>
-                  <p class="text-sm text-gray-300">Professional Certification</p>
+                  <h4 class="font-bold text-xl mb-2">{t('expertGuide.expertise.trails', 'Expert knowledge of all mountain trails')}</h4>
+                  <p class="text-gray-300">{t('expertGuide.expertise.culture', 'Deep understanding of local culture and traditions')}</p>
                 </div>
               </div>
 
-              <div class="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
-                <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white">
-                  ⚕️
+              <div class="group flex items-start gap-4 p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:shadow-lg">
+                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  🛡️
                 </div>
                 <div>
-                  <h4 class="font-semibold">{t('expertGuide.credentials.firstAid', 'Advanced First Aid Certified')}</h4>
-                  <p class="text-sm text-gray-300">Medical Training</p>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
-                <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white">
-                  🗣️
-                </div>
-                <div>
-                  <h4 class="font-semibold">{t('expertGuide.credentials.language', 'Multilingual (Hindi, English, Local dialects)')}</h4>
-                  <p class="text-sm text-gray-300">Communication</p>
-                </div>
-              </div>
-
-              <div class="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
-                <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white">
-                  🏔️
-                </div>
-                <div>
-                  <h4 class="font-semibold">{t('expertGuide.credentials.local', 'Born and raised in the Himalayas')}</h4>
-                  <p class="text-sm text-gray-300">Local Heritage</p>
+                  <h4 class="font-bold text-xl mb-2">{t('expertGuide.expertise.safety', 'Comprehensive safety protocols and emergency procedures')}</h4>
+                  <p class="text-gray-300">{t('expertGuide.expertise.spiritual', 'Spiritual insights and temple guidance')}</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Testimonial -->
-          <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mb-8">
-            <div class="flex items-start gap-4">
-              <div class="text-4xl">💬</div>
-              <div>
-                <p class="text-lg italic mb-4">
-                  "{t('expertGuide.testimonial', 'Our guide made the entire journey seamless and spiritually enriching. His knowledge of the region and care for our safety was exceptional.')}"
-                </p>
-                <div class="flex items-center gap-2">
-                  <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                    RS
+            <!-- Credentials -->
+            <div class="space-y-6 mb-10">
+              <h3 class="text-3xl font-bold mb-6">Professional Credentials</h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="group flex items-center gap-4 p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:shadow-lg">
+                  <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    🏅
                   </div>
                   <div>
-                    <p class="font-semibold">Rajesh Sharma</p>
-                    <p class="text-sm text-gray-300">Delhi • June 2024</p>
+                    <h4 class="font-semibold text-lg">{t('expertGuide.credentials.certified', 'Certified Mountain Guide')}</h4>
+                    <p class="text-sm text-gray-300">Professional Certification</p>
+                  </div>
+                </div>
+
+                <div class="group flex items-center gap-4 p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:shadow-lg">
+                  <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    ⚕️
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">{t('expertGuide.credentials.firstAid', 'Advanced First Aid Certified')}</h4>
+                    <p class="text-sm text-gray-300">Medical Training</p>
+                  </div>
+                </div>
+
+                <div class="group flex items-center gap-4 p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:shadow-lg">
+                  <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    🗣️
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">{t('expertGuide.credentials.language', 'Multilingual (Hindi, English, Local dialects)')}</h4>
+                    <p class="text-sm text-gray-300">Communication</p>
+                  </div>
+                </div>
+
+                <div class="group flex items-center gap-4 p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:shadow-lg">
+                  <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-xl flex items-center justify-center text-white text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    🏔️
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg">{t('expertGuide.credentials.local', 'Born and raised in the Himalayas')}</h4>
+                    <p class="text-sm text-gray-300">Local Heritage</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- CTA Button -->
-          <div class="text-center">
-            <a 
-              href={whatsappURL}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-orange-500/50 active:scale-95 transform hover:scale-105 transition-all duration-300"
-            >
-              <span class="text-2xl">👨‍🏫</span>
-              <span>{t('expertGuide.bookWithGuide', 'Book Your Journey with Expert Guide')}</span>
-            </a>
+            <!-- Testimonial -->
+            <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20 mb-10">
+              <div class="flex items-start gap-6">
+                <div class="text-5xl">💬</div>
+                <div>
+                  <p class="text-xl italic mb-6 leading-relaxed">
+                    "{t('expertGuide.testimonial', 'Our guide made the entire journey seamless and spiritually enriching. His knowledge of the region and care for our safety was exceptional.')}"
+                  </p>
+                  <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      RS
+                    </div>
+                    <div>
+                      <p class="font-semibold text-lg">Rajesh Sharma</p>
+                      <p class="text-gray-300">Delhi • June 2024</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="text-center">
+              <a 
+                href={whatsappURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-orange-500/50 active:scale-95 transform hover:scale-105 transition-all duration-300"
+              >
+                <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">👨‍🏫</span>
+                <span>{t('expertGuide.bookWithGuide', 'Book Your Journey with Expert Guide')}</span>
+                <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
