@@ -23,9 +23,6 @@ const sortedPosts = allBlogPosts.sort((a, b) =>
 
 console.log('[BlogIndex] ✓ Loaded', sortedPosts.length, 'blog posts');
 
-// Extract unique tags
-const allTags = [...new Set(sortedPosts.flatMap(post => post.data.tags || []))];
-
 const pageTitle = 'Adi Kailash Travel Blog - Guides, Tips & Stories';
 const pageDescription = 'Explore comprehensive travel guides, pilgrimage tips, and spiritual insights for your Adi Kailash Yatra journey.';
 ---
@@ -33,7 +30,6 @@ const pageDescription = 'Explore comprehensive travel guides, pilgrimage tips, a
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  locale="en"
   pageName="blog"
 >
   <!-- Hero Section with Spiritual Design -->
@@ -82,24 +78,6 @@ const pageDescription = 'Explore comprehensive travel guides, pilgrimage tips, a
     </div>
   </section>
 
-  <!-- Tag Filter Section -->
-  {allTags.length > 0 && (
-    <section class="bg-white border-b border-gray-200 py-6 sticky top-0 z-30 shadow-md">
-      <div class="container-custom">
-        <div class="flex flex-wrap justify-center items-center gap-3">
-          <span class="text-gray-600 font-medium">Filter by:</span>
-          <button class="filter-tag active px-5 py-2 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 text-white font-medium hover:shadow-lg transition-all transform hover:scale-105">
-            All Posts ({sortedPosts.length})
-          </button>
-          {allTags.map(tag => (
-            <button class="filter-tag px-5 py-2 rounded-full bg-gray-100 hover:bg-gradient-to-r hover:from-primary-100 hover:to-accent-100 text-gray-700 hover:text-primary-800 font-medium transition-all transform hover:scale-105">
-              {tag}
-            </button>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
 
   <!-- Blog Posts Grid -->
   <section class="section bg-gradient-to-br from-gray-50 via-primary-50/30 to-accent-50/30">
@@ -250,41 +228,6 @@ const pageDescription = 'Explore comprehensive travel guides, pilgrimage tips, a
     }
   }
 
-  /* Filter Tag Active State */
-  .filter-tag.active {
-    @apply shadow-lg scale-105;
-  }
 </style>
 
-<script>
-  // Simple tag filtering (client-side)
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('[BlogIndex] Initializing tag filter...');
-    
-    const filterBtns = document.querySelectorAll('.filter-tag');
-    const blogCards = document.querySelectorAll('.blog-card');
-    
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filterText = btn.textContent?.trim() || '';
-        console.log('[BlogIndex] Filtering by:', filterText);
-        
-        // Update active state
-        filterBtns.forEach(b => {
-          b.classList.remove('active', 'from-primary-500', 'to-accent-500', 'text-white', 'shadow-lg', 'scale-105');
-          b.classList.add('bg-gray-100', 'text-gray-700');
-        });
-        btn.classList.add('active', 'from-primary-500', 'to-accent-500', 'text-white', 'shadow-lg', 'scale-105');
-        btn.classList.remove('bg-gray-100', 'text-gray-700');
-        
-        // Show all posts for now (can enhance with actual filtering)
-        blogCards.forEach(card => {
-          card.style.display = 'block';
-        });
-      });
-    });
-    
-    console.log('[BlogIndex] ✓ Tag filter initialized with', filterBtns.length, 'tags');
-  });
-</script>
 
