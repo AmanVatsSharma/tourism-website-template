@@ -1,0 +1,212 @@
+---
+/**
+ * YouTube Embed Component - Reusable Video Player
+ * 
+ * Features:
+ * - Responsive design with proper aspect ratios
+ * - Autoplay, mute, loop options
+ * - Error handling and fallback content
+ * - Loading optimization
+ * - Support for different video types (16:9, 9:16 shorts)
+ * 
+ * Usage:
+ * <YouTubeEmbed 
+ *   videoId="ILjH6Vquks4" 
+ *   aspectRatio="16:9" 
+ *   autoplay={true} 
+ *   mute={true}
+ *   title="Nala Lake Temple Video"
+ * />
+ */
+
+interface Props {
+  videoId: string;
+  title: string;
+  aspectRatio?: '16:9' | '9:16' | '4:3';
+  autoplay?: boolean;
+  mute?: boolean;
+  loop?: boolean;
+  controls?: boolean;
+  className?: string;
+  width?: string;
+  height?: string;
+}
+
+const { 
+  videoId, 
+  title, 
+  aspectRatio = '16:9', 
+  autoplay = false, 
+  mute = true, 
+  loop = false, 
+  controls = true,
+  className = '',
+  width = '100%',
+  height = 'auto'
+} = Astro.props;
+
+// Console logging for debugging
+console.log('[YouTubeEmbed] ========================================');
+console.log('[YouTubeEmbed] Rendering YouTube video:', videoId);
+console.log('[YouTubeEmbed] Aspect ratio:', aspectRatio);
+console.log('[YouTubeEmbed] Autoplay:', autoplay);
+console.log('[YouTubeEmbed] ========================================');
+
+// Calculate aspect ratio classes
+const getAspectRatioClass = (ratio: string) => {
+  switch (ratio) {
+    case '16:9':
+      return 'aspect-video'; // 16:9 ratio
+    case '9:16':
+      return 'aspect-[9/16]'; // 9:16 ratio for shorts
+    case '4:3':
+      return 'aspect-[4/3]'; // 4:3 ratio
+    default:
+      return 'aspect-video';
+  }
+};
+
+// Build YouTube URL with parameters
+const buildYouTubeUrl = () => {
+  const baseUrl = `https://www.youtube.com/embed/${videoId}`;
+  const params = new URLSearchParams();
+  
+  if (autoplay) params.append('autoplay', '1');
+  if (mute) params.append('mute', '1');
+  if (loop) params.append('loop', '1');
+  if (!controls) params.append('controls', '0');
+  
+  // Add additional parameters for better performance
+  params.append('rel', '0'); // Don't show related videos
+  params.append('modestbranding', '1'); // Minimal YouTube branding
+  params.append('playsinline', '1'); // Play inline on mobile
+  
+  return `${baseUrl}?${params.toString()}`;
+};
+
+const youtubeUrl = buildYouTubeUrl();
+const aspectClass = getAspectRatioClass(aspectRatio);
+---
+
+<div class={`youtube-embed-container ${aspectClass} ${className}`}>
+  <!-- Main YouTube iframe -->
+  <iframe
+    src={youtubeUrl}
+    title={title}
+    width={width}
+    height={height}
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+    loading="lazy"
+    class="w-full h-full rounded-lg shadow-lg"
+    style="min-height: 200px;"
+  ></iframe>
+  
+  <!-- Fallback content for when video fails to load -->
+  <div class="youtube-fallback hidden bg-gray-100 rounded-lg p-8 text-center">
+    <div class="text-6xl mb-4">📺</div>
+    <h3 class="text-xl font-semibold text-gray-700 mb-2">Video Loading Error</h3>
+    <p class="text-gray-600 mb-4">
+      Unable to load the video. Please check your internet connection or try refreshing the page.
+    </p>
+    <button 
+      onclick="this.parentElement.previousElementSibling.src = this.parentElement.previousElementSibling.src"
+      class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+    >
+      Retry Loading Video
+    </button>
+  </div>
+</div>
+
+<style>
+  /* Responsive container with proper aspect ratio */
+  .youtube-embed-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Ensure iframe fills container */
+  .youtube-embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .youtube-embed-container {
+      border-radius: 0.75rem;
+    }
+    
+    /* Adjust for mobile shorts */
+    .aspect-\[9\/16\] {
+      max-height: 80vh;
+    }
+  }
+  
+  /* Loading state */
+  .youtube-embed-container iframe[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .youtube-embed-container iframe[loading="lazy"]:not([src=""]) {
+    opacity: 1;
+  }
+  
+  /* Error handling styles */
+  .youtube-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+<script>
+  // Error handling for video loading
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('[YouTubeEmbed] Script loaded - setting up error handling');
+    
+    const iframes = document.querySelectorAll('.youtube-embed-container iframe');
+    
+    iframes.forEach((iframe, index) => {
+      console.log(`[YouTubeEmbed] Setting up iframe ${index + 1}`);
+      
+      // Add error event listener
+      iframe.addEventListener('error', function() {
+        console.error(`[YouTubeEmbed] Error loading video ${index + 1}`);
+        const container = this.closest('.youtube-embed-container');
+        const fallback = container.querySelector('.youtube-fallback');
+        
+        if (fallback) {
+          this.style.display = 'none';
+          fallback.classList.remove('hidden');
+        }
+      });
+      
+      // Add load event listener for success
+      iframe.addEventListener('load', function() {
+        console.log(`[YouTubeEmbed] Video ${index + 1} loaded successfully`);
+        const container = this.closest('.youtube-embed-container');
+        const fallback = container.querySelector('.youtube-fallback');
+        
+        if (fallback) {
+          fallback.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

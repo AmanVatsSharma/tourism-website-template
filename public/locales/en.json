@@ -171,6 +171,96 @@
     "english": "English",
     "hindi": "हिंदी",
     "currentLanguage": "Language"
+  },
+  "panchKailash": {
+    "heading": "The Five Sacred Kailash Peaks",
+    "subheading": "Discover the complete Panch Kailash system - five divine abodes of Lord Shiva",
+    "description": "Explore all five sacred Kailash peaks across the Himalayas, each holding unique spiritual significance and divine blessings.",
+    "mountKailash": {
+      "name": "Mount Kailash",
+      "location": "Tibet",
+      "altitude": "6,638m",
+      "significance": "Original abode of Lord Shiva, most sacred peak"
+    },
+    "adiKailash": {
+      "name": "Adi Kailash",
+      "location": "Uttarakhand",
+      "altitude": "5,945m",
+      "significance": "Second of Panch Kailash, accessible without visa"
+    },
+    "kinnerKailash": {
+      "name": "Kinner Kailash",
+      "location": "Himachal Pradesh",
+      "altitude": "6,050m",
+      "significance": "Sacred peak in Kinnaur district"
+    },
+    "manimaheshKailash": {
+      "name": "Manimahesh Kailash",
+      "location": "Himachal Pradesh",
+      "altitude": "5,653m",
+      "significance": "Sacred peak near Manimahesh Lake"
+    },
+    "shrikhandKailash": {
+      "name": "Shrikhand Kailash",
+      "location": "Himachal Pradesh",
+      "altitude": "5,227m",
+      "significance": "Sacred peak in Kullu district"
+    },
+    "learnMore": "Learn More About Panch Kailash"
+  },
+  "chotaKailash": {
+    "heading": "Chota Kailash - The Little Kailash",
+    "subheading": "Another name for Adi Kailash, equally divine and accessible",
+    "description": "Chota Kailash is another name for Adi Kailash, representing the same sacred peak that offers Lord Shiva's blessings without the need for international travel.",
+    "significance": "Same spiritual significance as Adi Kailash",
+    "accessibility": "No visa required, within India",
+    "blessings": "Equal divine blessings and spiritual experience",
+    "learnMore": "Discover Adi Kailash Journey"
+  },
+  "nalaLake": {
+    "heading": "Nala Lake (Nalalekh) - Hidden Spiritual Gem",
+    "subheading": "Discover the serene lake near Dharchula with ancient Shiv temple",
+    "description": "Experience the tranquil beauty of Nala Lake, featuring the sacred Nalalekh Shiv temple. A perfect addition to your Himalayan pilgrimage journey.",
+    "features": {
+      "temple": "Ancient Shiv temple with divine energy",
+      "nature": "Crystal clear lake surrounded by mountains",
+      "peace": "Perfect spot for meditation and spiritual reflection",
+      "accessibility": "Easy access from Dharchula"
+    },
+    "videoTitle": "Nalalekh Shiv Temple - Divine Blessings",
+    "learnMore": "Read Complete Nala Lake Guide",
+    "visitBlog": "Visit Our Blog"
+  },
+  "expertGuide": {
+    "heading": "Meet Your Expert Guide",
+    "subheading": "10+ Years of Himalayan Expertise",
+    "description": "Travel with confidence under the guidance of our experienced local expert who knows every trail, every story, and every sacred site in the region.",
+    "experience": {
+      "years": "10+ Years",
+      "pilgrims": "5000+ Pilgrims Guided",
+      "knowledge": "Deep Local Knowledge",
+      "safety": "100% Safety Record"
+    },
+    "expertise": {
+      "trails": "Expert knowledge of all mountain trails",
+      "culture": "Deep understanding of local culture and traditions",
+      "safety": "Comprehensive safety protocols and emergency procedures",
+      "spiritual": "Spiritual insights and temple guidance"
+    },
+    "credentials": {
+      "certified": "Certified Mountain Guide",
+      "firstAid": "Advanced First Aid Certified",
+      "language": "Multilingual (Hindi, English, Local dialects)",
+      "local": "Born and raised in the Himalayas"
+    },
+    "testimonial": "Our guide made the entire journey seamless and spiritually enriching. His knowledge of the region and care for our safety was exceptional.",
+    "bookWithGuide": "Book Your Journey with Expert Guide"
+  },
+  "videos": {
+    "nalaLake": "Nala Lake Temple Experience",
+    "adiKailashShort": "Adi Kailash Yatra Highlights",
+    "playVideo": "Play Video",
+    "watchNow": "Watch Now"
   }
 }
 

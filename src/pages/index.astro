@@ -362,7 +362,7 @@ console.log('[HomePage] ✓ Homepage ready to render');
         <div class="order-2 md:order-1">
           <div class="relative">
             <img 
-              src="/images/modi-parvati-kund-pooja_202310277471.jpg" 
+              src="/images/gallery/om-parvat-01.jpeg" 
               alt="Om Parvat Natural Om Symbol"
               class="w-full h-auto rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
               loading="lazy"
@@ -413,16 +413,317 @@ console.log('[HomePage] ✓ Homepage ready to render');
               </div>
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PANCH KAILASH SECTION - FIVE SACRED PEAKS ==================== -->
+  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-purple-50 to-blue-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 sm:mb-12">
+        <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">🏔️</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-secondary-800">
+          {t('panchKailash.heading', 'The Five Sacred Kailash Peaks')}
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+          {t('panchKailash.subheading', 'Discover the complete Panch Kailash system - five divine abodes of Lord Shiva')}
+        </p>
+        <p class="text-base sm:text-lg text-gray-500 max-w-4xl mx-auto px-2 mt-4">
+          {t('panchKailash.description', 'Explore all five sacred Kailash peaks across the Himalayas, each holding unique spiritual significance and divine blessings.')}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 sm:gap-8">
+        <!-- Mount Kailash (Tibet) -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-blue-100 to-purple-100">
+          <div class="p-6 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
+              🏔️
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-secondary-800">
+              {t('panchKailash.mountKailash.name', 'Mount Kailash')}
+            </h3>
+            <p class="text-sm text-gray-600 mb-2">
+              {t('panchKailash.mountKailash.location', 'Tibet')} • {t('panchKailash.mountKailash.altitude', '6,638m')}
+            </p>
+            <p class="text-xs text-gray-500 leading-relaxed">
+              {t('panchKailash.mountKailash.significance', 'Original abode of Lord Shiva, most sacred peak')}
+            </p>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+
+        <!-- Adi Kailash (Uttarakhand) - Main Focus -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-orange-100 to-red-100 border-2 border-orange-300">
+          <div class="p-6 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
+              🕉️
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-secondary-800">
+              {t('panchKailash.adiKailash.name', 'Adi Kailash')}
+            </h3>
+            <p class="text-sm text-gray-600 mb-2">
+              {t('panchKailash.adiKailash.location', 'Uttarakhand')} • {t('panchKailash.adiKailash.altitude', '5,945m')}
+            </p>
+            <p class="text-xs text-gray-500 leading-relaxed">
+              {t('panchKailash.adiKailash.significance', 'Second of Panch Kailash, accessible without visa')}
+            </p>
+          </div>
+          <div class="absolute top-2 right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+            MAIN DESTINATION
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-orange-200/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+
+        <!-- Kinner Kailash (Himachal Pradesh) -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-green-100 to-teal-100">
+          <div class="p-6 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
+              ⛰️
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-secondary-800">
+              {t('panchKailash.kinnerKailash.name', 'Kinner Kailash')}
+            </h3>
+            <p class="text-sm text-gray-600 mb-2">
+              {t('panchKailash.kinnerKailash.location', 'Himachal Pradesh')} • {t('panchKailash.kinnerKailash.altitude', '6,050m')}
+            </p>
+            <p class="text-xs text-gray-500 leading-relaxed">
+              {t('panchKailash.kinnerKailash.significance', 'Sacred peak in Kinnaur district')}
+            </p>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+
+        <!-- Manimahesh Kailash (Himachal Pradesh) -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-indigo-100 to-purple-100">
+          <div class="p-6 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
+              🌊
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-secondary-800">
+              {t('panchKailash.manimaheshKailash.name', 'Manimahesh Kailash')}
+            </h3>
+            <p class="text-sm text-gray-600 mb-2">
+              {t('panchKailash.manimaheshKailash.location', 'Himachal Pradesh')} • {t('panchKailash.manimaheshKailash.altitude', '5,653m')}
+            </p>
+            <p class="text-xs text-gray-500 leading-relaxed">
+              {t('panchKailash.manimaheshKailash.significance', 'Sacred peak near Manimahesh Lake')}
+            </p>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+
+        <!-- Shrikhand Kailash (Himachal Pradesh) -->
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-pink-100 to-rose-100">
+          <div class="p-6 text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center text-2xl text-white font-bold mx-auto mb-4">
+              🌸
+            </div>
+            <h3 class="text-xl font-bold mb-2 text-secondary-800">
+              {t('panchKailash.shrikhandKailash.name', 'Shrikhand Kailash')}
+            </h3>
+            <p class="text-sm text-gray-600 mb-2">
+              {t('panchKailash.shrikhandKailash.location', 'Himachal Pradesh')} • {t('panchKailash.shrikhandKailash.altitude', '5,227m')}
+            </p>
+            <p class="text-xs text-gray-500 leading-relaxed">
+              {t('panchKailash.shrikhandKailash.significance', 'Sacred peak in Kullu district')}
+            </p>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10">
+        <a 
+          href={locale === 'en' ? '/about' : '/hi/about'} 
+          class="inline-flex items-center gap-2 text-purple-600 font-bold text-lg hover:gap-4 transition-all"
+        >
+          {t('panchKailash.learnMore', 'Learn More About Panch Kailash')}
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CHOTA KAILASH SECTION ==================== -->
+  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Image -->
+        <div class="order-2 md:order-1">
+          <div class="relative">
+            <img 
+              src="/images/gallery/bada-kailash-parvat.jpeg" 
+              alt="Chota Kailash (Adi Kailash) Mountain Peak"
+              class="w-full h-auto rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-6xl animate-pulse-slow shadow-2xl">
+              🏔️
+            </div>
+          </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="order-1 md:order-2">
+          <div class="inline-block bg-orange-100 text-orange-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+            ✨ {t('chotaKailash.heading', 'Chota Kailash - The Little Kailash')}
+          </div>
+          <h2 class="text-4xl md:text-5xl font-bold text-secondary-900 mb-6">
+            {t('chotaKailash.subheading', 'Another name for Adi Kailash, equally divine and accessible')}
+          </h2>
+          <p class="text-xl text-gray-700 mb-6 leading-relaxed">
+            {t('chotaKailash.description', 'Chota Kailash is another name for Adi Kailash, representing the same sacred peak that offers Lord Shiva\'s blessings without the need for international travel.')}
+          </p>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
+                ✓
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-secondary-800">{t('chotaKailash.significance', 'Same spiritual significance as Adi Kailash')}</h4>
+                <p class="text-gray-600">{t('chotaKailash.accessibility', 'No visa required, within India')}</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
+                ✓
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-secondary-800">{t('chotaKailash.blessings', 'Equal divine blessings and spiritual experience')}</h4>
+                <p class="text-gray-600">Experience the same sacred energy and divine presence</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
+                ✓
+              </div>
+              <div>
+                <h4 class="font-bold text-lg text-secondary-800">Perfect Alternative</h4>
+                <p class="text-gray-600">Same spiritual journey, easier accessibility, better affordability</p>
+              </div>
+            </li>
+          </ul>
           <a 
-            href={locale === 'en' ? '/about' : '/hi/about'} 
+            href={locale === 'en' ? '/packages' : '/hi/packages'} 
             class="inline-flex items-center gap-2 text-orange-600 font-bold text-lg hover:gap-4 transition-all"
           >
-            {t('common.learnMore', 'Learn More About Om Parvat')}
+            {t('chotaKailash.learnMore', 'Discover Adi Kailash Journey')}
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== NALA LAKE SECTION WITH VIDEO ==================== -->
+  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-green-50 to-blue-50">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8 sm:mb-12">
+        <div class="text-4xl sm:text-5xl mb-3 sm:mb-4">🏞️</div>
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-secondary-800">
+          {t('nalaLake.heading', 'Nala Lake (Nalalekh) - Hidden Spiritual Gem')}
+        </h2>
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+          {t('nalaLake.subheading', 'Discover the serene lake near Dharchula with ancient Shiv temple')}
+        </p>
+        <p class="text-base sm:text-lg text-gray-500 max-w-4xl mx-auto px-2 mt-4">
+          {t('nalaLake.description', 'Experience the tranquil beauty of Nala Lake, featuring the sacred Nalalekh Shiv temple. A perfect addition to your Himalayan pilgrimage journey.')}
+        </p>
+      </div>
+
+      <!-- Full-width Video Embed -->
+      <div class="mb-12">
+        <div class="max-w-6xl mx-auto">
+          <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl">
+            <iframe
+              src="https://www.youtube.com/embed/ILjH6Vquks4?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
+              title={t('nalaLake.videoTitle', 'Nalalekh Shiv Temple - Divine Blessings')}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              loading="lazy"
+              class="w-full h-full"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12">
+        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-5xl mb-4">🛕</div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800">{t('nalaLake.features.temple', 'Ancient Shiv temple with divine energy')}</h3>
+          <p class="text-gray-600">Sacred Nalalekh Shiv temple with spiritual significance</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-5xl mb-4">💧</div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800">{t('nalaLake.features.nature', 'Crystal clear lake surrounded by mountains')}</h3>
+          <p class="text-gray-600">Pristine natural beauty with mountain reflections</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-5xl mb-4">🧘</div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800">{t('nalaLake.features.peace', 'Perfect spot for meditation and spiritual reflection')}</h3>
+          <p class="text-gray-600">Tranquil environment for inner peace and contemplation</p>
+        </div>
+
+        <div class="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-5xl mb-4">🚗</div>
+          <h3 class="text-xl font-bold mb-3 text-secondary-800">{t('nalaLake.features.accessibility', 'Easy access from Dharchula')}</h3>
+          <p class="text-gray-600">Convenient location for day trips and extended stays</p>
+        </div>
+      </div>
+
+      <!-- Images Gallery -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+          <img 
+            src="/images/NaraLake_Image.jpeg" 
+            alt="Nala Lake (Nalalekh) near Dharchula"
+            class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <h3 class="text-2xl font-bold mb-2">🏞️ Nala Lake</h3>
+            <p class="text-sm opacity-90">Serene lake with mountain reflections</p>
+          </div>
+        </div>
+
+        <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
+          <img 
+            src="/images/खुमती का नालालेख.jpeg" 
+            alt="Nalalekh Shiv Temple near Dharchula"
+            class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <h3 class="text-2xl font-bold mb-2">🛕 Nalalekh Temple</h3>
+            <p class="text-sm opacity-90">Ancient Shiv temple with divine energy</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center">
+        <a 
+          href={locale === 'en' ? '/blog/nala-lake-nalalekh-dharchula' : '/hi/blog/nala-lake-nalalekh-dharchula-hi'} 
+          class="inline-flex items-center gap-2 text-green-600 font-bold text-lg hover:gap-4 transition-all"
+        >
+          {t('nalaLake.learnMore', 'Read Complete Nala Lake Guide')}
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -606,6 +907,33 @@ console.log('[HomePage] ✓ Homepage ready to render');
           </p>
         </div>
       </div>
+
+      <!-- Adi Kailash Yatra Short Video -->
+      <div class="mt-12">
+        <div class="text-center mb-8">
+          <h3 class="text-2xl md:text-3xl font-bold mb-4">
+            {t('videos.adiKailashShort', 'Adi Kailash Yatra Highlights')}
+          </h3>
+          <p class="text-lg opacity-90 max-w-2xl mx-auto">
+            Watch this short video to experience the spiritual journey and breathtaking views of Adi Kailash
+          </p>
+        </div>
+        
+        <div class="max-w-md mx-auto">
+          <div class="aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl">
+            <iframe
+              src="https://www.youtube.com/embed/OpZ8k2n5SZM?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1"
+              title={t('videos.adiKailashShort', 'Adi Kailash Yatra Highlights')}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              loading="lazy"
+              class="w-full h-full"
+            ></iframe>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -737,6 +1065,203 @@ console.log('[HomePage] ✓ Homepage ready to render');
           <div class="text-5xl mb-4">💰</div>
           <h3 class="text-xl font-bold mb-3">Best Price Guarantee</h3>
           <p class="text-gray-600">Transparent pricing with no hidden costs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPERT GUIDE SECTION ==================== -->
+  <section class="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-blue-900 to-purple-900 text-white relative overflow-hidden">
+    <!-- Decorative Background Elements -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 left-20 text-9xl">🏔️</div>
+      <div class="absolute bottom-20 right-20 text-9xl">👨‍🏫</div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl">⭐</div>
+    </div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center mb-12">
+        <div class="text-5xl mb-4">👨‍🏫</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">
+          {t('expertGuide.heading', 'Meet Your Expert Guide')}
+        </h2>
+        <p class="text-xl opacity-90 max-w-3xl mx-auto mb-6">
+          {t('expertGuide.subheading', '10+ Years of Himalayan Expertise')}
+        </p>
+        <p class="text-lg opacity-80 max-w-4xl mx-auto">
+          {t('expertGuide.description', 'Travel with confidence under the guidance of our experienced local expert who knows every trail, every story, and every sacred site in the region.')}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Guide Images -->
+        <div class="order-2 md:order-1">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="group relative overflow-hidden rounded-2xl shadow-2xl">
+              <img 
+                src="/images/hero-boy-01.jpeg" 
+                alt="Expert Guide - Professional Mountain Guide"
+                class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                <h3 class="text-lg font-bold">Expert Guide</h3>
+                <p class="text-sm opacity-90">10+ Years Experience</p>
+              </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-2xl shadow-2xl">
+              <img 
+                src="/images/hero-boy-02.jpeg" 
+                alt="Expert Guide - Local Himalayan Expert"
+                class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                <h3 class="text-lg font-bold">Local Expert</h3>
+                <p class="text-sm opacity-90">Born in Himalayas</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guide Information -->
+        <div class="order-1 md:order-2">
+          <!-- Experience Stats -->
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div class="text-center p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
+              <div class="text-3xl font-bold text-orange-400 mb-2">
+                {t('expertGuide.experience.years', '10+ Years')}
+              </div>
+              <p class="text-sm opacity-90">Experience</p>
+            </div>
+            <div class="text-center p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
+              <div class="text-3xl font-bold text-green-400 mb-2">
+                {t('expertGuide.experience.pilgrims', '5000+ Pilgrims Guided')}
+              </div>
+              <p class="text-sm opacity-90">Successfully Guided</p>
+            </div>
+            <div class="text-center p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
+              <div class="text-3xl font-bold text-blue-400 mb-2">
+                {t('expertGuide.experience.knowledge', 'Deep Local Knowledge')}
+              </div>
+              <p class="text-sm opacity-90">Regional Expertise</p>
+            </div>
+            <div class="text-center p-6 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
+              <div class="text-3xl font-bold text-purple-400 mb-2">
+                {t('expertGuide.experience.safety', '100% Safety Record')}
+              </div>
+              <p class="text-sm opacity-90">Safety Record</p>
+            </div>
+          </div>
+
+          <!-- Expertise Areas -->
+          <div class="space-y-4 mb-8">
+            <h3 class="text-2xl font-bold mb-4">Expertise Areas</h3>
+            
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
+                🛤️
+              </div>
+              <div>
+                <h4 class="font-bold text-lg">{t('expertGuide.expertise.trails', 'Expert knowledge of all mountain trails')}</h4>
+                <p class="text-gray-300">{t('expertGuide.expertise.culture', 'Deep understanding of local culture and traditions')}</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white flex-shrink-0 mt-1">
+                🛡️
+              </div>
+              <div>
+                <h4 class="font-bold text-lg">{t('expertGuide.expertise.safety', 'Comprehensive safety protocols and emergency procedures')}</h4>
+                <p class="text-gray-300">{t('expertGuide.expertise.spiritual', 'Spiritual insights and temple guidance')}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Credentials -->
+          <div class="space-y-4 mb-8">
+            <h3 class="text-2xl font-bold mb-4">Professional Credentials</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white">
+                  🏅
+                </div>
+                <div>
+                  <h4 class="font-semibold">{t('expertGuide.credentials.certified', 'Certified Mountain Guide')}</h4>
+                  <p class="text-sm text-gray-300">Professional Certification</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+                <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white">
+                  ⚕️
+                </div>
+                <div>
+                  <h4 class="font-semibold">{t('expertGuide.credentials.firstAid', 'Advanced First Aid Certified')}</h4>
+                  <p class="text-sm text-gray-300">Medical Training</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+                <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white">
+                  🗣️
+                </div>
+                <div>
+                  <h4 class="font-semibold">{t('expertGuide.credentials.language', 'Multilingual (Hindi, English, Local dialects)')}</h4>
+                  <p class="text-sm text-gray-300">Communication</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20">
+                <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white">
+                  🏔️
+                </div>
+                <div>
+                  <h4 class="font-semibold">{t('expertGuide.credentials.local', 'Born and raised in the Himalayas')}</h4>
+                  <p class="text-sm text-gray-300">Local Heritage</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonial -->
+          <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 mb-8">
+            <div class="flex items-start gap-4">
+              <div class="text-4xl">💬</div>
+              <div>
+                <p class="text-lg italic mb-4">
+                  "{t('expertGuide.testimonial', 'Our guide made the entire journey seamless and spiritually enriching. His knowledge of the region and care for our safety was exceptional.')}"
+                </p>
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 bg-gradient-to-br from-orange-400 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    RS
+                  </div>
+                  <div>
+                    <p class="font-semibold">Rajesh Sharma</p>
+                    <p class="text-sm text-gray-300">Delhi • June 2024</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <div class="text-center">
+            <a 
+              href={whatsappURL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-orange-500 via-orange-600 to-red-600 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-orange-500/50 active:scale-95 transform hover:scale-105 transition-all duration-300"
+            >
+              <span class="text-2xl">👨‍🏫</span>
+              <span>{t('expertGuide.bookWithGuide', 'Book Your Journey with Expert Guide')}</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
